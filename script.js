@@ -21,26 +21,58 @@ const defaultProjects = [
   }
 ];
 
+const defaultCertificates = [
+  {
+    title: "Java Programming",
+    issuer: "Add issuer and completion date.",
+    url: ""
+  },
+  {
+    title: "Web Development",
+    issuer: "Add issuer and completion date.",
+    url: ""
+  },
+  {
+    title: "Data Structures and Algorithms",
+    issuer: "Add issuer and completion date.",
+    url: ""
+  }
+];
+
+const defaultSkills = [
+  {
+    category: "Programming Languages",
+    items: "Java, Python, C, C++"
+  },
+  {
+    category: "Web Technologies",
+    items: "HTML, CSS, JavaScript"
+  },
+  {
+    category: "Tools",
+    items: "Git, GitHub, Linux, VS Code"
+  }
+];
+
+const deployedPortfolioData = typeof window !== "undefined" && window.PORTFOLIO_DATA ? window.PORTFOLIO_DATA : {};
+
 const defaultPortfolioData = {
   resumeUrl: "resume.pdf",
-  email: "",
+  email: "ravikap0063@gmail.com",
   githubUrl: "https://github.com/BharathWaj-K-R",
   linkedinUrl: "",
   profilePhoto: "",
   profilePhotoUrl: "",
-  cert1Title: "Java Programming",
-  cert1Meta: "Add issuer and completion date.",
-  cert1Url: "",
-  cert2Title: "Web Development",
-  cert2Meta: "Add issuer and completion date.",
-  cert2Url: "",
-  cert3Title: "Data Structures and Algorithms",
-  cert3Meta: "Add issuer and completion date.",
-  cert3Url: "",
   leetcodeUrl: "",
   leetcodeSolved: "--",
   leetcodeRating: "--",
-  projects: defaultProjects
+  projects: defaultProjects,
+  certificates: defaultCertificates,
+  skills: defaultSkills,
+  ...deployedPortfolioData,
+  projects: deployedPortfolioData.projects || defaultProjects,
+  certificates: deployedPortfolioData.certificates || defaultCertificates,
+  skills: deployedPortfolioData.skills || defaultSkills
 };
 
 function normalizeProject(project = {}) {
@@ -54,6 +86,21 @@ function normalizeProject(project = {}) {
   };
 }
 
+function normalizeCertificate(certificate = {}) {
+  return {
+    title: certificate.title || "New Certificate",
+    issuer: certificate.issuer || "",
+    url: certificate.url || ""
+  };
+}
+
+function normalizeSkillCategory(skillCategory = {}) {
+  return {
+    category: skillCategory.category || "New Skill Category",
+    items: skillCategory.items || ""
+  };
+}
+
 function normalizeData(data = {}) {
   const mergedData = { ...defaultPortfolioData, ...data };
 
@@ -61,7 +108,33 @@ function normalizeData(data = {}) {
     mergedData.projects = defaultProjects;
   }
 
+  if (!Array.isArray(mergedData.certificates)) {
+    mergedData.certificates = [
+      {
+        title: mergedData.cert1Title || "Java Programming",
+        issuer: mergedData.cert1Meta || "Add issuer and completion date.",
+        url: mergedData.cert1Url || ""
+      },
+      {
+        title: mergedData.cert2Title || "Web Development",
+        issuer: mergedData.cert2Meta || "Add issuer and completion date.",
+        url: mergedData.cert2Url || ""
+      },
+      {
+        title: mergedData.cert3Title || "Data Structures and Algorithms",
+        issuer: mergedData.cert3Meta || "Add issuer and completion date.",
+        url: mergedData.cert3Url || ""
+      }
+    ];
+  }
+
+  if (!Array.isArray(mergedData.skills)) {
+    mergedData.skills = defaultSkills;
+  }
+
   mergedData.projects = mergedData.projects.map(normalizeProject);
+  mergedData.certificates = mergedData.certificates.map(normalizeCertificate);
+  mergedData.skills = mergedData.skills.map(normalizeSkillCategory);
   return mergedData;
 }
 
@@ -174,6 +247,76 @@ function renderProjects(projects) {
   });
 }
 
+function createSkillCard(skillCategory) {
+  const card = document.createElement("article");
+  card.className = "skill-card reveal visible";
+  card.innerHTML = `
+    <h3></h3>
+    <div class="skill-list"></div>
+  `;
+
+  card.querySelector("h3").textContent = skillCategory.category;
+
+  const skillList = card.querySelector(".skill-list");
+  skillCategory.items
+    .split(",")
+    .map((skill) => skill.trim())
+    .filter(Boolean)
+    .forEach((skill) => {
+      const badge = document.createElement("span");
+      badge.textContent = skill;
+      skillList.appendChild(badge);
+    });
+
+  return card;
+}
+
+function renderSkills(skills) {
+  const skillsGrid = document.querySelector("#skills-grid");
+
+  if (!skillsGrid) {
+    return;
+  }
+
+  skillsGrid.replaceChildren();
+  skills.forEach((skillCategory) => {
+    skillsGrid.appendChild(createSkillCard(skillCategory));
+  });
+}
+
+function createCertificateCard(certificate) {
+  const card = document.createElement("article");
+  card.className = "cert-card reveal visible";
+  card.innerHTML = `
+    <span>Certificate</span>
+    <h3></h3>
+    <p></p>
+    <a target="_blank" rel="noopener noreferrer">View Certificate</a>
+  `;
+
+  card.querySelector("h3").textContent = certificate.title;
+  card.querySelector("p").textContent = certificate.issuer || "Issuer and completion date coming soon.";
+
+  const link = card.querySelector("a");
+  link.href = certificate.url || "#";
+  setLinkState(link, certificate.url);
+
+  return card;
+}
+
+function renderCertificates(certificates) {
+  const certGrid = document.querySelector("#cert-grid");
+
+  if (!certGrid) {
+    return;
+  }
+
+  certGrid.replaceChildren();
+  certificates.forEach((certificate) => {
+    certGrid.appendChild(createCertificateCard(certificate));
+  });
+}
+
 function renderPortfolioData() {
   const data = getPortfolioData();
   const renderData = {
@@ -209,7 +352,9 @@ function renderPortfolioData() {
     element.textContent = value || element.textContent;
   });
 
+  renderSkills(data.skills);
   renderProjects(data.projects);
+  renderCertificates(data.certificates);
 }
 
 async function hashText(value) {
@@ -227,6 +372,20 @@ function readImageFile(file) {
     reader.onerror = () => reject(new Error("Unable to read selected image."));
     reader.readAsDataURL(file);
   });
+}
+
+function downloadDeployData(data) {
+  const fileContents = `window.PORTFOLIO_DATA = ${JSON.stringify(normalizeData(data), null, 2)};\n`;
+  const blob = new Blob([fileContents], { type: "application/javascript" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "data.js";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
 }
 
 function initPortfolioPage() {
@@ -403,10 +562,95 @@ function createProjectEditor(project, index) {
   return card;
 }
 
+function createCertificateEditor(certificate, index) {
+  const card = document.createElement("div");
+  card.className = "cert-editor-card";
+  card.dataset.certificateIndex = String(index);
+
+  card.innerHTML = `
+    <div class="cert-editor-head">
+      <h3>Certificate ${index + 1}</h3>
+      <button class="btn btn-secondary remove-certificate" type="button">Remove</button>
+    </div>
+    <label>Title</label>
+    <input type="text" data-certificate-field="title" required>
+    <label>Issuer / Date</label>
+    <input type="text" data-certificate-field="issuer" placeholder="Oracle / 2026">
+    <label>Certificate Link</label>
+    <input type="url" data-certificate-field="url">
+  `;
+
+  card.querySelectorAll("[data-certificate-field]").forEach((input) => {
+    input.value = certificate[input.dataset.certificateField] || "";
+  });
+
+  card.querySelector(".remove-certificate").addEventListener("click", () => {
+    card.remove();
+    renumberCertificateEditors();
+  });
+
+  return card;
+}
+
+function createSkillEditor(skillCategory, index) {
+  const card = document.createElement("div");
+  card.className = "skill-editor-card";
+  card.dataset.skillIndex = String(index);
+
+  card.innerHTML = `
+    <div class="skill-editor-head">
+      <h3>Skill Category ${index + 1}</h3>
+      <button class="btn btn-secondary remove-skill-category" type="button">Remove</button>
+    </div>
+    <label>Category Name</label>
+    <input type="text" data-skill-field="category" required>
+    <label>Skills</label>
+    <textarea rows="3" data-skill-field="items" placeholder="Java, Python, Git"></textarea>
+  `;
+
+  card.querySelectorAll("[data-skill-field]").forEach((input) => {
+    input.value = skillCategory[input.dataset.skillField] || "";
+  });
+
+  card.querySelector(".remove-skill-category").addEventListener("click", () => {
+    card.remove();
+    renumberSkillEditors();
+  });
+
+  return card;
+}
+
 function renumberProjectEditors() {
   document.querySelectorAll(".project-editor-card").forEach((card, index) => {
     card.dataset.projectIndex = String(index);
     card.querySelector("h3").textContent = `Project ${index + 1}`;
+  });
+}
+
+function renumberSkillEditors() {
+  document.querySelectorAll(".skill-editor-card").forEach((card, index) => {
+    card.dataset.skillIndex = String(index);
+    card.querySelector("h3").textContent = `Skill Category ${index + 1}`;
+  });
+}
+
+function renumberCertificateEditors() {
+  document.querySelectorAll(".cert-editor-card").forEach((card, index) => {
+    card.dataset.certificateIndex = String(index);
+    card.querySelector("h3").textContent = `Certificate ${index + 1}`;
+  });
+}
+
+function renderSkillEditors(skills) {
+  const skillEditorList = document.querySelector("#skill-editor-list");
+
+  if (!skillEditorList) {
+    return;
+  }
+
+  skillEditorList.replaceChildren();
+  skills.forEach((skillCategory, index) => {
+    skillEditorList.appendChild(createSkillEditor(skillCategory, index));
   });
 }
 
@@ -423,6 +667,33 @@ function renderProjectEditors(projects) {
   });
 }
 
+function renderCertificateEditors(certificates) {
+  const certEditorList = document.querySelector("#cert-editor-list");
+
+  if (!certEditorList) {
+    return;
+  }
+
+  certEditorList.replaceChildren();
+  certificates.forEach((certificate, index) => {
+    certEditorList.appendChild(createCertificateEditor(certificate, index));
+  });
+}
+
+function collectSkillEditors() {
+  return Array.from(document.querySelectorAll(".skill-editor-card"))
+    .map((card) => {
+      const skillCategory = {};
+
+      card.querySelectorAll("[data-skill-field]").forEach((input) => {
+        skillCategory[input.dataset.skillField] = input.value.trim();
+      });
+
+      return normalizeSkillCategory(skillCategory);
+    })
+    .filter((skillCategory) => skillCategory.category !== "New Skill Category" || skillCategory.items);
+}
+
 function collectProjectEditors() {
   return Array.from(document.querySelectorAll(".project-editor-card"))
     .map((card) => {
@@ -435,6 +706,32 @@ function collectProjectEditors() {
       return normalizeProject(project);
     })
     .filter((project) => project.title !== "New Project" || project.description || project.techStack || project.githubUrl || project.liveUrl);
+}
+
+function collectCertificateEditors() {
+  return Array.from(document.querySelectorAll(".cert-editor-card"))
+    .map((card) => {
+      const certificate = {};
+
+      card.querySelectorAll("[data-certificate-field]").forEach((input) => {
+        certificate[input.dataset.certificateField] = input.value.trim();
+      });
+
+      return normalizeCertificate(certificate);
+    })
+    .filter((certificate) => certificate.title !== "New Certificate" || certificate.issuer || certificate.url);
+}
+
+function updatePhotoPreview(src) {
+  const photoPreview = document.querySelector("#photo-preview");
+  const previewImage = photoPreview?.querySelector("img");
+
+  if (!photoPreview || !previewImage) {
+    return;
+  }
+
+  previewImage.src = src || "";
+  photoPreview.classList.toggle("has-photo", Boolean(src));
 }
 
 function populateEditorForm(form) {
@@ -452,7 +749,10 @@ function populateEditorForm(form) {
     }
   });
 
+  renderSkillEditors(data.skills);
   renderProjectEditors(data.projects);
+  renderCertificateEditors(data.certificates);
+  updatePhotoPreview(data.profilePhotoUrl || data.profilePhoto);
 }
 
 function showEditor() {
@@ -472,8 +772,13 @@ function initAdminPage() {
   const editorStatus = document.querySelector("#editor-status");
   const resetButton = document.querySelector("#reset-data");
   const lockButton = document.querySelector("#lock-editor");
+  const exportButton = document.querySelector("#export-data");
+  const addSkillCategoryButton = document.querySelector("#add-skill-category");
   const addProjectButton = document.querySelector("#add-project");
+  const addCertificateButton = document.querySelector("#add-certificate");
   const photoFileInput = document.querySelector("#profilePhotoFile");
+  const photoUrlInput = document.querySelector("#profilePhotoUrl");
+  const removePhotoButton = document.querySelector("#remove-photo");
 
   if (!loginForm || !editorForm) {
     return;
@@ -513,6 +818,55 @@ function initAdminPage() {
     projectEditorList.appendChild(createProjectEditor(newProject, projectEditorList.children.length));
   });
 
+  addSkillCategoryButton.addEventListener("click", () => {
+    const skillEditorList = document.querySelector("#skill-editor-list");
+    const newSkillCategory = normalizeSkillCategory({
+      category: "New Skill Category",
+      items: ""
+    });
+
+    skillEditorList.appendChild(createSkillEditor(newSkillCategory, skillEditorList.children.length));
+  });
+
+  addCertificateButton.addEventListener("click", () => {
+    const certEditorList = document.querySelector("#cert-editor-list");
+    const newCertificate = normalizeCertificate({
+      title: "New Certificate",
+      issuer: "",
+      url: ""
+    });
+
+    certEditorList.appendChild(createCertificateEditor(newCertificate, certEditorList.children.length));
+  });
+
+  photoUrlInput.addEventListener("input", () => {
+    updatePhotoPreview(photoUrlInput.value.trim() || getPortfolioData().profilePhoto);
+  });
+
+  photoFileInput.addEventListener("change", async () => {
+    const selectedPhoto = photoFileInput.files[0];
+
+    if (selectedPhoto) {
+      updatePhotoPreview(await readImageFile(selectedPhoto));
+    }
+  });
+
+  removePhotoButton.addEventListener("click", () => {
+    const data = getPortfolioData();
+    data.profilePhoto = "";
+    data.profilePhotoUrl = "";
+    savePortfolioData(data);
+    photoUrlInput.value = "";
+    photoFileInput.value = "";
+    updatePhotoPreview("");
+    editorStatus.textContent = "Profile photo removed.";
+  });
+
+  exportButton.addEventListener("click", () => {
+    downloadDeployData(getPortfolioData());
+    editorStatus.textContent = "Downloaded data.js. Replace the repo file with it and push to GitHub for Render.";
+  });
+
   editorForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -521,7 +875,7 @@ function initAdminPage() {
     const updatedData = {};
 
     Object.keys(defaultPortfolioData).forEach((key) => {
-      if (key === "projects" || key === "profilePhoto") {
+      if (key === "projects" || key === "certificates" || key === "skills" || key === "profilePhoto") {
         return;
       }
 
@@ -530,9 +884,13 @@ function initAdminPage() {
 
     const selectedPhoto = photoFileInput.files[0];
     updatedData.profilePhoto = selectedPhoto ? await readImageFile(selectedPhoto) : currentData.profilePhoto;
+    updatedData.skills = collectSkillEditors();
     updatedData.projects = collectProjectEditors();
+    updatedData.certificates = collectCertificateEditors();
 
     savePortfolioData(updatedData);
+    photoFileInput.value = "";
+    updatePhotoPreview(updatedData.profilePhotoUrl || updatedData.profilePhoto);
     editorStatus.textContent = "Saved. Open or refresh the portfolio page to see your updates.";
   });
 

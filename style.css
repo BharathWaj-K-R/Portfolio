@@ -797,6 +797,23 @@ h3 {
   gap: 18px;
 }
 
+.deploy-note {
+  grid-column: 1 / -1;
+  padding: 18px;
+  border: 1px solid rgba(244, 201, 93, 0.28);
+  border-radius: var(--radius);
+  background: rgba(244, 201, 93, 0.08);
+}
+
+.deploy-note strong {
+  color: var(--warning);
+}
+
+.deploy-note p {
+  margin: 6px 0 0;
+  color: var(--text-muted);
+}
+
 .editor-form fieldset {
   margin: 0;
   padding: 22px;
@@ -820,14 +837,30 @@ h3 {
   margin-bottom: 18px;
 }
 
-.project-editor-card {
+.cert-editor-list {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.skill-editor-list {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.project-editor-card,
+.cert-editor-card,
+.skill-editor-card {
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: rgba(0, 0, 0, 0.16);
 }
 
-.project-editor-head {
+.project-editor-head,
+.cert-editor-head,
+.skill-editor-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -835,14 +868,50 @@ h3 {
   margin-bottom: 8px;
 }
 
-.project-editor-head h3 {
+.project-editor-head h3,
+.cert-editor-head h3,
+.skill-editor-head h3 {
   margin: 0;
   font-size: 1.05rem;
 }
 
-.remove-project {
+.remove-project,
+.remove-certificate,
+.remove-skill-category {
   min-height: 36px;
   padding: 7px 11px;
+}
+
+.photo-preview {
+  width: 112px;
+  height: 112px;
+  display: grid;
+  place-items: center;
+  margin-top: 14px;
+  color: #06110c;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: var(--radius);
+  font-size: 2rem;
+  font-weight: 900;
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-preview img {
+  width: 100%;
+  height: 100%;
+  display: none;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+.photo-preview.has-photo img {
+  display: block;
+}
+
+.photo-preview.has-photo span {
+  opacity: 0;
 }
 
 .editor-submit {
@@ -881,7 +950,7 @@ h3 {
   }
 
   .editor-form fieldset:nth-child(3) {
-    grid-column: 1 / -1;
+    grid-column: auto;
   }
 
   .editor-submit {

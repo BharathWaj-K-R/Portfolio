@@ -13,7 +13,7 @@
       <div class="admin-card">
         <p class="section-kicker">Private Editor</p>
         <h1 id="login-title">Portfolio Admin</h1>
-        <p>Enter your password to edit portfolio links, contact details, certifications, and coding stats.</p>
+        <p>Enter your password to edit portfolio links, skills, projects, certifications, photo, and coding stats.</p>
         <form id="login-form">
           <label for="admin-password">Password</label>
           <input type="password" id="admin-password" autocomplete="current-password" required>
@@ -31,12 +31,18 @@
         </div>
         <div class="admin-actions">
           <a class="btn btn-secondary" href="index.html">View Site</a>
+          <button class="btn btn-secondary" type="button" id="export-data">Export Data</button>
           <button class="btn btn-secondary" type="button" id="reset-data">Reset</button>
           <button class="btn btn-secondary" type="button" id="lock-editor">Lock</button>
         </div>
       </div>
 
       <form class="editor-form" id="editor-form">
+        <div class="deploy-note">
+          <strong>Static deployment note</strong>
+          <p>On Render Static Web, edits saved here are stored in this browser first. Use Export Data, replace data.js in GitHub, and Render will redeploy the public site.</p>
+        </div>
+
         <fieldset>
           <legend>Profile Links</legend>
           <label for="resumeUrl">Resume file or URL</label>
@@ -56,7 +62,18 @@
 
           <label for="profilePhotoFile">Or choose photo from device</label>
           <input type="file" id="profilePhotoFile" accept="image/*">
+          <div class="photo-preview" id="photo-preview">
+            <span>BK</span>
+            <img src="" alt="Profile photo preview">
+          </div>
+          <button class="btn btn-secondary" type="button" id="remove-photo">Remove Photo</button>
           <p class="editor-note">A selected photo is saved in this browser. For hosted sites, keeping the image file in your project folder is usually better.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Skills</legend>
+          <div class="skill-editor-list" id="skill-editor-list"></div>
+          <button class="btn btn-secondary" type="button" id="add-skill-category">Add Skill Category</button>
         </fieldset>
 
         <fieldset>
@@ -67,32 +84,8 @@
 
         <fieldset>
           <legend>Certifications</legend>
-          <label for="cert1Title">Certificate 1 Title</label>
-          <input type="text" id="cert1Title" name="cert1Title">
-
-          <label for="cert1Meta">Certificate 1 Issuer / Date</label>
-          <input type="text" id="cert1Meta" name="cert1Meta">
-
-          <label for="cert1Url">Certificate 1 Link</label>
-          <input type="url" id="cert1Url" name="cert1Url">
-
-          <label for="cert2Title">Certificate 2 Title</label>
-          <input type="text" id="cert2Title" name="cert2Title">
-
-          <label for="cert2Meta">Certificate 2 Issuer / Date</label>
-          <input type="text" id="cert2Meta" name="cert2Meta">
-
-          <label for="cert2Url">Certificate 2 Link</label>
-          <input type="url" id="cert2Url" name="cert2Url">
-
-          <label for="cert3Title">Certificate 3 Title</label>
-          <input type="text" id="cert3Title" name="cert3Title">
-
-          <label for="cert3Meta">Certificate 3 Issuer / Date</label>
-          <input type="text" id="cert3Meta" name="cert3Meta">
-
-          <label for="cert3Url">Certificate 3 Link</label>
-          <input type="url" id="cert3Url" name="cert3Url">
+          <div class="cert-editor-list" id="cert-editor-list"></div>
+          <button class="btn btn-secondary" type="button" id="add-certificate">Add Certificate</button>
         </fieldset>
 
         <fieldset>
@@ -115,6 +108,7 @@
     </section>
   </main>
 
+  <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
