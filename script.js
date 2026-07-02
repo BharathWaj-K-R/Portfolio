@@ -346,14 +346,12 @@ function renderSocialLinks(data) {
   [
     { label: "GitHub", url: data.profile.githubUrl, text: "GH" },
     { label: "LinkedIn", url: data.profile.linkedinUrl, text: "IN" },
-    { label: "Email", url: data.profile.email ? `mailto:${data.profile.email}` : "", text: "@" }
+    { label: "Email", url: data.profile.email ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(data.profile.email)}` : "", text: "@" }
   ].forEach((item) => {
     const link = createElement("a", "", item.text);
     link.setAttribute("aria-label", item.label);
-    if (!item.url.startsWith("mailto:")) {
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-    }
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
     setLinkState(link, item.url);
     container.append(link);
   });
@@ -555,7 +553,7 @@ function renderContact(section, data) {
   const info = createElement("aside", "contact-info reveal visible");
   info.setAttribute("aria-label", "Contact information");
   [
-    { label: "Email", value: data.profile.email, href: data.profile.email ? `mailto:${data.profile.email}` : "" },
+    { label: "Email", value: data.profile.email, href: data.profile.email ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(data.profile.email)}` : "" },
     { label: "GitHub", value: formatLinkLabel(data.profile.githubUrl, "Add GitHub profile"), href: data.profile.githubUrl },
     { label: "LinkedIn", value: formatLinkLabel(data.profile.linkedinUrl, "Add LinkedIn profile"), href: data.profile.linkedinUrl },
     { label: "Location", value: data.profile.location, href: "" }
@@ -582,7 +580,7 @@ function renderFooter(data) {
   [
     { label: "GitHub", href: data.profile.githubUrl },
     { label: "LinkedIn", href: data.profile.linkedinUrl },
-    { label: "Email", href: data.profile.email ? `mailto:${data.profile.email}` : "" },
+    { label: "Email", href: data.profile.email ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(data.profile.email)}` : "" },
     { label: "Edit Site", href: "admin.html" }
   ].forEach((item) => {
     const link = createElement("a", "", item.label);
@@ -710,10 +708,41 @@ function initCommonInteractions() {
       status.textContent = "Please add an email address first.";
       return;
     }
-    const subject = encodeURIComponent(`Portfolio message from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-    window.location.href = `mailto:${data.profile.email}?subject=${subject}&body=${body}`;
-    status.textContent = "Opening your email app...";
+
+    const subjectText = `Portfolio message from ${name}`;
+    const bodyText = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+    const subject = encodeURIComponent(subjectText);
+    const body = encodeURIComponent(bodyText);
+    const toEmail = encodeURIComponent(data.profile.email);
+
+    // Gmail web compose — deliberately NOT using mailto:, since mailto: only works
+    // if the laptop has a default mail app configured, and just gets stuck on a
+    // blank tab otherwise. Gmail web compose only needs a browser + internet.
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${toEmail}&su=${subject}&body=${body}`;
+
+    // Opening via a real, appended <a> click is far more reliable across browsers/laptops
+    // than window.open(), which many browsers silently block as a popup.
+    const link = document.createElement("a");
+    link.href = gmailUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    const copyText = `To: ${data.profile.email}\nSubject: ${subjectText}\n\n${bodyText}`;
+    status.innerHTML = `Opening Gmail in a new tab... If it didn't open, <a href="${gmailUrl}" target="_blank" rel="noopener noreferrer">click here</a> or <button type="button" id="copy-message-btn" style="background:none;border:none;padding:0;font:inherit;color:var(--primary,#39d98a);text-decoration:underline;cursor:pointer;">copy the message</button> to paste into any email app.`;
+
+    const copyButton = document.querySelector("#copy-message-btn");
+    copyButton?.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(copyText);
+        status.textContent = `Copied! Paste it into an email addressed to ${data.profile.email}.`;
+      } catch {
+        status.textContent = `Please email ${data.profile.email} directly with your message.`;
+      }
+    });
+
     contactForm.reset();
   });
 }

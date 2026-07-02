@@ -3,77 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta name="description" content="Portfolio website of Bharathwaj K R, an aspiring software engineer from V.S.B Engineering College, Tamil Nadu, India.">
   <meta name="keywords" content="Bharathwaj K R, Software Engineer, Java, Python, DSA, Linux, Web Development, Portfolio">
   <meta name="author" content="Bharathwaj K R">
+
   <title>Bharathwaj K R | Aspiring Software Engineer</title>
+  <link rel="icon" type="image/png" href="webpagelogo.png">
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="site-header" id="top">
-    <nav class="navbar" aria-label="Primary navigation">
-      <a class="logo" href="#home" aria-label="Portfolio home">
-        <span class="logo-mark" data-profile="initials">BK</span>
-        <span data-profile="name">Bharathwaj K R</span>
-      </a>
 
-      <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+<header class="site-header" id="top">
+  <nav class="navbar" aria-label="Primary navigation">
 
-      <ul class="nav-menu" id="nav-menu"></ul>
-    </nav>
-  </header>
+    <a class="logo" href="#home" aria-label="Portfolio home">
+      <img src="webpagelogo.png" alt="Bharathwaj Logo" class="logo-img">
+      <span data-profile="name">Bharathwaj K R</span>
+    </a>
 
-  <main>
-    <section class="hero section" id="home" aria-labelledby="hero-title">
-      <div class="container hero-grid">
-        <div class="hero-content reveal">
-          <p class="section-kicker" id="hero-kicker"></p>
-          <h1 id="hero-title"></h1>
-          <p class="hero-subtitle">
-            <span id="hero-tagline"></span>
-            <span id="typing-text" aria-live="polite"></span>
-          </p>
-          <p class="hero-copy" id="hero-summary"></p>
+    <button class="nav-toggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-          <div class="hero-actions" id="hero-actions"></div>
-          <div class="social-links" id="social-links" aria-label="Social links"></div>
-        </div>
+    <ul class="nav-menu" id="nav-menu"></ul>
 
-        <div class="hero-visual reveal" aria-label="Developer profile snapshot">
-          <div class="profile-orbit">
-            <div class="profile-card">
-              <div class="avatar" id="profile-avatar" aria-hidden="true">
-                <img src="" alt="">
-                <span data-profile="initials">BK</span>
-              </div>
-              <h2 data-profile="name">Bharathwaj K R</h2>
-              <p id="profile-role-line"></p>
-              <div class="status-row">
-                <span id="hero-status-text"></span>
-                <strong id="hero-status-value"></strong>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  </nav>
+</header>
 
-    <div id="sections-root"></div>
-  </main>
+<main>
 
-  <footer class="site-footer">
-    <div class="container footer-content">
-      <p>&copy; <span id="year"></span> <span data-profile="name">Bharathwaj K R</span>. All rights reserved.</p>
-      <div class="footer-links" id="footer-links"></div>
-    </div>
-  </footer>
+<section class="hero section"
+         id="home"
+         aria-labelledby="hero-title">
 
-  <a class="back-to-top" href="#top" aria-label="Back to top">↑</a>
-  <script src="data.js"></script>
-  <script src="script.js"></script>
+<div class="container hero-grid">
+
+<div class="hero-content reveal">
+
+<p class="section-kicker" id="hero-kicker"></p>
+
+<h1 id="hero-title"></h1>
+
+<p class="hero-subtitle">
+<span id="hero-tagline"></span>
+<span id="typing-text" aria-live="polite"></span>
+</p>
+
+<p class="hero-copy" id="hero-summary"></p>
+
+<div class="hero-actions" id="hero-actions"></div>
+
+<div class="social-links"
+     id="social-links"
+     aria-label="Social links"></div>
+
+</div>
+
+<div class="hero-visual reveal"
+     aria-label="Developer profile snapshot">
+
+<div class="profile-orbit">
+
+<div class="profile-card">
+
+<div class="avatar"
+     id="profile-avatar"
+     aria-hidden="true">
+
+<img src="" alt="">
+<span data-profile="initials">BK</span>
+
+</div>
+
+<h2 data-profile="name">
+Bharathwaj K R
+</h2>
+
+<p id="profile-role-line"></p>
+
+<div class="status-row">
+<span id="hero-status-text"></span>
+<strong id="hero-status-value"></strong>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<div id="sections-root"></div>
+
+</main>
+
+<footer class="site-footer">
+
+<div class="container footer-content">
+
+<p>
+&copy;
+<span id="year"></span>
+<span data-profile="name">Bharathwaj K R</span>.
+All rights reserved.
+</p>
+
+<div class="footer-links"
+     id="footer-links"></div>
+
+</div>
+
+</footer>
+
+<a class="back-to-top"
+   href="#top"
+   aria-label="Back to top">↑</a>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>

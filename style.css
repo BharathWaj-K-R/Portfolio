@@ -14,7 +14,27 @@
   --container: 1120px;
   --header-height: 74px;
 }
+/* Logo */
 
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:inherit;
+    font-weight:700;
+    font-size:1.1rem;
+}
+
+.logo-img{
+    width:48px;
+    height:48px;
+    object-fit:contain;
+}
+
+.logo span{
+    white-space:nowrap;
+}
 * {
   box-sizing: border-box;
 }
