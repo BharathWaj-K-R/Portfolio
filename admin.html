@@ -13,7 +13,7 @@
       <div class="admin-card">
         <p class="section-kicker">Private Editor</p>
         <h1 id="login-title">Portfolio Admin</h1>
-        <p>Enter your password to edit portfolio links, skills, projects, certifications, photo, and coding stats.</p>
+        <p>Enter your password to edit structure, content, appearance, and deployment data.</p>
         <form id="login-form">
           <label for="admin-password">Password</label>
           <input type="password" id="admin-password" autocomplete="current-password" required>
@@ -26,82 +26,89 @@
     <section class="admin-editor hidden" id="admin-editor" aria-labelledby="editor-title">
       <div class="admin-toolbar">
         <div>
-          <p class="section-kicker">Editor</p>
-          <h1 id="editor-title">Update Portfolio Details</h1>
+          <p class="section-kicker">Static CMS</p>
+          <h1 id="editor-title">Portfolio Editor</h1>
         </div>
         <div class="admin-actions">
           <a class="btn btn-secondary" href="index.html">View Site</a>
+          <button class="btn btn-secondary" type="button" id="save-draft">Save Draft</button>
           <button class="btn btn-secondary" type="button" id="export-data">Export Data</button>
+          <label class="btn btn-secondary import-label" for="import-data">Import Data</label>
+          <input class="sr-only" type="file" id="import-data" accept=".js,.json">
           <button class="btn btn-secondary" type="button" id="reset-data">Reset</button>
           <button class="btn btn-secondary" type="button" id="lock-editor">Lock</button>
         </div>
       </div>
 
-      <form class="editor-form" id="editor-form">
-        <div class="deploy-note">
-          <strong>Static deployment note</strong>
-          <p>On Render Static Web, edits saved here are stored in this browser first. Use Export Data, replace data.js in GitHub, and Render will redeploy the public site.</p>
-        </div>
+      <div class="deploy-note">
+        <strong>Render workflow</strong>
+        <p>Edit here, export a complete <code>data.js</code>, replace the file in GitHub, and Render Static Web redeploys automatically.</p>
+      </div>
 
-        <fieldset>
-          <legend>Profile Links</legend>
-          <label for="resumeUrl">Resume file or URL</label>
-          <input type="text" id="resumeUrl" name="resumeUrl" placeholder="resume.pdf">
+      <div class="admin-tabs" role="tablist" aria-label="Editor tabs">
+        <button class="admin-tab active" type="button" data-tab="content">Content</button>
+        <button class="admin-tab" type="button" data-tab="appearance">Appearance</button>
+        <button class="admin-tab" type="button" data-tab="profile">Profile</button>
+        <button class="admin-tab" type="button" data-tab="validation">Validation</button>
+      </div>
 
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="name@example.com">
-
-          <label for="githubUrl">GitHub URL</label>
-          <input type="url" id="githubUrl" name="githubUrl" placeholder="https://github.com/username">
-
-          <label for="linkedinUrl">LinkedIn URL</label>
-          <input type="url" id="linkedinUrl" name="linkedinUrl" placeholder="https://www.linkedin.com/in/username">
-
-          <label for="profilePhotoUrl">Profile photo URL</label>
-          <input type="url" id="profilePhotoUrl" name="profilePhotoUrl" placeholder="https://example.com/photo.jpg">
-
-          <label for="profilePhotoFile">Or choose photo from device</label>
-          <input type="file" id="profilePhotoFile" accept="image/*">
-          <div class="photo-preview" id="photo-preview">
-            <span>BK</span>
-            <img src="" alt="Profile photo preview">
+      <form id="admin-form" class="schema-editor">
+        <section class="admin-panel active" id="panel-content" data-panel="content">
+          <div class="panel-heading">
+            <div>
+              <h2>Sections</h2>
+              <p>Add, remove, rename, hide, reorder, and customize any portfolio section.</p>
+            </div>
+            <div class="add-section-controls">
+              <input type="text" id="new-section-title" placeholder="Internships">
+              <select id="new-section-type" aria-label="New section type">
+                <option value="card-list">Card List</option>
+                <option value="tag-list">Tag List</option>
+                <option value="timeline">Timeline</option>
+                <option value="text-block">Text Block</option>
+                <option value="link-list">Link List</option>
+                <option value="contact">Contact</option>
+              </select>
+              <button class="btn btn-primary" type="button" id="add-section">Add Section</button>
+            </div>
           </div>
-          <button class="btn btn-secondary" type="button" id="remove-photo">Remove Photo</button>
-          <p class="editor-note">A selected photo is saved in this browser. For hosted sites, keeping the image file in your project folder is usually better.</p>
-        </fieldset>
+          <div class="section-editor-list" id="section-editor-list"></div>
+        </section>
 
-        <fieldset>
-          <legend>Skills</legend>
-          <div class="skill-editor-list" id="skill-editor-list"></div>
-          <button class="btn btn-secondary" type="button" id="add-skill-category">Add Skill Category</button>
-        </fieldset>
+        <section class="admin-panel" id="panel-appearance" data-panel="appearance">
+          <div class="panel-heading">
+            <div>
+              <h2>Appearance</h2>
+              <p>Change colors, fonts, density, radius, and layout template with live preview.</p>
+            </div>
+            <button class="btn btn-secondary" type="button" id="reset-theme">Reset Theme</button>
+          </div>
+          <div class="appearance-grid" id="appearance-editor"></div>
+        </section>
 
-        <fieldset>
-          <legend>Projects</legend>
-          <div class="project-editor-list" id="project-editor-list"></div>
-          <button class="btn btn-secondary" type="button" id="add-project">Add Project</button>
-        </fieldset>
+        <section class="admin-panel" id="panel-profile" data-panel="profile">
+          <div class="panel-heading">
+            <div>
+              <h2>Profile & Hero</h2>
+              <p>Edit personal details, social links, hero text, resume, and photo.</p>
+            </div>
+          </div>
+          <div class="profile-editor-grid" id="profile-editor"></div>
+        </section>
 
-        <fieldset>
-          <legend>Certifications</legend>
-          <div class="cert-editor-list" id="cert-editor-list"></div>
-          <button class="btn btn-secondary" type="button" id="add-certificate">Add Certificate</button>
-        </fieldset>
-
-        <fieldset>
-          <legend>LeetCode</legend>
-          <label for="leetcodeUrl">LeetCode Profile URL</label>
-          <input type="url" id="leetcodeUrl" name="leetcodeUrl">
-
-          <label for="leetcodeSolved">Problems Solved</label>
-          <input type="text" id="leetcodeSolved" name="leetcodeSolved" placeholder="150+">
-
-          <label for="leetcodeRating">Contest Rating</label>
-          <input type="text" id="leetcodeRating" name="leetcodeRating" placeholder="1450">
-        </fieldset>
+        <section class="admin-panel" id="panel-validation" data-panel="validation">
+          <div class="panel-heading">
+            <div>
+              <h2>Validation</h2>
+              <p>Review issues before exporting so the public page does not break.</p>
+            </div>
+            <button class="btn btn-primary" type="button" id="run-validation">Run Validation</button>
+          </div>
+          <div class="validation-results" id="validation-results"></div>
+        </section>
 
         <div class="editor-submit">
-          <button class="btn btn-primary" type="submit">Save Updates</button>
+          <button class="btn btn-primary" type="submit">Save Draft</button>
           <p class="form-status" id="editor-status" role="status" aria-live="polite"></p>
         </div>
       </form>

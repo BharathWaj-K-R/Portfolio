@@ -12,9 +12,9 @@
 <body>
   <header class="site-header" id="top">
     <nav class="navbar" aria-label="Primary navigation">
-      <a class="logo" href="#home" aria-label="Bharathwaj K R home">
-        <span class="logo-mark">BK</span>
-        <span>Bharathwaj K R</span>
+      <a class="logo" href="#home" aria-label="Portfolio home">
+        <span class="logo-mark" data-profile="initials">BK</span>
+        <span data-profile="name">Bharathwaj K R</span>
       </a>
 
       <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
@@ -23,15 +23,7 @@
         <span></span>
       </button>
 
-      <ul class="nav-menu">
-        <li><a class="nav-link active" href="#home">Home</a></li>
-        <li><a class="nav-link" href="#about">About</a></li>
-        <li><a class="nav-link" href="#skills">Skills</a></li>
-        <li><a class="nav-link" href="#projects">Projects</a></li>
-        <li><a class="nav-link" href="#certifications">Certifications</a></li>
-        <li><a class="nav-link" href="#leetcode">LeetCode</a></li>
-        <li><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
+      <ul class="nav-menu" id="nav-menu"></ul>
     </nav>
   </header>
 
@@ -39,47 +31,30 @@
     <section class="hero section" id="home" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div class="hero-content reveal">
-          <p class="section-kicker">Aspiring Software Engineer</p>
-          <h1 id="hero-title">Hi, I am <span>Bharathwaj K R</span></h1>
+          <p class="section-kicker" id="hero-kicker"></p>
+          <h1 id="hero-title"></h1>
           <p class="hero-subtitle">
-            I build practical software solutions with a strong foundation in
+            <span id="hero-tagline"></span>
             <span id="typing-text" aria-live="polite"></span>
           </p>
-          <p class="hero-copy">
-            Software engineering student at V.S.B Engineering College focused on Java,
-            DSA, Linux, and modern web development.
-          </p>
+          <p class="hero-copy" id="hero-summary"></p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="resume.pdf" download data-field="resumeUrl" data-attr="href">Download Resume</a>
-            <a class="btn btn-secondary" href="#projects">View Projects</a>
-          </div>
-
-          <div class="social-links" aria-label="Social links">
-            <a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" data-field="githubUrl" data-attr="href">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 8.36 22.9c.58.11.79-.25.79-.56v-2.14c-3.22.7-3.9-1.38-3.9-1.38-.53-1.35-1.29-1.71-1.29-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.41-1.27.74-1.56-2.57-.29-5.27-1.29-5.27-5.73 0-1.27.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.07 0 0 .98-.31 3.18 1.19a10.94 10.94 0 0 1 5.8 0c2.2-1.5 3.17-1.19 3.17-1.19.63 1.6.23 2.78.11 3.07.74.81 1.19 1.84 1.19 3.11 0 4.46-2.71 5.43-5.29 5.72.42.36.79 1.07.79 2.16v3.18c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" data-field="linkedinUrl" data-attr="href">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.42v1.56h.05a3.75 3.75 0 0 1 3.37-1.85c3.61 0 4.27 2.37 4.27 5.46v6.28ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.54V9H7.1v11.45Z"/></svg>
-            </a>
-            <a href="mailto:" aria-label="Send email" data-field="email" data-attr="mailto">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 5h17A2.5 2.5 0 0 1 23 7.5v9A2.5 2.5 0 0 1 20.5 19h-17A2.5 2.5 0 0 1 1 16.5v-9A2.5 2.5 0 0 1 3.5 5Zm.3 2 8.2 5.58L20.2 7H3.8Zm17.2 2.13-8.42 5.73a1 1 0 0 1-1.16 0L3 9.13v7.37c0 .28.22.5.5.5h17a.5.5 0 0 0 .5-.5V9.13Z"/></svg>
-            </a>
-          </div>
+          <div class="hero-actions" id="hero-actions"></div>
+          <div class="social-links" id="social-links" aria-label="Social links"></div>
         </div>
 
         <div class="hero-visual reveal" aria-label="Developer profile snapshot">
           <div class="profile-orbit">
             <div class="profile-card">
-              <div class="avatar" aria-hidden="true">
-                <img src="" alt="" data-field="profilePhoto" data-attr="src">
-                <span>BK</span>
+              <div class="avatar" id="profile-avatar" aria-hidden="true">
+                <img src="" alt="">
+                <span data-profile="initials">BK</span>
               </div>
-              <h2>Bharathwaj K R</h2>
-              <p>Java • DSA • Linux • Web</p>
+              <h2 data-profile="name">Bharathwaj K R</h2>
+              <p id="profile-role-line"></p>
               <div class="status-row">
-                <span>Available for internships</span>
-                <strong>2026</strong>
+                <span id="hero-status-text"></span>
+                <strong id="hero-status-value"></strong>
               </div>
             </div>
           </div>
@@ -87,154 +62,13 @@
       </div>
     </section>
 
-    <section class="section" id="about" aria-labelledby="about-title">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="section-kicker">About</p>
-          <h2 id="about-title">Focused on clean code and real-world problem solving.</h2>
-        </div>
-
-        <div class="about-grid">
-          <article class="about-panel reveal">
-            <h3>Professional Summary</h3>
-            <p>
-              I am an aspiring software engineer from Tamil Nadu with a growing
-              interest in building reliable applications, solving algorithmic
-              problems, and learning the engineering habits behind scalable systems.
-            </p>
-          </article>
-          <article class="about-panel reveal">
-            <h3>Education</h3>
-            <p><strong>V.S.B Engineering College</strong></p>
-            <p>Software engineering student based in Tamil Nadu, India.</p>
-          </article>
-          <article class="about-panel reveal">
-            <h3>Career Objective</h3>
-            <p>
-              To contribute to impactful software teams, strengthen my skills in
-              Java, DSA, Linux, and web development, and grow into a dependable
-              full-stack software engineer.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-muted" id="skills" aria-labelledby="skills-title">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="section-kicker">Skills</p>
-          <h2 id="skills-title">Technologies I work with.</h2>
-        </div>
-
-        <div class="skills-grid" id="skills-grid" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <section class="section" id="projects" aria-labelledby="projects-title">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="section-kicker">Projects</p>
-          <h2 id="projects-title">Selected engineering work.</h2>
-        </div>
-
-        <div class="project-grid" id="project-grid" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <section class="section section-muted" id="certifications" aria-labelledby="certifications-title">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="section-kicker">Certifications</p>
-          <h2 id="certifications-title">Learning milestones.</h2>
-        </div>
-
-        <div class="cert-grid" id="cert-grid" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <section class="section" id="leetcode" aria-labelledby="leetcode-title">
-      <div class="container leetcode-card reveal">
-        <div>
-          <p class="section-kicker">LeetCode</p>
-          <h2 id="leetcode-title">Consistent coding practice and DSA growth.</h2>
-          <p>
-            Tracking problem-solving progress through Java-focused DSA practice,
-            pattern recognition, and regular contest preparation.
-          </p>
-        </div>
-        <div class="leetcode-stats" aria-label="LeetCode coding journey stats">
-          <div>
-            <strong data-field="leetcodeSolved">--</strong>
-            <span>Problems Solved</span>
-          </div>
-          <div>
-            <strong data-field="leetcodeRating">--</strong>
-            <span>Contest Rating</span>
-          </div>
-          <div>
-            <strong>Java</strong>
-            <span>Primary Language</span>
-          </div>
-        </div>
-        <a class="btn btn-primary" href="#" data-field="leetcodeUrl" data-attr="href">View LeetCode Profile</a>
-      </div>
-    </section>
-
-    <section class="section section-muted" id="contact" aria-labelledby="contact-title">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="section-kicker">Contact</p>
-          <h2 id="contact-title">Let us build something useful.</h2>
-        </div>
-
-        <div class="contact-grid">
-          <form class="contact-form reveal" id="contact-form">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" autocomplete="name" required>
-
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" autocomplete="email" required>
-
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-
-            <button class="btn btn-primary" type="submit">Send Message</button>
-            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-          </form>
-
-          <aside class="contact-info reveal" aria-label="Contact information">
-            <a href="mailto:" data-field="email" data-attr="mailto">
-              <span>Email</span>
-              <strong data-field="email">Add email address</strong>
-            </a>
-            <a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener noreferrer" data-field="githubUrl" data-attr="href">
-              <span>GitHub</span>
-              <strong data-field="githubLabel">github.com/BharathWaj-K-R</strong>
-            </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" data-field="linkedinUrl" data-attr="href">
-              <span>LinkedIn</span>
-              <strong data-field="linkedinLabel">Add LinkedIn profile</strong>
-            </a>
-            <p>
-              <span>Location</span>
-              Tamil Nadu, India
-            </p>
-          </aside>
-        </div>
-      </div>
-    </section>
+    <div id="sections-root"></div>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-content">
-      <p>&copy; <span id="year"></span> Bharathwaj K R. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener noreferrer" data-field="githubUrl" data-attr="href">GitHub</a>
-        <a href="#" target="_blank" rel="noopener noreferrer" data-field="linkedinUrl" data-attr="href">LinkedIn</a>
-        <a href="mailto:" data-field="email" data-attr="mailto">Email</a>
-        <a href="admin.html">Edit Site</a>
-      </div>
+      <p>&copy; <span id="year"></span> <span data-profile="name">Bharathwaj K R</span>. All rights reserved.</p>
+      <div class="footer-links" id="footer-links"></div>
     </div>
   </footer>
 
