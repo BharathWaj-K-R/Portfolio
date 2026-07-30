@@ -1,7 +1,7 @@
 window.PORTFOLIO_DATA = {
   "profile": {
     "name": "Bharathwaj K R",
-    "initials": "RK",
+    "initials": "BK",
     "role": "Aspiring Software Engineer",
     "college": "V.S.B Engineering College",
     "location": "Tamil Nadu, India",
@@ -36,16 +36,16 @@ window.PORTFOLIO_DATA = {
   },
   "theme": {
     "templateId": "modern-grid",
-    "primary": "#c084fc",
-    "secondary": "#67e8f9",
-    "accent": "#fda4af",
-    "background": "#100b17",
-    "surface": "#1e1428",
-    "text": "#fbf7ff",
-    "mutedText": "#c4b5d4",
-    "headingFont": "Inter",
+    "primary": "#2451D6",
+    "secondary": "#0F8B6C",
+    "accent": "#B5852B",
+    "background": "#F5F5F1",
+    "surface": "#FFFFFF",
+    "text": "#14171C",
+    "mutedText": "#5B6472",
+    "headingFont": "Space Grotesk",
     "bodyFont": "Inter",
-    "radius": "8px",
+    "radius": "6px",
     "density": "comfortable"
   },
   "sections": [
