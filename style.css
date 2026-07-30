@@ -294,6 +294,32 @@ code {
   font-size: 1.02rem;
 }
 
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-stat strong {
+  font-family: var(--heading-font);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.hero-stat span {
+  font-family: var(--mono-font);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -561,11 +587,12 @@ code {
 
 .card-image {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   margin-bottom: 16px;
   border-radius: var(--radius);
   border: 1px solid var(--line);
+  background: var(--bg);
 }
 
 .card-actions {

@@ -13,10 +13,10 @@ window.PORTFOLIO_DATA = {
     "leetcodeUrl": ""
   },
   "hero": {
-    "kicker": "Aspiring Software Engineer",
+    "kicker": "Software Engineering Student · Open to Internships",
     "headlinePrefix": "Hi, I am",
-    "tagline": "I build practical software solutions with a strong foundation in",
-    "summary": "",
+    "tagline": "I ship working software end-to-end, and I'm sharpest at",
+    "summary": "Final-year software engineering student who learns by building: full-stack apps, ML-backed tools, and daily DSA practice. Comfortable across Java, Python, and the Linux command line, and quick to pick up whatever a team is already using.",
     "typingWords": [
       "Java development.",
       "DSA problem solving.",
@@ -24,15 +24,15 @@ window.PORTFOLIO_DATA = {
       "web development."
     ],
     "primaryButton": {
-      "label": "Download Resume",
+      "label": "View Resume",
       "hrefField": "resumeUrl"
     },
     "secondaryButton": {
-      "label": "View Projects",
+      "label": "See Projects",
       "sectionId": "projects"
     },
-    "statusText": "Available for internships",
-    "statusValue": "2026"
+    "statusText": "Open to internships",
+    "statusValue": "2026 grad"
   },
   "theme": {
     "templateId": "modern-grid",
@@ -57,16 +57,16 @@ window.PORTFOLIO_DATA = {
       "visible": true,
       "content": [
         {
-          "heading": "Professional Summary",
-          "text": "I am an aspiring software engineer from Tamil Nadu with a growing interest in building reliable applications, solving algorithmic problems, and learning the engineering habits behind scalable systems."
+          "heading": "What I do",
+          "text": "I build things that work end-to-end rather than stop at a demo — from a Flask backend to the UI on top of it. Outside project work, I practice DSA daily and keep a Linux environment as my default workspace."
         },
         {
           "heading": "Education",
-          "text": "V.S.B Engineering College. Software engineering student based in Tamil Nadu, India."
+          "text": "V.S.B Engineering College, Tamil Nadu, India — Software Engineering, graduating 2026."
         },
         {
-          "heading": "Career Objective",
-          "text": "To contribute to impactful software teams, strengthen my skills in Java, DSA, Linux, and web development, and grow into a dependable full-stack software engineer."
+          "heading": "What I'm looking for",
+          "text": "A software engineering internship or entry-level role where I can work on real production code, get direct feedback, and grow into a dependable full-stack engineer."
         }
       ]
     },
@@ -216,27 +216,32 @@ window.PORTFOLIO_DATA = {
       ],
       "items": [
         {
-          "title": "Java Programming",
-          "issuer": "Add issuer and completion date.",
-          "url": ""
+          "title": "Java Foundation Certification",
+          "issuer": "Wingspan · July 2025",
+          "url": "certificates/java-foundation.pdf"
         },
         {
-          "title": "Web Development",
-          "issuer": "Add issuer and completion date.",
-          "url": ""
+          "title": "Programming Using Java",
+          "issuer": "Wingspan · June 2025",
+          "url": "certificates/programming-in-java.pdf"
         },
         {
-          "title": "Data Structures and Algorithms",
-          "issuer": "Add issuer and completion date.",
-          "url": ""
+          "title": "Microsoft Excel for Data Analyst",
+          "issuer": "Wingspan · January 2025",
+          "url": "certificates/microsoft-excel.pdf"
+        },
+        {
+          "title": "Cloud Technologies",
+          "issuer": "Wingspan · January 2025",
+          "url": "certificates/cloud-tech.pdf"
         }
       ]
     },
     {
-      "id": "leetcode",
+      "id": "activity",
       "type": "card-list",
-      "title": "LeetCode",
-      "subtitle": "Consistent coding practice and DSA growth.",
+      "title": "Coding Activity",
+      "subtitle": "Live proof, not a claim — these update automatically from my real accounts.",
       "visible": true,
       "fields": [
         {
@@ -254,16 +259,9 @@ window.PORTFOLIO_DATA = {
           "showInCard": true
         },
         {
-          "key": "problemssolved",
-          "label": "Problems Solved",
-          "type": "text",
-          "required": false,
-          "showInCard": true
-        },
-        {
-          "key": "contestrating",
-          "label": "Contest Rating",
-          "type": "text",
+          "key": "image",
+          "label": "Badge Image URL",
+          "type": "image",
           "required": false,
           "showInCard": true
         },
@@ -277,11 +275,16 @@ window.PORTFOLIO_DATA = {
       ],
       "items": [
         {
-          "title": "Coding Journey",
-          "description": "Tracking problem-solving progress through Java-focused DSA practice, pattern recognition, and regular contest preparation.",
-          "problemsSolved": "--",
-          "contestRating": "--",
+          "title": "LeetCode Progress",
+          "description": "Daily DSA practice, pattern recognition, and contest prep.",
+          "image": "https://leetcard.jacoblin.cool/Bharath_Waj_K_R?theme=light&font=baloo2&ext=activity",
           "url": "https://leetcode.com/u/Bharath_Waj_K_R"
+        },
+        {
+          "title": "GitHub Activity",
+          "description": "Commits, repos, and the languages I actually write in.",
+          "image": "https://github-readme-stats.vercel.app/api?username=BharathWaj-K-R&show_icons=true&hide_border=true&bg_color=FFFFFF&title_color=2451D6&text_color=14171C&icon_color=0F8B6C",
+          "url": "https://github.com/BharathWaj-K-R"
         }
       ]
     },

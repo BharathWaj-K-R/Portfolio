@@ -244,7 +244,7 @@ function safeUrl(url) {
 }
 
 function isUsableUrl(url) {
-  return /^(https?:\/\/|mailto:|tel:|#|\.?\/|[\w-]+\.(pdf|png|jpe?g|webp|gif))/i.test(String(url || ""));
+  return /^(https?:\/\/|mailto:|tel:|#|\.?\/|[\w.-]+\/[\w./-]+\.\w+$|[\w-]+\.(pdf|png|jpe?g|webp|gif))/i.test(String(url || ""));
 }
 
 function setLinkState(link, href) {

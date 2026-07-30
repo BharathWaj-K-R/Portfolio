@@ -50,8 +50,9 @@ function renderHero(data) {
   if (actions) {
     actions.replaceChildren();
     const primaryHref = data.profile[data.hero.primaryButton?.hrefField] || data.profile.resumeUrl;
-    const primary = createElement("a", "btn btn-primary", data.hero.primaryButton?.label || "Download Resume");
-    primary.setAttribute("download", "");
+    const primary = createElement("a", "btn btn-primary", data.hero.primaryButton?.label || "View Resume");
+    primary.target = "_blank";
+    primary.rel = "noopener noreferrer";
     setLinkState(primary, primaryHref);
     actions.append(primary);
     const targetSection = data.sections.find((section) => section.id === data.hero.secondaryButton?.sectionId && section.visible);
@@ -61,7 +62,40 @@ function renderHero(data) {
   }
 
   renderSocialLinks(data);
+  renderHeroStats(data);
   startTyping(data.hero.typingWords || []);
+}
+
+// Quick facts a recruiter can absorb in two seconds. Every number here is
+// derived live from the same data the rest of the site renders — nothing
+// is a separately-maintained claim that can drift out of sync or get
+// overstated.
+function renderHeroStats(data) {
+  const container = document.querySelector("#hero-stats");
+  if (!container) return;
+  container.replaceChildren();
+
+  const visibleSections = data.sections.filter((section) => section.visible);
+  const skillsCount = visibleSections
+    .filter((section) => section.type === "tag-list")
+    .flatMap((section) => section.groups || [])
+    .flatMap((group) => group.tags || []).length;
+  const projectsSection = visibleSections.find((section) => section.id === "projects") || visibleSections.find((section) => section.type === "card-list");
+  const projectsCount = projectsSection?.items?.length || 0;
+  const sectionCount = visibleSections.length;
+
+  const stats = [
+    { value: String(projectsCount), label: projectsCount === 1 ? "project shipped" : "projects shipped" },
+    { value: String(skillsCount), label: "skills listed" },
+    { value: String(sectionCount), label: "sections on this page" }
+  ].filter((stat) => Number(stat.value) > 0);
+
+  stats.forEach((stat) => {
+    const item = createElement("div", "hero-stat");
+    item.append(createElement("strong", "", stat.value));
+    item.append(createElement("span", "", stat.label));
+    container.append(item);
+  });
 }
 
 function renderSocialLinks(data) {
