@@ -6,7 +6,7 @@
 <title>Bharath Waj K R</title>
 <meta name="description" content="Portfolio of Bharath Waj K R, B.Tech AI student and aspiring software engineer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F4F1E9;
@@ -39,8 +39,8 @@
     border-bottom:1px solid var(--line-soft);
   }
   nav .wrap{display:flex; justify-content:space-between; align-items:center; height:58px; max-width:760px;}
-  .brand{font-family:var(--serif); font-style:italic; font-size:16px;}
-  .navlinks{display:flex; gap:26px; font-size:13px;}
+  .brand{font-family:var(--serif); font-weight:600; font-size:16px;}
+  .navlinks{display:flex; gap:26px; font-size:13px; font-weight:500;}
   .navlinks a{text-decoration:none; color:var(--ink-soft); position:relative; padding-bottom:2px;}
   .navlinks a::after{content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--ink); transition:width .25s;}
   .navlinks a:hover{color:var(--ink);}
@@ -55,19 +55,24 @@
 
   /* opener */
   .opener{padding:72px 0 40px;}
-  .opener .idx{margin-bottom:18px;}
+  .opener .idx{margin-bottom:18px; font-weight:600;}
+  .opener-grid{display:grid; grid-template-columns:1fr 260px; gap:48px; align-items:start;}
   .opener p.lede{
-    font-family:var(--serif); font-style:italic; font-weight:400;
-    font-size:clamp(22px,3.4vw,30px); line-height:1.5; color:var(--ink);
-    max-width:640px;
+    font-family:var(--serif); font-weight:600;
+    font-size:clamp(22px,3.2vw,29px); line-height:1.42; color:var(--ink);
   }
+  .opener-photo img{
+    width:100%; aspect-ratio:3/3.3; object-fit:cover;
+    border:1px solid var(--line);
+  }
+  .opener-photo .cap{font-family:var(--sans); font-weight:600; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); margin-top:10px;}
   .opener .name-line{
     margin-top:26px; font-family:var(--sans); font-size:14px; color:var(--ink-soft);
     display:flex; flex-wrap:wrap; gap:6px 18px;
   }
-  .opener .name-line b{color:var(--ink); font-weight:600;}
+  .opener .name-line b{color:var(--ink); font-weight:700;}
   .opener-cta{display:flex; gap:16px; margin-top:30px; flex-wrap:wrap;}
-  .btn{font-size:13px; text-decoration:none; padding:9px 18px; border-radius:2px; border:1px solid var(--ink); transition:all .2s;}
+  .btn{font-size:13px; font-weight:600; text-decoration:none; padding:9px 18px; border-radius:2px; border:1px solid var(--ink); transition:all .2s;}
   .btn-fill{background:var(--ink); color:var(--paper);}
   .btn-fill:hover{background:var(--ink-soft); border-color:var(--ink-soft);}
   .btn-line:hover{background:var(--ink); color:var(--paper);}
@@ -80,35 +85,34 @@
   .about-photo{position:relative;}
   .about-photo img{
     width:100%; aspect-ratio:3/3.5; object-fit:cover;
-    filter:grayscale(100%) contrast(1.04);
     border:1px solid var(--line);
   }
-  .about-photo .cap{font-family:var(--serif); font-style:italic; font-size:12.5px; color:var(--ink-soft); margin-top:8px;}
+  .about-photo .cap{font-family:var(--sans); font-weight:600; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); margin-top:8px;}
 
   section{padding:56px 0;}
   .sec-head{display:flex; align-items:baseline; gap:16px; margin-bottom:8px;}
-  .sec-title{font-family:var(--serif); font-weight:500; font-size:24px;}
-  .sec-head .idx{white-space:nowrap;}
+  .sec-title{font-family:var(--serif); font-weight:700; font-size:24px;}
+  .sec-head .idx{white-space:nowrap; font-weight:600;}
   .sec-intro{color:var(--ink-soft); font-size:14px; max-width:520px; margin:10px 0 30px;}
 
   /* stats */
   .stat-row{display:flex; gap:0; margin-top:8px; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
   .stat{flex:1; padding:20px 18px; border-right:1px solid var(--line);}
   .stat:last-child{border-right:none;}
-  .stat b{display:block; font-family:var(--serif); font-size:26px; font-weight:500;}
+  .stat b{display:block; font-family:var(--serif); font-size:26px; font-weight:700;}
   .stat span{font-size:11.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em;}
 
   /* skills */
   .skill-row{display:grid; grid-template-columns:180px 1fr; gap:16px; padding:14px 0; border-top:1px solid var(--line-soft);}
   .skill-row:last-child{border-bottom:1px solid var(--line-soft);}
-  .skill-row .label{font-family:var(--serif); font-style:italic; font-size:15px; color:var(--ink-soft);}
+  .skill-row .label{font-family:var(--serif); font-weight:600; font-size:15px; color:var(--ink-soft);}
   .skill-row .items{font-size:14.5px;}
 
   /* projects */
   .proj{padding:28px 0; border-top:1px solid var(--line);}
   .proj:last-child{border-bottom:1px solid var(--line);}
   .proj-top{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;}
-  .proj-top h3{font-family:var(--serif); font-weight:500; font-size:20px;}
+  .proj-top h3{font-family:var(--serif); font-weight:700; font-size:20px;}
   .proj-top .tag{font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft);}
   .proj p.desc{margin-top:10px; font-size:14.5px; color:#2E2C26; max-width:600px;}
   .proj-links{margin-top:12px;}
@@ -118,7 +122,7 @@
   .exp{display:grid; grid-template-columns:120px 1fr; gap:20px; padding:22px 0; border-top:1px solid var(--line-soft);}
   .exp:last-child{border-bottom:1px solid var(--line-soft);}
   .exp .when{font-size:12px; color:var(--ink-soft); padding-top:2px;}
-  .exp h4{font-family:var(--serif); font-weight:500; font-size:17px;}
+  .exp h4{font-family:var(--serif); font-weight:700; font-size:17px;}
   .exp .org{font-size:13px; color:var(--ink-soft); margin-bottom:6px;}
   .exp p{font-size:14px; color:#2E2C26;}
 
@@ -130,7 +134,7 @@
 
   /* footer */
   footer{padding:70px 0 60px;}
-  footer .lede{font-family:var(--serif); font-style:italic; font-size:clamp(24px,3.6vw,32px); max-width:560px; margin-bottom:26px;}
+  footer .lede{font-family:var(--serif); font-weight:700; font-size:clamp(24px,3.6vw,32px); max-width:560px; margin-bottom:26px;}
   .contact-links{display:flex; flex-wrap:wrap; gap:12px;}
   .contact-links a{font-size:13px; text-decoration:none; border:1px solid var(--ink); padding:9px 16px; border-radius:2px; transition:all .2s;}
   .contact-links a:hover{background:var(--ink); color:var(--paper);}
@@ -145,8 +149,8 @@
       flex-direction:column; padding:18px 28px; gap:16px; transform:translateY(-120%); transition:transform .25s; z-index:40;}
     .navlinks.open{transform:translateY(0);}
     .navtoggle{display:block;}
-    .about-block{grid-template-columns:1fr;}
-    .about-photo{max-width:220px;}
+    .opener-grid{grid-template-columns:1fr;}
+    .opener-photo{max-width:220px;}
     .skill-row{grid-template-columns:1fr;}
     .exp{grid-template-columns:1fr;}
   }
@@ -173,15 +177,23 @@
 <header class="opener">
   <div class="wrap reveal in">
     <div class="idx">01 — Introduction</div>
-    <p class="lede">I build software the way I'd want to use it &mdash; carefully taken apart, understood, and put back together cleaner. Currently finishing a degree in Artificial Intelligence and looking for the room to do that professionally.</p>
-    <div class="name-line">
-      <span><b>Bharath Waj K R</b></span>
-      <span>B.Tech Artificial Intelligence, V.S.B. Engineering College</span>
-      <span>Dindigul, Tamil Nadu</span>
-    </div>
-    <div class="opener-cta">
-      <a class="btn btn-fill" href="#projects">See the work</a>
-      <a class="btn btn-line" href="#contact">Get in touch</a>
+    <div class="opener-grid">
+      <div>
+        <p class="lede">I build software the way I'd want to use it &mdash; carefully taken apart, understood, and put back together cleaner. Currently finishing a degree in Artificial Intelligence and looking for the room to do that professionally.</p>
+        <div class="name-line">
+          <span><b>Bharath Waj K R</b></span>
+          <span>B.Tech Artificial Intelligence, V.S.B. Engineering College</span>
+          <span>Dindigul, Tamil Nadu</span>
+        </div>
+        <div class="opener-cta">
+          <a class="btn btn-fill" href="#projects">See the work</a>
+          <a class="btn btn-line" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="opener-photo">
+        <img src="photo.png" alt="Portrait of Bharath Waj K R">
+        <div class="cap">Bharath Waj K R</div>
+      </div>
     </div>
   </div>
 </header>
@@ -192,15 +204,9 @@
   <div class="wrap reveal">
     <div class="sec-head"><span class="idx">02 — About</span></div>
     <h2 class="sec-title">A quick sketch</h2>
-    <div class="about-block" style="margin-top:22px;">
-      <div class="about-copy">
-        <p>I'm a final-year B.Tech Artificial Intelligence student, working across programming, data structures, algorithms, and web technologies. I like taking systems apart to see how they actually work, then rebuilding them cleaner &mdash; that's shown up in a multi-agent code review tool and a handwriting-based stress detector.</p>
-        <p>I'm looking for a Software Engineer or Graduate Trainee role where I can bring that instinct to real, production software, and keep growing as a developer alongside people who care about the craft.</p>
-      </div>
-      <div class="about-photo">
-        <img src="photo.png" alt="Portrait of Bharath Waj K R">
-        <div class="cap">Bharath, at work.</div>
-      </div>
+    <div class="about-copy" style="margin-top:22px; max-width:600px;">
+      <p>I'm a final-year B.Tech Artificial Intelligence student, working across programming, data structures, algorithms, and web technologies. I like taking systems apart to see how they actually work, then rebuilding them cleaner &mdash; that's shown up in a multi-agent code review tool and a handwriting-based stress detector.</p>
+      <p>I'm looking for a Software Engineer or Graduate Trainee role where I can bring that instinct to real, production software, and keep growing as a developer alongside people who care about the craft.</p>
     </div>
     <div class="stat-row">
       <div class="stat"><b>8.41</b><span>CGPA / 10</span></div>
