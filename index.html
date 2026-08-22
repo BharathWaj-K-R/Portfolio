@@ -1,167 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="description" content="Bharathwaj K R — software engineering student open to internships. Java, Python, DSA, and full-stack web projects.">
-  <meta name="keywords" content="Bharathwaj K R, Software Engineer, Java, Python, DSA, Linux, Web Development, Portfolio">
-  <meta name="author" content="Bharathwaj K R">
-
-  <title>Bharathwaj K R | Software Engineering Student, Open to Internships</title>
-  <link rel="icon" type="image/png" href="webpagelogo.png">
-
-  <meta property="og:type" content="profile">
-  <meta property="og:title" content="Bharathwaj K R | Software Engineering Student, Open to Internships">
-  <meta property="og:description" content="Java, Python, DSA, and full-stack web projects — see the work and get in touch.">
-  <meta property="og:image" content="webpagelogo.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Bharathwaj K R | Software Engineering Student">
-  <meta name="twitter:description" content="Java, Python, DSA, and full-stack web projects — see the work and get in touch.">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Bharathwaj K R",
-    "jobTitle": "Software Engineering Student",
-    "url": "https://github.com/BharathWaj-K-R/Portfolio",
-    "sameAs": [
-      "https://github.com/BharathWaj-K-R",
-      "https://www.linkedin.com/in/bharath-waj-k-r",
-      "https://leetcode.com/u/Bharath_Waj_K_R"
-    ]
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bharath Waj K R</title>
+<meta name="description" content="Portfolio of Bharath Waj K R, B.Tech AI student and aspiring software engineer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F1E9;
+    --ink:#1C1A16;
+    --ink-soft:#4A473F;
+    --line:#D8D3C5;
+    --line-soft:#E7E3D6;
+    --serif:'Fraunces', serif;
+    --sans:'Inter', sans-serif;
   }
-  </script>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--ink); color:var(--paper);}
+  a{color:inherit;}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  .wrap{max-width:760px; margin:0 auto; padding:0 28px;}
 
-  <link rel="stylesheet" href="style.css">
+  /* nav */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,241,233,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav .wrap{display:flex; justify-content:space-between; align-items:center; height:58px; max-width:760px;}
+  .brand{font-family:var(--serif); font-style:italic; font-size:16px;}
+  .navlinks{display:flex; gap:26px; font-size:13px;}
+  .navlinks a{text-decoration:none; color:var(--ink-soft); position:relative; padding-bottom:2px;}
+  .navlinks a::after{content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--ink); transition:width .25s;}
+  .navlinks a:hover{color:var(--ink);}
+  .navlinks a:hover::after{width:100%;}
+  .navlinks .resume-link{border:1px solid var(--ink); padding:5px 12px; border-radius:2px;}
+  .navlinks .resume-link::after{display:none;}
+  .navlinks .resume-link:hover{background:var(--ink); color:var(--paper);}
+  .navtoggle{display:none; background:none; border:none; font-size:20px; cursor:pointer; color:var(--ink);}
+
+  /* index rail — small structural marker system */
+  .idx{font-family:var(--sans); font-variant-numeric:tabular-nums; font-size:11px; letter-spacing:0.08em; color:var(--ink-soft); text-transform:uppercase;}
+
+  /* opener */
+  .opener{padding:72px 0 40px;}
+  .opener .idx{margin-bottom:18px;}
+  .opener p.lede{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:clamp(22px,3.4vw,30px); line-height:1.5; color:var(--ink);
+    max-width:640px;
+  }
+  .opener .name-line{
+    margin-top:26px; font-family:var(--sans); font-size:14px; color:var(--ink-soft);
+    display:flex; flex-wrap:wrap; gap:6px 18px;
+  }
+  .opener .name-line b{color:var(--ink); font-weight:600;}
+  .opener-cta{display:flex; gap:16px; margin-top:30px; flex-wrap:wrap;}
+  .btn{font-size:13px; text-decoration:none; padding:9px 18px; border-radius:2px; border:1px solid var(--ink); transition:all .2s;}
+  .btn-fill{background:var(--ink); color:var(--paper);}
+  .btn-fill:hover{background:var(--ink-soft); border-color:var(--ink-soft);}
+  .btn-line:hover{background:var(--ink); color:var(--paper);}
+
+  hr.rule{border:none; border-top:1px solid var(--line); margin:0;}
+
+  /* photo blended into flow, inside about section */
+  .about-block{display:grid; grid-template-columns:1fr 200px; gap:44px; align-items:start;}
+  .about-copy p{margin-bottom:16px; font-size:15.5px; color:#2E2C26;}
+  .about-photo{position:relative;}
+  .about-photo img{
+    width:100%; aspect-ratio:3/3.5; object-fit:cover;
+    filter:grayscale(100%) contrast(1.04);
+    border:1px solid var(--line);
+  }
+  .about-photo .cap{font-family:var(--serif); font-style:italic; font-size:12.5px; color:var(--ink-soft); margin-top:8px;}
+
+  section{padding:56px 0;}
+  .sec-head{display:flex; align-items:baseline; gap:16px; margin-bottom:8px;}
+  .sec-title{font-family:var(--serif); font-weight:500; font-size:24px;}
+  .sec-head .idx{white-space:nowrap;}
+  .sec-intro{color:var(--ink-soft); font-size:14px; max-width:520px; margin:10px 0 30px;}
+
+  /* stats */
+  .stat-row{display:flex; gap:0; margin-top:8px; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .stat{flex:1; padding:20px 18px; border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat b{display:block; font-family:var(--serif); font-size:26px; font-weight:500;}
+  .stat span{font-size:11.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em;}
+
+  /* skills */
+  .skill-row{display:grid; grid-template-columns:180px 1fr; gap:16px; padding:14px 0; border-top:1px solid var(--line-soft);}
+  .skill-row:last-child{border-bottom:1px solid var(--line-soft);}
+  .skill-row .label{font-family:var(--serif); font-style:italic; font-size:15px; color:var(--ink-soft);}
+  .skill-row .items{font-size:14.5px;}
+
+  /* projects */
+  .proj{padding:28px 0; border-top:1px solid var(--line);}
+  .proj:last-child{border-bottom:1px solid var(--line);}
+  .proj-top{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;}
+  .proj-top h3{font-family:var(--serif); font-weight:500; font-size:20px;}
+  .proj-top .tag{font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft);}
+  .proj p.desc{margin-top:10px; font-size:14.5px; color:#2E2C26; max-width:600px;}
+  .proj-links{margin-top:12px;}
+  .proj-links a{font-size:13px; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:1px;}
+
+  /* experience */
+  .exp{display:grid; grid-template-columns:120px 1fr; gap:20px; padding:22px 0; border-top:1px solid var(--line-soft);}
+  .exp:last-child{border-bottom:1px solid var(--line-soft);}
+  .exp .when{font-size:12px; color:var(--ink-soft); padding-top:2px;}
+  .exp h4{font-family:var(--serif); font-weight:500; font-size:17px;}
+  .exp .org{font-size:13px; color:var(--ink-soft); margin-bottom:6px;}
+  .exp p{font-size:14px; color:#2E2C26;}
+
+  /* certifications */
+  .cert-list{margin-top:6px;}
+  .cert{display:flex; justify-content:space-between; padding:12px 0; border-top:1px solid var(--line-soft); font-size:14px;}
+  .cert:last-child{border-bottom:1px solid var(--line-soft);}
+  .cert .org{color:var(--ink-soft); font-size:12.5px;}
+
+  /* footer */
+  footer{padding:70px 0 60px;}
+  footer .lede{font-family:var(--serif); font-style:italic; font-size:clamp(24px,3.6vw,32px); max-width:560px; margin-bottom:26px;}
+  .contact-links{display:flex; flex-wrap:wrap; gap:12px;}
+  .contact-links a{font-size:13px; text-decoration:none; border:1px solid var(--ink); padding:9px 16px; border-radius:2px; transition:all .2s;}
+  .contact-links a:hover{background:var(--ink); color:var(--paper);}
+  .foot-note{margin-top:44px; font-size:11.5px; color:var(--ink-soft);}
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){.reveal{opacity:1; transform:none; transition:none;}}
+
+  @media (max-width:680px){
+    .navlinks{position:fixed; top:58px; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line);
+      flex-direction:column; padding:18px 28px; gap:16px; transform:translateY(-120%); transition:transform .25s; z-index:40;}
+    .navlinks.open{transform:translateY(0);}
+    .navtoggle{display:block;}
+    .about-block{grid-template-columns:1fr;}
+    .about-photo{max-width:220px;}
+    .skill-row{grid-template-columns:1fr;}
+    .exp{grid-template-columns:1fr;}
+  }
+</style>
 </head>
-
 <body>
 
-<header class="site-header" id="top">
-  <nav class="navbar" aria-label="Primary navigation">
+<nav>
+  <div class="wrap">
+    <div class="brand">Bharath Waj K R</div>
+    <div class="navlinks" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#certs">Certifications</a>
+      <a href="#contact">Contact</a>
+      <a class="resume-link" href="resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </div>
+    <button class="navtoggle" id="navtoggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
 
-    <a class="logo" href="#home" aria-label="Portfolio home">
-      <img src="webpagelogo.png" alt="Bharathwaj Logo" class="logo-img">
-      <span data-profile="name">Bharathwaj K R</span>
-    </a>
-
-    <button class="nav-toggle"
-            type="button"
-            aria-label="Open navigation menu"
-            aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <ul class="nav-menu" id="nav-menu"></ul>
-
-  </nav>
+<header class="opener">
+  <div class="wrap reveal in">
+    <div class="idx">01 — Introduction</div>
+    <p class="lede">I build software the way I'd want to use it &mdash; carefully taken apart, understood, and put back together cleaner. Currently finishing a degree in Artificial Intelligence and looking for the room to do that professionally.</p>
+    <div class="name-line">
+      <span><b>Bharath Waj K R</b></span>
+      <span>B.Tech Artificial Intelligence, V.S.B. Engineering College</span>
+      <span>Dindigul, Tamil Nadu</span>
+    </div>
+    <div class="opener-cta">
+      <a class="btn btn-fill" href="#projects">See the work</a>
+      <a class="btn btn-line" href="#contact">Get in touch</a>
+    </div>
+  </div>
 </header>
 
-<main>
+<hr class="rule">
 
-<section class="hero section"
-         id="home"
-         aria-labelledby="hero-title">
-
-<div class="container hero-grid">
-
-<div class="hero-content reveal">
-
-<p class="section-kicker" id="hero-kicker"></p>
-
-<h1 id="hero-title"></h1>
-
-<p class="hero-subtitle">
-<span id="hero-tagline"></span>
-<span id="typing-text" aria-live="polite"></span>
-</p>
-
-<p class="hero-copy" id="hero-summary"></p>
-
-<div class="hero-stats" id="hero-stats" aria-label="Quick facts"></div>
-
-<div class="hero-actions" id="hero-actions"></div>
-
-<div class="social-links"
-     id="social-links"
-     aria-label="Social links"></div>
-
-</div>
-
-<div class="hero-visual"
-     aria-label="Developer profile snapshot">
-
-<div class="profile-orbit">
-
-<div class="profile-card">
-
-<div class="avatar"
-     id="profile-avatar"
-     aria-hidden="true">
-
-<img src="" alt="">
-<span data-profile="initials">BK</span>
-
-</div>
-
-<h2 data-profile="name">
-Bharathwaj K R
-</h2>
-
-<p id="profile-role-line"></p>
-
-<div class="status-row">
-<span id="hero-status-text"></span>
-<strong id="hero-status-value"></strong>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+<section id="about">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="idx">02 — About</span></div>
+    <h2 class="sec-title">A quick sketch</h2>
+    <div class="about-block" style="margin-top:22px;">
+      <div class="about-copy">
+        <p>I'm a final-year B.Tech Artificial Intelligence student, working across programming, data structures, algorithms, and web technologies. I like taking systems apart to see how they actually work, then rebuilding them cleaner &mdash; that's shown up in a multi-agent code review tool and a handwriting-based stress detector.</p>
+        <p>I'm looking for a Software Engineer or Graduate Trainee role where I can bring that instinct to real, production software, and keep growing as a developer alongside people who care about the craft.</p>
+      </div>
+      <div class="about-photo">
+        <img src="photo.png" alt="Portrait of Bharath Waj K R">
+        <div class="cap">Bharath, at work.</div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat"><b>8.41</b><span>CGPA / 10</span></div>
+      <div class="stat"><b>2027</b><span>Expected grad.</span></div>
+      <div class="stat"><b>5</b><span>Certifications</span></div>
+      <div class="stat"><b>2</b><span>Shipped projects</span></div>
+    </div>
+  </div>
 </section>
 
-<div id="sections-root"></div>
+<hr class="rule">
 
-</main>
+<section id="skills">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="idx">03 — Skills</span></div>
+    <h2 class="sec-title">What I work with</h2>
+    <div style="margin-top:22px;">
+      <div class="skill-row"><div class="label">Languages</div><div class="items">Java, Python</div></div>
+      <div class="skill-row"><div class="label">Web</div><div class="items">HTML, CSS, JavaScript, Google Apps Script</div></div>
+      <div class="skill-row"><div class="label">Tools</div><div class="items">GitHub, VS Code</div></div>
+      <div class="skill-row"><div class="label">Database</div><div class="items">MySQL</div></div>
+      <div class="skill-row"><div class="label">Operating Systems</div><div class="items">Unix/Linux, Windows</div></div>
+      <div class="skill-row"><div class="label">Core concepts</div><div class="items">Data Structures, Algorithms, Software Design</div></div>
+    </div>
+  </div>
+</section>
 
-<footer class="site-footer">
+<hr class="rule">
 
-<div class="container footer-content">
+<section id="projects">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="idx">04 — Projects</span></div>
+    <h2 class="sec-title">Selected work</h2>
+    <div style="margin-top:6px;">
+      <div class="proj">
+        <div class="proj-top">
+          <h3>ReForge</h3>
+          <span class="tag">Multi-agent AI</span>
+        </div>
+        <p class="desc">An AI-powered code review platform that runs multi-agent analysis over a codebase to catch bugs, security risks, and performance issues before they ship.</p>
+        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener">View on GitHub</a></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top">
+          <h3>Stress Detection Using Handwriting</h3>
+          <span class="tag">Applied ML</span>
+        </div>
+        <p class="desc">A data-driven system that analyzes handwriting patterns to predict stress levels, turning an offline behavioral signal into a measurable feature set.</p>
+        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener">View on GitHub</a></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<p>
-&copy;
-<span id="year"></span>
-<span data-profile="name">Bharathwaj K R</span>.
-All rights reserved.
-</p>
+<hr class="rule">
 
-<div class="footer-links"
-     id="footer-links"></div>
+<section id="experience">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="idx">05 — Experience</span></div>
+    <h2 class="sec-title">Where I've worked</h2>
+    <div style="margin-top:6px;">
+      <div class="exp">
+        <div class="when">2025</div>
+        <div>
+          <h4>Web Development Intern</h4>
+          <div class="org">Appin Technology</div>
+          <p>Developed interactive and responsive webpages using HTML, CSS, and JavaScript; improved UI/UX with structured layout and accessible design.</p>
+        </div>
+      </div>
+      <div class="exp">
+        <div class="when">Ongoing</div>
+        <div>
+          <h4>Team Leader, Smart India Hackathon</h4>
+          <div class="org">V.S.B. Engineering College</div>
+          <p>Led a 4-member team and qualified for the second round by designing a Smart Agriculture solution.</p>
+        </div>
+      </div>
+      <div class="exp">
+        <div class="when">2022–2027</div>
+        <div>
+          <h4>B.Tech Artificial Intelligence</h4>
+          <div class="org">V.S.B. Engineering College · CGPA 8.41/10</div>
+          <p>Prior: Higher Secondary (2023) and Secondary (2021), Akshaya Academy Higher Secondary School — both 80%+.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-</div>
+<hr class="rule">
 
+<section id="certs">
+  <div class="wrap reveal">
+    <div class="sec-head"><span class="idx">06 — Certifications</span></div>
+    <h2 class="sec-title">Credentials</h2>
+    <div class="cert-list">
+      <div class="cert"><span>Programming Using Java</span><span class="org">Infosys</span></div>
+      <div class="cert"><span>Cloud Technologies</span><span class="org">Infosys</span></div>
+      <div class="cert"><span>Microsoft Excel for Data Analyst</span><span class="org">Infosys</span></div>
+      <div class="cert"><span>Generative AI</span><span class="org">Google Cloud</span></div>
+      <div class="cert"><span>Web Development Training</span><span class="org">Appin Technology</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<footer id="contact">
+  <div class="wrap reveal">
+    <div class="idx" style="margin-bottom:16px;">07 — Contact</div>
+    <p class="lede">Open to Software Engineer and Graduate Trainee roles &mdash; I reply quickly, and I'd like to hear from you.</p>
+    <div class="contact-links">
+      <a href="mailto:ravikap0063@gmail.com">Email</a>
+      <a href="tel:+919952753739">Call</a>
+      <a href="https://www.linkedin.com/in/bharath-waj-k-r/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener">GitHub</a>
+      <a href="resume.pdf" target="_blank" rel="noopener">Download résumé</a>
+    </div>
+    <div class="foot-note">Tamil (native) · English (professional) — © 2026 Bharath Waj K R</div>
+  </div>
 </footer>
 
-<a class="back-to-top"
-   href="#top"
-   aria-label="Back to top">↑</a>
+<script>
+  const navtoggle = document.getElementById('navtoggle');
+  const navlinks = document.getElementById('navlinks');
+  navtoggle.addEventListener('click', () => navlinks.classList.toggle('open'));
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
 
-<script src="data.js"></script>
-<script src="core.js"></script>
-<script src="site.js"></script>
-
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
