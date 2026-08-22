@@ -320,7 +320,7 @@
     <div class="idx" style="margin-bottom:16px;">07 — Contact</div>
     <p class="lede">Open to Software Engineer and Graduate Trainee roles &mdash; I reply quickly, and I'd like to hear from you.</p>
     <div class="contact-links">
-      <a href="mailto:ravikap0063@gmail.com" id="email-link">Email</a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ravikap0063@gmail.com" target="_blank" rel="noopener" id="email-link">Email</a>
       <a href="tel:+919952753739">Call</a>
       <a href="https://www.linkedin.com/in/bharath-waj-k-r/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener">GitHub</a>
@@ -340,27 +340,6 @@
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Email fallback: if mailto doesn't open a client within a moment, copy the address instead
-  const emailLink = document.getElementById('email-link');
-  if (emailLink) {
-    emailLink.addEventListener('click', (e) => {
-      const address = 'ravikap0063@gmail.com';
-      const originalText = emailLink.textContent;
-      let handled = false;
-      const revert = () => { if (!handled) { emailLink.textContent = originalText; handled = true; } };
-      // Give the OS a moment to try opening a mail client
-      setTimeout(() => {
-        if (document.hasFocus()) {
-          // Page still focused = no mail client likely opened; copy instead
-          navigator.clipboard?.writeText(address).then(() => {
-            emailLink.textContent = 'Copied ' + address;
-            setTimeout(revert, 2500);
-          });
-        }
-      }, 400);
-    });
-  }
 </script>
 </body>
 </html>
