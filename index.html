@@ -121,6 +121,10 @@
   /* projects */
   .proj{padding:28px 4px; border-top:1px solid var(--line); transition:padding-left .2s;}
   .proj:hover{padding-left:12px;}
+  .proj .headline{font-family:var(--serif); font-weight:700; font-size:15px; margin-top:12px; color:var(--ink);}
+  .proj .par{display:grid; grid-template-columns:90px 1fr; gap:12px; margin-top:6px; font-size:13.5px;}
+  .proj .par b{font-family:var(--sans); font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-soft); padding-top:1px;}
+  .proj .par span{color:#2E2C26;}
   .proj:last-child{border-bottom:1px solid var(--line);}
   .proj-top{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;}
   .proj-top h3{font-family:var(--serif); font-weight:700; font-size:20px;}
@@ -174,6 +178,7 @@
     .opener-photo{max-width:220px;}
     .skill-chips{gap:7px;}
     .proj-case .cs-grid{grid-template-columns:1fr;}
+    .proj .par{grid-template-columns:1fr;}
     .exp{grid-template-columns:1fr;}
   }
 </style>
@@ -302,6 +307,7 @@
           <h3>SilentBridge</h3>
           <span class="tag">Applied deep learning</span>
         </div>
+        <div class="headline">&lt;2% of base-model size, targeting a 10–20% accuracy gain per signer</div>
         <p class="desc">Real-time Indian Sign Language translation using a pose and facial-expression fusion transformer as a frozen base model, plus a lightweight few-shot adapter (BridgeAdapter) that personalizes to a new signer's style from a short calibration clip &mdash; without retraining the base model.</p>
         <span class="status">In progress &mdash; base model + adapter architecture built, training/eval ongoing</span>
         <div class="cs-grid">
@@ -328,27 +334,33 @@
           <h3>ReForge</h3>
           <span class="tag">Multi-agent AI · FastAPI</span>
         </div>
-        <p class="desc">An AI-powered code review platform built on FastAPI and Groq's Llama 3.3, running multi-agent analysis over a codebase to catch bugs, security risks, and performance issues before they ship.</p>
-        <div class="metric">Every finding passes a second validation agent before reaching the user <span>— no unchecked LLM output shown to the reviewer</span></div>
-        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Re_Forge" target="_blank" rel="noopener">View on GitHub</a> &nbsp;·&nbsp; <a href="https://re-forge.onrender.com/" target="_blank" rel="noopener">Live demo</a></div>
+        <div class="headline">Score computed deterministically — 100 → 0, never model self-assessed</div>
+        <div class="par"><b>Problem</b><span>Most AI code-review tools pass raw LLM output straight to the user — including hallucinated or overstated findings.</span></div>
+        <div class="par"><b>Approach</b><span>FastAPI backend on Groq's Llama 3.3; every finding from the analysis agent is re-checked by a separate validation agent before it's shown, and the quality score is computed by fixed scoring logic rather than asked of the model.</span></div>
+        <div class="par"><b>Result</b><span>Deployed on Render with health checks and graceful degradation (agentic → error envelope → mock analysis) if the LLM call fails.</span></div>
+        <div class="proj-links" style="margin-top:12px;"><a href="https://github.com/BharathWaj-K-R/Re_Forge" target="_blank" rel="noopener">View on GitHub</a> &nbsp;·&nbsp; <a href="https://re-forge.onrender.com/" target="_blank" rel="noopener">Live demo</a></div>
       </div>
       <div class="proj">
         <div class="proj-top">
           <h3>AI Interview Preparation</h3>
           <span class="tag">Full-stack · LLM</span>
         </div>
-        <p class="desc">A production-ready Flask app for placement interview practice &mdash; parses an uploaded resume, runs technical and HR mock interviews, and scores answers with LLM-backed feedback and weak-topic recommendations.</p>
-        <div class="metric">5-question mock sessions with LLM scoring <span>— falls back to a heuristic evaluator when no API key is set</span></div>
-        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Ai-Interview-preparation" target="_blank" rel="noopener">View on GitHub</a></div>
+        <div class="headline">5-question mock sessions, scored with an LLM fallback if no API key is set</div>
+        <div class="par"><b>Problem</b><span>Placement interview practice tools are either static question banks or need a paid API key just to run at all.</span></div>
+        <div class="par"><b>Approach</b><span>Flask app that parses an uploaded resume (PDF/DOCX) to generate resume- and skills-specific questions, scores answers with an LLM, and falls back to a heuristic evaluator when no key is configured.</span></div>
+        <div class="par"><b>Result</b><span>Ships with auth, rate-limited LLM routes, DB migrations, Docker/compose setup, and a CI pipeline running the test suite on every push.</span></div>
+        <div class="proj-links" style="margin-top:12px;"><a href="https://github.com/BharathWaj-K-R/Ai-Interview-preparation" target="_blank" rel="noopener">View on GitHub</a></div>
       </div>
       <div class="proj">
         <div class="proj-top">
           <h3>Stress Detection Using Handwriting</h3>
           <span class="tag">Applied ML</span>
         </div>
-        <p class="desc">A Streamlit app that classifies handwriting samples into low, medium, or high stress levels using a Random Forest classifier trained on HOG features extracted from scanned samples.</p>
-        <div class="metric">Trained on a 30-sample dataset across 3 stress classes <span>— educational scope, not a diagnostic tool</span></div>
-        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Stress-level-Detection" target="_blank" rel="noopener">View on GitHub</a></div>
+        <div class="headline">3-class classifier (Low / Medium / High) on a 30-sample dataset</div>
+        <div class="par"><b>Problem</b><span>Explore whether handwriting carries a detectable stress signal, using a fully offline, non-clinical feature set.</span></div>
+        <div class="par"><b>Approach</b><span>Streamlit app extracts HOG features from an uploaded or camera-captured handwriting sample, runs image quality checks (resolution, blur, ink presence), then classifies with a Random Forest model.</span></div>
+        <div class="par"><b>Result</b><span>Returns a class-probability breakdown and logs predictions for review; includes an admin retraining loop for corrected samples. Educational scope only — not a diagnostic tool.</span></div>
+        <div class="proj-links" style="margin-top:12px;"><a href="https://github.com/BharathWaj-K-R/Stress-level-Detection" target="_blank" rel="noopener">View on GitHub</a></div>
       </div>
     </div>
   </div>
