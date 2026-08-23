@@ -155,7 +155,11 @@
 
   /* certifications */
   .cert-list{margin-top:6px;}
-  .cert{display:flex; justify-content:space-between; padding:12px 0; border-top:1px solid var(--line-soft); font-size:14px;}
+  .cert{display:flex; justify-content:space-between; align-items:baseline; padding:12px 0; border-top:1px solid var(--line-soft); font-size:14px; gap:12px;}
+  .cert .cert-main{display:flex; flex-direction:column; gap:2px;}
+  .cert .cert-right{display:flex; align-items:baseline; gap:14px; flex-shrink:0;}
+  .cert .date{font-size:12px; color:var(--ink-soft); white-space:nowrap;}
+  .cert a.view{font-size:12.5px; text-decoration:none; border-bottom:1px solid var(--ink); white-space:nowrap;}
   .cert:last-child{border-bottom:1px solid var(--line-soft);}
   .cert .org{color:var(--ink-soft); font-size:12.5px;}
 
@@ -188,6 +192,7 @@
     .skill-chips{gap:7px;}
     .proj-case .cs-grid{grid-template-columns:1fr;}
     .proj .par{grid-template-columns:1fr;}
+    .cert{flex-direction:column; align-items:flex-start; gap:6px;}
     .cd-item{border-right:none; border-bottom:1px solid var(--line);}
     .cd-item:last-child{border-bottom:none;}
     .exp{grid-template-columns:1fr;}
@@ -247,7 +252,7 @@
     <div class="stat-row">
       <div class="stat"><b>8.41</b><span>CGPA / 10</span></div>
       <div class="stat"><b>2027</b><span>Expected grad.</span></div>
-      <div class="stat"><b>5</b><span>Certifications</span></div>
+      <div class="stat"><b>7</b><span>Certifications</span></div>
       <div class="stat"><b>4</b><span>Shipped projects</span></div>
     </div>
   </div>
@@ -447,11 +452,34 @@
   <div class="wrap reveal">
     <h2 class="sec-title">Credentials</h2>
     <div class="cert-list">
-      <div class="cert"><span>Programming Using Java</span><span class="org">Infosys</span></div>
-      <div class="cert"><span>Cloud Technologies</span><span class="org">Infosys</span></div>
-      <div class="cert"><span>Microsoft Excel for Data Analyst</span><span class="org">Infosys</span></div>
-      <div class="cert"><span>Generative AI</span><span class="org">Google Cloud</span></div>
-      <div class="cert"><span>Web Development Training</span><span class="org">Appin Technology</span></div>
+      <div class="cert">
+        <div class="cert-main"><span>Programming using Java</span><span class="org">Infosys Springboard</span></div>
+        <div class="cert-right"><span class="date">Jun 2025</span><a class="view" href="certs/programming-java.pdf" target="_blank" rel="noopener">View</a></div>
+      </div>
+      <div class="cert">
+        <div class="cert-main"><span>Java Foundation Certification</span><span class="org">Infosys Springboard</span></div>
+        <div class="cert-right"><span class="date">Jul 2025</span><a class="view" href="certs/java-foundation.pdf" target="_blank" rel="noopener">View</a></div>
+      </div>
+      <div class="cert">
+        <div class="cert-main"><span>Cloud Technologies</span><span class="org">Infosys Springboard</span></div>
+        <div class="cert-right"><span class="date">Jan 2025</span><a class="view" href="certs/cloud-technologies.pdf" target="_blank" rel="noopener">View</a></div>
+      </div>
+      <div class="cert">
+        <div class="cert-main"><span>Microsoft Excel for Data Analyst</span><span class="org">Infosys Springboard</span></div>
+        <div class="cert-right"><span class="date">Jan 2025</span><a class="view" href="certs/excel-data-analyst.pdf" target="_blank" rel="noopener">View</a></div>
+      </div>
+      <div class="cert">
+        <div class="cert-main"><span>Introduction to Generative AI Studio</span><span class="org">Google Cloud</span></div>
+        <div class="cert-right"><span class="date">Feb 2026</span><a class="view" href="certs/generative-ai.pdf" target="_blank" rel="noopener">View</a></div>
+      </div>
+      <div class="cert">
+        <div class="cert-main"><span>Introduction to IoT and Digital Transformation</span><span class="org">Cisco Networking Academy</span></div>
+        <div class="cert-right"><span class="date">Feb 2026</span><a class="view" href="certs/iot-digital-transformation.pdf" target="_blank" rel="noopener">View</a></div>
+      </div>
+      <div class="cert">
+        <div class="cert-main"><span>Web Development Training</span><span class="org">Appin Technology</span></div>
+        <div class="cert-right"><span class="date">&nbsp;</span></div>
+      </div>
     </div>
   </div>
 </section>
