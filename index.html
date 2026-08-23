@@ -106,10 +106,17 @@
   .stat span{font-size:11.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em;}
 
   /* skills */
-  .skill-row{display:grid; grid-template-columns:180px 1fr; gap:16px; padding:14px 0; border-top:1px solid var(--line-soft);}
-  .skill-row:last-child{border-bottom:1px solid var(--line-soft);}
-  .skill-row .label{font-family:var(--serif); font-weight:600; font-size:15px; color:var(--ink-soft);}
-  .skill-row .items{font-size:14.5px;}
+  .skill-tier{margin-top:26px;}
+  .skill-tier:first-child{margin-top:0;}
+  .tier-label{display:flex; align-items:center; gap:10px; margin-bottom:12px;}
+  .tier-label .dots{display:flex; gap:3px;}
+  .tier-label .dot{width:7px; height:7px; border-radius:50%; background:var(--ink);}
+  .tier-label .dot.off{background:var(--line);}
+  .tier-label .txt{font-family:var(--sans); font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft);}
+  .skill-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{font-size:13.5px; padding:6px 13px; border:1px solid var(--line); border-radius:2px; color:var(--ink);}
+  .skill-tier:nth-child(2) .chip{color:var(--ink-soft); border-color:var(--line-soft);}
+  .skill-tier:nth-child(3) .chip{color:var(--ink-soft); border-color:var(--line-soft); border-style:dashed;}
 
   /* projects */
   .proj{padding:28px 4px; border-top:1px solid var(--line); transition:padding-left .2s;}
@@ -118,6 +125,16 @@
   .proj-top{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;}
   .proj-top h3{font-family:var(--serif); font-weight:700; font-size:20px;}
   .proj-top .tag{font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); border:1px solid var(--line); border-radius:2px; padding:3px 9px; white-space:nowrap;}
+  .proj .metric{font-family:var(--mono, var(--sans)); font-size:12.5px; color:var(--ink); font-weight:600; margin-top:10px;}
+  .proj .metric span{color:var(--ink-soft); font-weight:400;}
+  .proj-case{border:1px solid var(--line); border-radius:4px; padding:24px; margin-top:8px;}
+  .proj-case .status{display:inline-block; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-soft); border:1px dashed var(--line); border-radius:2px; padding:3px 9px; margin-top:10px;}
+  .proj-case .cs-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:18px;}
+  .proj-case .cs-block h4{font-family:var(--sans); font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-soft); margin-bottom:6px;}
+  .proj-case .cs-block p{font-size:14px; color:#2E2C26;}
+  .proj-case .metrics-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+  .proj-case .metric-pill{border:1px solid var(--line); border-radius:2px; padding:8px 12px; font-size:12.5px;}
+  .proj-case .metric-pill b{display:block; font-family:var(--serif); font-size:16px; font-weight:700;}
   .proj p.desc{margin-top:10px; font-size:14.5px; color:#2E2C26; max-width:600px;}
   .proj-links{margin-top:12px;}
   .proj-links a{font-size:13px; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:1px;}
@@ -155,7 +172,8 @@
     .navtoggle{display:block;}
     .opener-grid{grid-template-columns:1fr;}
     .opener-photo{max-width:220px;}
-    .skill-row{grid-template-columns:1fr;}
+    .skill-chips{gap:7px;}
+    .proj-case .cs-grid{grid-template-columns:1fr;}
     .exp{grid-template-columns:1fr;}
   }
 </style>
@@ -227,13 +245,47 @@
   <div class="wrap reveal">
     <div class="sec-head"><span class="idx">03 — Skills</span></div>
     <h2 class="sec-title">What I work with</h2>
-    <div style="margin-top:22px;">
-      <div class="skill-row"><div class="label">Languages</div><div class="items">Java, Python</div></div>
-      <div class="skill-row"><div class="label">Web</div><div class="items">HTML, CSS, JavaScript, Google Apps Script</div></div>
-      <div class="skill-row"><div class="label">Tools</div><div class="items">GitHub, VS Code</div></div>
-      <div class="skill-row"><div class="label">Database</div><div class="items">MySQL</div></div>
-      <div class="skill-row"><div class="label">Operating Systems</div><div class="items">Unix/Linux, Windows</div></div>
-      <div class="skill-row"><div class="label">Core concepts</div><div class="items">Data Structures, Algorithms, Software Design</div></div>
+    <div class="sec-intro">Grouped by how deep the experience actually goes — not just a tag list.</div>
+    <div style="margin-top:8px;">
+      <div class="skill-tier">
+        <div class="tier-label">
+          <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <span class="txt">Reach for first — Python, Flask/FastAPI backends, SQL, Git</span>
+        </div>
+        <div class="skill-chips">
+          <span class="chip">Python</span>
+          <span class="chip">Flask</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">MySQL</span>
+          <span class="chip">Git &amp; GitHub</span>
+          <span class="chip">Data Structures &amp; Algorithms</span>
+        </div>
+      </div>
+      <div class="skill-tier">
+        <div class="tier-label">
+          <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot off"></span></div>
+          <span class="txt">Comfortable — used across shipped projects</span>
+        </div>
+        <div class="skill-chips">
+          <span class="chip">Java</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">HTML / CSS</span>
+          <span class="chip">Docker</span>
+          <span class="chip">LLM API integration</span>
+          <span class="chip">VS Code</span>
+        </div>
+      </div>
+      <div class="skill-tier">
+        <div class="tier-label">
+          <div class="dots"><span class="dot"></span><span class="dot off"></span><span class="dot off"></span></div>
+          <span class="txt">Exploring — used once or twice, still building depth</span>
+        </div>
+        <div class="skill-chips">
+          <span class="chip">PyTorch / transformer models</span>
+          <span class="chip">Google Apps Script</span>
+          <span class="chip">Unix/Linux systems work</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -245,21 +297,40 @@
     <div class="sec-head"><span class="idx">04 — Projects</span></div>
     <h2 class="sec-title">Selected work</h2>
     <div style="margin-top:6px;">
+      <div class="proj-case">
+        <div class="proj-top">
+          <h3>SilentBridge</h3>
+          <span class="tag">Applied deep learning</span>
+        </div>
+        <p class="desc">Real-time Indian Sign Language translation using a pose and facial-expression fusion transformer as a frozen base model, plus a lightweight few-shot adapter (BridgeAdapter) that personalizes to a new signer's style from a short calibration clip &mdash; without retraining the base model.</p>
+        <span class="status">In progress &mdash; base model + adapter architecture built, training/eval ongoing</span>
+        <div class="cs-grid">
+          <div class="cs-block">
+            <h4>Problem</h4>
+            <p>Most ISL translation models are trained on one signer's style and degrade badly on anyone else's. Retraining per signer isn't practical.</p>
+          </div>
+          <div class="cs-block">
+            <h4>Approach</h4>
+            <p>Freeze a pose + facial-expression fusion transformer as the base model, then learn a small adapter per signer from ~5 minutes of calibration video &mdash; keeping the adapter under 2% of the base model's parameters.</p>
+          </div>
+        </div>
+        <div class="metrics-row">
+          <div class="metric-pill"><b>&lt;5 min</b>calibration target</div>
+          <div class="metric-pill"><b>&lt;500ms</b>inference latency target</div>
+          <div class="metric-pill"><b>&lt;2%</b>adapter size vs. base model</div>
+          <div class="metric-pill"><b>10&ndash;20%</b>target accuracy gain on unseen signers</div>
+        </div>
+        <div class="proj-links" style="margin-top:16px;"><a href="https://github.com/BharathWaj-K-R/SilentBridge" target="_blank" rel="noopener">View on GitHub</a> &nbsp;·&nbsp; <a href="https://silentbridge-frontend.onrender.com" target="_blank" rel="noopener">Live demo</a></div>
+      </div>
+
       <div class="proj">
         <div class="proj-top">
           <h3>ReForge</h3>
           <span class="tag">Multi-agent AI · FastAPI</span>
         </div>
         <p class="desc">An AI-powered code review platform built on FastAPI and Groq's Llama 3.3, running multi-agent analysis over a codebase to catch bugs, security risks, and performance issues before they ship.</p>
+        <div class="metric">Every finding passes a second validation agent before reaching the user <span>— no unchecked LLM output shown to the reviewer</span></div>
         <div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Re_Forge" target="_blank" rel="noopener">View on GitHub</a> &nbsp;·&nbsp; <a href="https://re-forge.onrender.com/" target="_blank" rel="noopener">Live demo</a></div>
-      </div>
-      <div class="proj">
-        <div class="proj-top">
-          <h3>SilentBridge</h3>
-          <span class="tag">Applied deep learning</span>
-        </div>
-        <p class="desc">Real-time Indian Sign Language translation using a pose and facial-expression fusion transformer, with a lightweight few-shot adapter that personalizes to a new signer's style from a short calibration clip &mdash; without retraining the base model.</p>
-        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R/SilentBridge" target="_blank" rel="noopener">View on GitHub</a></div>
       </div>
       <div class="proj">
         <div class="proj-top">
@@ -267,6 +338,7 @@
           <span class="tag">Full-stack · LLM</span>
         </div>
         <p class="desc">A production-ready Flask app for placement interview practice &mdash; parses an uploaded resume, runs technical and HR mock interviews, and scores answers with LLM-backed feedback and weak-topic recommendations.</p>
+        <div class="metric">5-question mock sessions with LLM scoring <span>— falls back to a heuristic evaluator when no API key is set</span></div>
         <div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Ai-Interview-preparation" target="_blank" rel="noopener">View on GitHub</a></div>
       </div>
       <div class="proj">
@@ -275,6 +347,7 @@
           <span class="tag">Applied ML</span>
         </div>
         <p class="desc">A Streamlit app that classifies handwriting samples into low, medium, or high stress levels using a Random Forest classifier trained on HOG features extracted from scanned samples.</p>
+        <div class="metric">Trained on a 30-sample dataset across 3 stress classes <span>— educational scope, not a diagnostic tool</span></div>
         <div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Stress-level-Detection" target="_blank" rel="noopener">View on GitHub</a></div>
       </div>
     </div>
