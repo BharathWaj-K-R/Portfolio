@@ -112,11 +112,12 @@
   .skill-row .items{font-size:14.5px;}
 
   /* projects */
-  .proj{padding:28px 0; border-top:1px solid var(--line);}
+  .proj{padding:28px 4px; border-top:1px solid var(--line); transition:padding-left .2s;}
+  .proj:hover{padding-left:12px;}
   .proj:last-child{border-bottom:1px solid var(--line);}
   .proj-top{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;}
   .proj-top h3{font-family:var(--serif); font-weight:700; font-size:20px;}
-  .proj-top .tag{font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft);}
+  .proj-top .tag{font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); border:1px solid var(--line); border-radius:2px; padding:3px 9px; white-space:nowrap;}
   .proj p.desc{margin-top:10px; font-size:14.5px; color:#2E2C26; max-width:600px;}
   .proj-links{margin-top:12px;}
   .proj-links a{font-size:13px; text-decoration:none; border-bottom:1px solid var(--ink); padding-bottom:1px;}
@@ -215,7 +216,7 @@
       <div class="stat"><b>8.41</b><span>CGPA / 10</span></div>
       <div class="stat"><b>2027</b><span>Expected grad.</span></div>
       <div class="stat"><b>5</b><span>Certifications</span></div>
-      <div class="stat"><b>2</b><span>Shipped projects</span></div>
+      <div class="stat"><b>4</b><span>Shipped projects</span></div>
     </div>
   </div>
 </section>
@@ -247,18 +248,34 @@
       <div class="proj">
         <div class="proj-top">
           <h3>ReForge</h3>
-          <span class="tag">Multi-agent AI</span>
+          <span class="tag">Multi-agent AI · FastAPI</span>
         </div>
-        <p class="desc">An AI-powered code review platform that runs multi-agent analysis over a codebase to catch bugs, security risks, and performance issues before they ship.</p>
-        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener">View on GitHub</a></div>
+        <p class="desc">An AI-powered code review platform built on FastAPI and Groq's Llama 3.3, running multi-agent analysis over a codebase to catch bugs, security risks, and performance issues before they ship.</p>
+        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Re_Forge" target="_blank" rel="noopener">View on GitHub</a> &nbsp;·&nbsp; <a href="https://re-forge.onrender.com/" target="_blank" rel="noopener">Live demo</a></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top">
+          <h3>SilentBridge</h3>
+          <span class="tag">Applied deep learning</span>
+        </div>
+        <p class="desc">Real-time Indian Sign Language translation using a pose and facial-expression fusion transformer, with a lightweight few-shot adapter that personalizes to a new signer's style from a short calibration clip &mdash; without retraining the base model.</p>
+        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R/SilentBridge" target="_blank" rel="noopener">View on GitHub</a></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top">
+          <h3>AI Interview Preparation</h3>
+          <span class="tag">Full-stack · LLM</span>
+        </div>
+        <p class="desc">A production-ready Flask app for placement interview practice &mdash; parses an uploaded resume, runs technical and HR mock interviews, and scores answers with LLM-backed feedback and weak-topic recommendations.</p>
+        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Ai-Interview-preparation" target="_blank" rel="noopener">View on GitHub</a></div>
       </div>
       <div class="proj">
         <div class="proj-top">
           <h3>Stress Detection Using Handwriting</h3>
           <span class="tag">Applied ML</span>
         </div>
-        <p class="desc">A data-driven system that analyzes handwriting patterns to predict stress levels, turning an offline behavioral signal into a measurable feature set.</p>
-        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener">View on GitHub</a></div>
+        <p class="desc">A Streamlit app that classifies handwriting samples into low, medium, or high stress levels using a Random Forest classifier trained on HOG features extracted from scanned samples.</p>
+        <div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Stress-level-Detection" target="_blank" rel="noopener">View on GitHub</a></div>
       </div>
     </div>
   </div>
