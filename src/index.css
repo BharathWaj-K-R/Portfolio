@@ -19,4 +19,11 @@ button,a { -webkit-tap-highlight-color:transparent; }
 .section-rule { border-color:#e4e4e7; }
 .reveal { opacity:0; transform:translateY(22px); transition:opacity .65s ease,transform .65s ease; }
 .reveal.in { opacity:1; transform:none; }
+
+/* Visible stack cards replace the old tooltip-only tiles. */
+#skills .container-wide > .grid.gap-3 { display:none; }
+
+/* Keep the portrait faithful to the original asset. */
+#about img[alt="Portrait of Bharath Waj K R"] { filter:none !important; }
+
 @media(prefers-reduced-motion:reduce){ html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none} *{scroll-behavior:auto!important} }
