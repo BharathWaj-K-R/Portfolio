@@ -30,3 +30,12 @@ jobs:
 
       - name: Production build
         run: npm run build
+
+      - name: Verify production output
+        shell: bash
+        run: |
+          test -f dist/index.html
+          if compgen -G 'dist/assets/package-lock*.json' > /dev/null; then
+            echo 'Unexpected package-lock artifact found in dist/assets'
+            exit 1
+          fi
