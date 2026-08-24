@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bharath Waj K R</title>
-<meta name="description" content="Portfolio of Bharath Waj K R, B.Tech AI student and aspiring software engineer.">
+<title>Bharath Waj K R — AI & Software Engineering</title>
+<meta name="description" content="Bharath Waj K R — AI and software engineering student building practical AI, backend, and full-stack systems.">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon.png?v=7">
 <link rel="shortcut icon" type="image/png" href="favicon.png?v=7">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -197,6 +197,30 @@
     .cd-item:last-child{border-bottom:none;}
     .exp{grid-template-columns:1fr;}
   }
+
+  /* recruiter-focused portfolio layer */
+  .hero-kicker,.section-kicker{font-size:10.5px;font-weight:700;letter-spacing:.13em;color:var(--ink-soft);text-transform:uppercase;}
+  .hero-kicker{margin-bottom:14px;}
+  .hero-support{margin-top:18px;font-size:15px;color:var(--ink-soft);max-width:570px;}
+  .hero-stack{margin-top:18px;font-size:12px;font-weight:600;letter-spacing:.03em;}
+  .identity-section{padding:30px 0 56px;}
+  .identity-head{display:flex;gap:14px;align-items:baseline;margin-bottom:18px;}
+  .identity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .identity-grid article{padding:20px;border-right:1px solid var(--line);} .identity-grid article:last-child{border-right:none;}
+  .identity-grid strong{display:block;font-family:var(--serif);font-size:17px;margin-bottom:7px;}
+  .identity-grid span{display:block;font-size:13px;color:var(--ink-soft);}
+  .cap-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .cap-item{padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);} .cap-item h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;} .cap-item p{font-size:14px;color:var(--ink-soft);}
+  .proof-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);} .proof-grid div{padding:20px 16px;border-right:1px solid var(--line);} .proof-grid div:last-child{border-right:none;} .proof-grid strong{display:block;font-family:var(--serif);font-size:26px;} .proof-grid span{display:block;font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;}
+  .proof-links{display:flex;gap:22px;flex-wrap:wrap;margin-top:18px;} .proof-links a{font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--ink);}
+  .projects-list{margin-top:28px;}
+  .featured-project{border:1px solid var(--line);padding:26px;margin-top:14px;} .featured-project + .featured-project{margin-top:14px;}
+  .project-summary{margin-top:10px;max-width:650px;font-size:14.5px;color:#222;}
+  .project-proof{display:grid;grid-template-columns:120px 1fr;gap:12px;margin-top:17px;padding-top:14px;border-top:1px solid var(--line-soft);font-size:13px;} .proof-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);}
+  .case-study{margin-top:16px;border-top:1px solid var(--line-soft);padding-top:14px;} .case-study summary{cursor:pointer;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;} .case-study[open] summary{margin-bottom:14px;} .detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;} .detail-grid h4{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);margin-bottom:5px;} .detail-grid p{font-size:13px;color:#222;}
+  .contact-copy{font-size:15px;color:var(--ink-soft);max-width:600px;margin-top:-12px;margin-bottom:24px;}
+  .btn:focus-visible,.navlinks a:focus-visible,.proj-links a:focus-visible,.proof-links a:focus-visible,.case-study summary:focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+  @media (max-width:680px){.identity-head{flex-direction:column;gap:6px}.identity-grid{grid-template-columns:1fr}.identity-grid article{border-right:none;border-bottom:1px solid var(--line)}.identity-grid article:last-child{border-bottom:none}.cap-grid{grid-template-columns:1fr}.proof-grid{grid-template-columns:1fr 1fr}.proof-grid div:nth-child(2){border-right:none}.proof-grid div:nth-child(3),.proof-grid div:nth-child(4){border-top:1px solid var(--line)}.proof-grid div:nth-child(4){border-right:none}.detail-grid{grid-template-columns:1fr}.project-proof{grid-template-columns:1fr;gap:5px}}
 </style>
 </head>
 <body>
@@ -206,8 +230,8 @@
     <div class="brand">Bharath Waj K R</div>
     <div class="navlinks" id="navlinks">
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#certs">Certifications</a>
       <a href="#contact">Contact</a>
@@ -221,15 +245,19 @@
   <div class="wrap reveal in">
     <div class="opener-grid">
       <div>
-        <p class="lede">I build software the way I'd want to use it &mdash; carefully taken apart, understood, and put back together cleaner. Currently finishing a degree in Artificial Intelligence and looking for the room to do that professionally.</p>
+        <div class="hero-kicker">AI · BACKEND · FULL-STACK</div>
+        <p class="lede">AI-focused software engineering student building practical AI, backend, and full-stack systems.</p>
+        <p class="hero-support">I turn ideas into deployable software, intelligent systems, and reliable backend services — with a focus on clear engineering decisions and graceful failure.</p>
         <div class="name-line">
           <span><b>Bharath Waj K R</b></span>
           <span>B.Tech Artificial Intelligence, V.S.B. Engineering College</span>
           <span>Dindigul, Tamil Nadu</span>
         </div>
+        <div class="hero-stack">Java · Python · FastAPI · Flask · SQL · AI/ML · Docker</div>
         <div class="opener-cta">
-          <a class="btn btn-fill" href="#projects">See the work</a>
-          <a class="btn btn-line" href="#contact">Get in touch</a>
+          <a class="btn btn-fill" href="#projects">View projects</a>
+          <a class="btn btn-line" href="resume.pdf" target="_blank" rel="noopener">View résumé</a>
+          <a class="btn btn-line" href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
       <div class="opener-photo">
@@ -239,6 +267,17 @@
     </div>
   </div>
 </header>
+
+<section class="identity-section">
+  <div class="wrap reveal">
+    <div class="identity-head"><span class="idx">01 · ENGINEERING MINDSET</span><h2 class="sec-title">How I build</h2></div>
+    <div class="identity-grid">
+      <article><strong>Build systems, not demos.</strong><span>Projects should survive real inputs, failures, deployment, and change.</span></article>
+      <article><strong>Make AI behavior explicit.</strong><span>Prefer validation, fixed logic, fallbacks, and measurable targets over vague model claims.</span></article>
+      <article><strong>Keep the system explainable.</strong><span>Architecture, failure paths, and engineering trade-offs should be understandable to the next person.</span></article>
+    </div>
+  </div>
+</section>
 
 <hr class="rule">
 
@@ -253,7 +292,7 @@
       <div class="stat"><b>8.41</b><span>CGPA / 10</span></div>
       <div class="stat"><b>2027</b><span>Expected grad.</span></div>
       <div class="stat"><b>7</b><span>Certifications</span></div>
-      <div class="stat"><b>4</b><span>Shipped projects</span></div>
+      <div class="stat"><b>4</b><span>Featured projects</span></div>
     </div>
   </div>
 </section>
@@ -262,47 +301,16 @@
 
 <section id="skills">
   <div class="wrap reveal">
-    <h2 class="sec-title" style="margin-bottom:22px;">What I work with</h2>
-    <div style="margin-top:8px;">
-      <div class="skill-tier">
-        <div class="tier-label">
-          <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-          <span class="txt">Reach for first — Python, Flask/FastAPI backends, SQL, Git</span>
-        </div>
-        <div class="skill-chips">
-          <span class="chip">Python</span>
-          <span class="chip">Flask</span>
-          <span class="chip">FastAPI</span>
-          <span class="chip">MySQL</span>
-          <span class="chip">Git &amp; GitHub</span>
-          <span class="chip">Data Structures &amp; Algorithms</span>
-        </div>
-      </div>
-      <div class="skill-tier">
-        <div class="tier-label">
-          <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot off"></span></div>
-          <span class="txt">Comfortable — used across shipped projects</span>
-        </div>
-        <div class="skill-chips">
-          <span class="chip">Java</span>
-          <span class="chip">JavaScript</span>
-          <span class="chip">HTML / CSS</span>
-          <span class="chip">Docker</span>
-          <span class="chip">LLM API integration</span>
-          <span class="chip">VS Code</span>
-        </div>
-      </div>
-      <div class="skill-tier">
-        <div class="tier-label">
-          <div class="dots"><span class="dot"></span><span class="dot off"></span><span class="dot off"></span></div>
-          <span class="txt">Exploring — used once or twice, still building depth</span>
-        </div>
-        <div class="skill-chips">
-          <span class="chip">PyTorch / transformer models</span>
-          <span class="chip">Google Apps Script</span>
-          <span class="chip">Unix/Linux systems work</span>
-        </div>
-      </div>
+    <div class="section-kicker">CAPABILITY MAP</div>
+    <h2 class="sec-title">What I work with</h2>
+    <p class="sec-intro">A grouped view of the tools and domains I actually use across my projects, rather than a percentage-based skill chart.</p>
+    <div class="cap-grid">
+      <div class="cap-item"><h3>Languages</h3><p>Java · Python · JavaScript · SQL</p></div>
+      <div class="cap-item"><h3>Backend</h3><p>FastAPI · Flask · REST APIs</p></div>
+      <div class="cap-item"><h3>AI / ML</h3><p>PyTorch · transformer models · LLM API integration · computer vision</p></div>
+      <div class="cap-item"><h3>Frontend</h3><p>HTML · CSS · JavaScript</p></div>
+      <div class="cap-item"><h3>Data</h3><p>MySQL · MongoDB</p></div>
+      <div class="cap-item"><h3>Infrastructure</h3><p>Git · GitHub · Docker · Unix/Linux</p></div>
     </div>
   </div>
 </section>
@@ -311,108 +319,29 @@
 
 <section id="projects">
   <div class="wrap reveal">
-    <h2 class="sec-title">Selected work</h2>
-    <div style="margin-top:6px;">
-      <div class="proj-case">
-        <div class="proj-top">
-          <h3>SilentBridge</h3>
-          <span class="tag">Applied deep learning</span>
-        </div>
-        <div class="headline">&lt;2% of base-model size, targeting a 10–20% accuracy gain per signer</div>
-        <p class="desc">Real-time Indian Sign Language translation using a pose and facial-expression fusion transformer as a frozen base model, plus a lightweight few-shot adapter (BridgeAdapter) that personalizes to a new signer's style from a short calibration clip &mdash; without retraining the base model.</p>
-        <span class="status">In progress &mdash; base model + adapter architecture built, training/eval ongoing</span>
-        <div class="cs-grid">
-          <div class="cs-block">
-            <h4>Problem</h4>
-            <p>Most ISL translation models are trained on one signer's style and degrade badly on anyone else's. Retraining per signer isn't practical.</p>
-          </div>
-          <div class="cs-block">
-            <h4>Approach</h4>
-            <p>Freeze a pose + facial-expression fusion transformer as the base model, then learn a small adapter per signer from ~5 minutes of calibration video &mdash; keeping the adapter under 2% of the base model's parameters.</p>
-          </div>
-        </div>
-        <div class="arch-diagram">
-          <svg viewBox="0 0 720 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SilentBridge architecture: signer video and calibration clip feed a frozen base transformer plus a small BridgeAdapter, producing personalized ISL text output.">
-            <g font-family="Inter, sans-serif" font-size="11" fill="#000000">
-              <rect x="4" y="40" width="130" height="50" rx="3" fill="none" stroke="#000000" stroke-width="1.4"/>
-              <text x="69" y="61" text-anchor="middle" font-weight="600">Signer video</text>
-              <text x="69" y="76" text-anchor="middle" fill="#444444" font-size="9.5">pose + expression</text>
-
-              <line x1="134" y1="65" x2="182" y2="65" stroke="#000000" stroke-width="1.2"/>
-              <polygon points="182,60 192,65 182,70" fill="#000000"/>
-
-              <rect x="196" y="20" width="170" height="90" rx="3" fill="none" stroke="#000000" stroke-width="1.4"/>
-              <text x="281" y="52" text-anchor="middle" font-weight="600">Frozen base</text>
-              <text x="281" y="67" text-anchor="middle" font-weight="600">transformer</text>
-              <text x="281" y="86" text-anchor="middle" fill="#444444" font-size="9.5">pose + facial fusion</text>
-
-              <line x1="366" y1="65" x2="414" y2="65" stroke="#000000" stroke-width="1.2"/>
-              <polygon points="414,60 424,65 414,70" fill="#000000"/>
-
-              <rect x="428" y="10" width="150" height="60" rx="3" fill="#000000" stroke="#000000" stroke-width="1.4"/>
-              <text x="503" y="35" text-anchor="middle" font-weight="600" fill="#FFFFFF">BridgeAdapter</text>
-              <text x="503" y="50" text-anchor="middle" fill="#FFFFFF" font-size="9.5">&lt;2% of base params</text>
-
-              <line x1="503" y1="70" x2="503" y2="95" stroke="#000000" stroke-width="1.2" stroke-dasharray="2,3"/>
-              <rect x="428" y="96" width="150" height="34" rx="3" fill="none" stroke="#444444" stroke-width="1.2" stroke-dasharray="3,3"/>
-              <text x="503" y="117" text-anchor="middle" fill="#444444" font-size="9.5">~5 min calibration clip</text>
-
-              <line x1="578" y1="55" x2="626" y2="55" stroke="#000000" stroke-width="1.2"/>
-              <polygon points="626,50 636,55 626,60" fill="#000000"/>
-
-              <rect x="640" y="28" width="76" height="54" rx="3" fill="none" stroke="#000000" stroke-width="1.4"/>
-              <text x="678" y="50" text-anchor="middle" font-weight="600">ISL text</text>
-              <text x="678" y="64" text-anchor="middle" fill="#444444" font-size="9.5">output</text>
-            </g>
-          </svg>
-        </div>
-        <div class="metrics-row">
-          <div class="metric-pill"><b>&lt;5 min</b>calibration target</div>
-          <div class="metric-pill"><b>&lt;500ms</b>inference latency target</div>
-          <div class="metric-pill"><b>&lt;2%</b>adapter size vs. base model</div>
-          <div class="metric-pill"><b>10&ndash;20%</b>target accuracy gain on unseen signers</div>
-        </div>
-        <div class="proj-links" style="margin-top:16px;"><a href="https://github.com/BharathWaj-K-R/SilentBridge" target="_blank" rel="noopener">View on GitHub</a> &nbsp;·&nbsp; <a href="https://silentbridge-frontend.onrender.com" target="_blank" rel="noopener">Live demo</a></div>
-      </div>
-
-      <div class="proj">
-        <div class="proj-top">
-          <h3>ReForge</h3>
-          <span class="tag">Multi-agent AI · FastAPI</span>
-        </div>
-        <div class="headline">Score computed deterministically — 100 → 0, never model self-assessed</div>
-        <div class="par"><b>Problem</b><span>Most AI code-review tools pass raw LLM output straight to the user — including hallucinated or overstated findings.</span></div>
-        <div class="par"><b>Approach</b><span>FastAPI backend on Groq's Llama 3.3; every finding from the analysis agent is re-checked by a separate validation agent before it's shown, and the quality score is computed by fixed scoring logic rather than asked of the model.</span></div>
-        <div class="par"><b>Result</b><span>Deployed on Render with health checks and graceful degradation (agentic → error envelope → mock analysis) if the LLM call fails.</span></div>
-        <div class="proj-links" style="margin-top:12px;"><a href="https://github.com/BharathWaj-K-R/Re_Forge" target="_blank" rel="noopener">View on GitHub</a> &nbsp;·&nbsp; <a href="https://re-forge.onrender.com/" target="_blank" rel="noopener">Live demo</a></div>
-      </div>
-      <div class="proj">
-        <div class="proj-top">
-          <h3>AI Interview Preparation</h3>
-          <span class="tag">Full-stack · LLM</span>
-        </div>
-        <div class="headline">5-question mock sessions, scored with an LLM fallback if no API key is set</div>
-        <div class="par"><b>Problem</b><span>Placement interview practice tools are either static question banks or need a paid API key just to run at all.</span></div>
-        <div class="par"><b>Approach</b><span>Flask app that parses an uploaded resume (PDF/DOCX) to generate resume- and skills-specific questions, scores answers with an LLM, and falls back to a heuristic evaluator when no key is configured.</span></div>
-        <div class="par"><b>Result</b><span>Ships with auth, rate-limited LLM routes, DB migrations, Docker/compose setup, and a CI pipeline running the test suite on every push.</span></div>
-        <div class="proj-links" style="margin-top:12px;"><a href="https://github.com/BharathWaj-K-R/Ai-Interview-preparation" target="_blank" rel="noopener">View on GitHub</a></div>
-      </div>
-      <div class="proj">
-        <div class="proj-top">
-          <h3>Stress Detection Using Handwriting</h3>
-          <span class="tag">Applied ML</span>
-        </div>
-        <div class="headline">3-class classifier (Low / Medium / High) on a 30-sample dataset</div>
-        <div class="par"><b>Problem</b><span>Explore whether handwriting carries a detectable stress signal, using a fully offline, non-clinical feature set.</span></div>
-        <div class="par"><b>Approach</b><span>Streamlit app extracts HOG features from an uploaded or camera-captured handwriting sample, runs image quality checks (resolution, blur, ink presence), then classifies with a Random Forest model.</span></div>
-        <div class="par"><b>Result</b><span>Returns a class-probability breakdown and logs predictions for review; includes an admin retraining loop for corrected samples. Educational scope only — not a diagnostic tool.</span></div>
-        <div class="proj-links" style="margin-top:12px;"><a href="https://github.com/BharathWaj-K-R/Stress-level-Detection" target="_blank" rel="noopener">View on GitHub</a></div>
-      </div>
-    </div>
+    <div class="section-kicker">02 · SELECTED WORK</div>
+    <h2 class="sec-title">Projects that show how I think</h2>
+    <p class="sec-intro">The first layer is recruiter-readable. The deeper case study stays available for technical reviewers.</p>
+    <div class="projects-list">
+<article class="proj-case featured-project"><div class="proj-top"><h3>SilentBridge</h3><span class="tag">Applied deep learning</span></div><div class="headline">Targeting signer personalization with a lightweight adapter.</div><p class="project-summary">Real-time Indian Sign Language translation using a pose + facial-expression fusion transformer as a frozen base model, with a few-shot BridgeAdapter for signer-specific personalization.</p><div class="project-proof"><span class="proof-label">Engineering focus</span><span>Freeze the base transformer and learn a small adapter from about five minutes of calibration video, targeting under 2% of the base model parameters.</span></div><details class="case-study"><summary>Read technical case study</summary><div class="detail-grid"><div><h4>Problem</h4><p>Most ISL translation models are trained on one signer's style and degrade on other signers; retraining per signer is impractical.</p></div><div><h4>Approach</h4><p>Freeze the base transformer and learn a small adapter from about five minutes of calibration video, targeting under 2% of the base model parameters.</p></div><div><h4>Result / current state</h4><p>In progress — base model + adapter architecture built; training/evaluation ongoing. Current targets: <5 min calibration, <500ms inference latency, 10–20% accuracy gain on unseen signers.</p></div></div></details><div class="proj-links"><a href="https://github.com/BharathWaj-K-R/SilentBridge" target="_blank" rel="noopener">View on GitHub</a> &nbsp;·&nbsp; <a href="https://silentbridge-frontend.onrender.com" target="_blank" rel="noopener">Live demo</a></div></article><article class="proj-case featured-project"><div class="proj-top"><h3>ReForge</h3><span class="tag">Multi-agent AI · FastAPI</span></div><div class="headline">AI code review with independent validation and deterministic scoring.</div><p class="project-summary">FastAPI backend on Groq's Llama 3.3 where analysis findings are re-checked by a separate validation agent before they reach the user.</p><div class="project-proof"><span class="proof-label">Engineering focus</span><span>Use an analysis agent, a separate validation agent, and fixed scoring logic so the model never self-assesses its own quality score.</span></div><details class="case-study"><summary>Read technical case study</summary><div class="detail-grid"><div><h4>Problem</h4><p>Raw LLM code-review output can contain hallucinated or overstated findings.</p></div><div><h4>Approach</h4><p>Use an analysis agent, a separate validation agent, and fixed scoring logic so the model never self-assesses its own quality score.</p></div><div><h4>Result / current state</h4><p>Deployed on Render with health checks and graceful degradation from agentic analysis to an error envelope and then mock analysis when the LLM call fails.</p></div></div></details><div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Re_Forge" target="_blank" rel="noopener">View on GitHub</a> &nbsp;·&nbsp; <a href="https://re-forge.onrender.com/" target="_blank" rel="noopener">Live demo</a></div></article><article class="proj"><div class="proj-top"><h3>AI Interview Preparation</h3><span class="tag">Full-stack · LLM</span></div><div class="headline">Resume-aware interview practice with an offline scoring fallback.</div><p class="project-summary">Flask application that parses uploaded PDF/DOCX resumes, generates skills-specific questions, scores answers with an LLM, and falls back to heuristic evaluation when no key is configured.</p><div class="project-proof"><span class="proof-label">Engineering focus</span><span>Combine resume parsing, authentication, rate-limited LLM routes, database migrations, Docker/compose, and a heuristic fallback.</span></div><details class="case-study"><summary>Read technical case study</summary><div class="detail-grid"><div><h4>Problem</h4><p>Static question banks are generic, while many LLM-backed tools fail completely when an API key is unavailable.</p></div><div><h4>Approach</h4><p>Combine resume parsing, authentication, rate-limited LLM routes, database migrations, Docker/compose, and a heuristic fallback.</p></div><div><h4>Result / current state</h4><p>Ships with auth, migrations, Docker/compose setup, and CI running the test suite on pushes.</p></div></div></details><div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Ai-Interview-preparation" target="_blank" rel="noopener">View on GitHub</a></div></article><article class="proj"><div class="proj-top"><h3>Stress Detection Using Handwriting</h3><span class="tag">Applied ML</span></div><div class="headline">Offline three-class handwriting classifier with quality checks.</div><p class="project-summary">Streamlit app using HOG features and a Random Forest classifier for Low / Medium / High stress classes on a 30-sample dataset.</p><div class="project-proof"><span class="proof-label">Engineering focus</span><span>Extract HOG features, validate image quality, classify with Random Forest, log predictions, and support corrected-sample retraining.</span></div><details class="case-study"><summary>Read technical case study</summary><div class="detail-grid"><div><h4>Problem</h4><p>Explore whether handwriting carries a detectable stress signal using a non-clinical offline feature set.</p></div><div><h4>Approach</h4><p>Extract HOG features, validate image quality, classify with Random Forest, log predictions, and support corrected-sample retraining.</p></div><div><h4>Result / current state</h4><p>Educational scope only — not a diagnostic tool. The app returns class probabilities and keeps a review loop for corrected samples.</p></div></div></details><div class="proj-links"><a href="https://github.com/BharathWaj-K-R/Stress-level-Detection" target="_blank" rel="noopener">View on GitHub</a></div></article>  </div>
   </div>
 </section>
 
 <hr class="rule">
+<section id="proof">
+  <div class="wrap reveal">
+    <div class="section-kicker">PROOF OF WORK</div>
+    <h2 class="sec-title">Evidence before adjectives</h2>
+    <p class="sec-intro">The point of this section is simple: show what exists, what is in progress, and where the evidence lives.</p>
+    <div class="proof-grid">
+      <div><strong>4</strong><span>featured projects</span></div>
+      <div><strong>7</strong><span>certifications</span></div>
+      <div><strong>8.41</strong><span>CGPA / 10</span></div>
+      <div><strong>2027</strong><span>expected graduation</span></div>
+    </div>
+    <div class="proof-links"><a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener">GitHub →</a><a href="https://leetcode.com/u/Bharath_Waj_K_R/" target="_blank" rel="noopener">LeetCode →</a><a href="resume.pdf" target="_blank" rel="noopener">Résumé →</a></div>
+  </div>
+</section>
 
 <section id="experience">
   <div class="wrap reveal">
@@ -488,7 +417,7 @@
 
 <footer id="contact">
   <div class="wrap reveal">
-    <p class="lede">Open to Software Engineer and Graduate Trainee roles &mdash; I reply quickly, and I'd like to hear from you.</p>
+    <div class="section-kicker">LET'S TALK</div><p class="lede">Open to Software Engineer and Graduate Trainee roles.</p><p class="contact-copy">I'm looking for a team where I can work on real software, contribute from day one, and keep getting better at the engineering underneath the product.</p>
     <div class="contact-details">
       <div class="cd-item">
         <div class="cd-label">Email</div>
