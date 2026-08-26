@@ -1,0 +1,33 @@
+.leetcode-fallback {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.85rem;
+  min-height: 200px;
+  padding: 1.25rem;
+  border: 1px solid #dfd2c4;
+  background: #fbf7f1;
+  color: #2b211b;
+}
+
+.leetcode-fallback strong,
+.leetcode-fallback span {
+  display: block;
+}
+
+.leetcode-fallback span {
+  margin-top: 0.25rem;
+  color: #6f6258;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .leetcode-fallback {
+    grid-template-columns: auto 1fr;
+  }
+
+  .leetcode-fallback > svg:last-child {
+    display: none;
+  }
+}
