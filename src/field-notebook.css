@@ -61,8 +61,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;z-
 .project-search input::placeholder{color:#85766b!important}
 
 .project-card{position:relative;overflow:hidden}
-.project-card::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--field-accent),transparent 65%);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
-.project-card:hover::after{transform:scaleX(1)}
+/* Use the card border as the sole top rule; the previous decorative pseudo-rule created a duplicate line. */
+.project-card::after{display:none!important}
 .project-card.featured::before{content:"FLAGSHIP SYSTEM / ACTIVE";position:absolute;right:18px;top:18px;color:var(--field-accent-deep);font-size:8px;font-weight:900;letter-spacing:.16em}
 .project-card.featured{padding-top:4px;border-color:var(--field-accent-deep)!important}
 
