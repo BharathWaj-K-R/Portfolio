@@ -1,0 +1,125 @@
+/* Subject-specific visual layer: warm technical field notebook */
+:root{
+  --field-bg:#f6efe5;
+  --field-paper:#fffaf3;
+  --field-paper-2:#efe4d5;
+  --field-ink:#241b16;
+  --field-muted:#75665c;
+  --field-rule:#d8c8b7;
+  --field-accent:#b05d3b;
+  --field-accent-deep:#783b29;
+}
+
+body{background:var(--field-bg)!important;color:var(--field-ink)!important}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;z-index:60;background-image:radial-gradient(rgba(36,27,22,.16) .45px,transparent .55px);background-size:5px 5px;mix-blend-mode:multiply}
+.site-header{background:rgba(246,239,229,.92)!important;border-color:var(--field-rule)!important;backdrop-filter:blur(16px)}
+.brand{letter-spacing:-.035em}
+.nav-link{color:var(--field-muted)!important}
+.nav-link.active,.nav-link:hover{color:var(--field-ink)!important}
+.nav-link::after{background:var(--field-accent)!important}
+
+.hero-section{background:var(--field-bg)!important;padding-top:90px}
+.hero-section::before{background-image:linear-gradient(rgba(120,59,41,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(120,59,41,.065) 1px,transparent 1px)!important;background-size:72px 72px}
+.hero-layout>div:first-child::before{background:var(--field-accent)!important;opacity:.55!important}
+.hero-kicker::before{content:"ENGINEERING FIELD NOTE"!important;color:var(--field-accent-deep)!important;font-size:9px;letter-spacing:.18em;font-weight:900}
+.hero-section h1{color:var(--field-ink)!important;font-weight:850;letter-spacing:-.06em}
+.hero-lead{color:#4e433b!important;max-width:610px}
+.hero-meta{color:var(--field-muted)!important}
+.hero-proof{color:#5b4d43!important}
+.availability{border-color:var(--field-rule)!important;background:rgba(255,250,243,.76)!important;color:var(--field-muted)!important}
+.availability i{background:var(--field-accent)!important;box-shadow:0 0 0 3px #ead8c9!important}
+.hero-actions .bg-primary,.hero-actions a:first-child{background:var(--field-ink)!important;color:var(--field-paper)!important}
+.hero-actions a:hover,.hero-actions button:hover{border-color:var(--field-accent)!important}
+.photo-frame::before{border-color:var(--field-accent)!important;opacity:.35!important}
+.photo-note{background:var(--field-paper)!important;border-color:var(--field-ink)!important;box-shadow:8px 8px 0 var(--field-accent-deep)!important;color:var(--field-ink)!important}
+
+.proof-number{border-color:var(--field-rule)!important;background:transparent!important}
+.proof-number::before{background:var(--field-accent)!important;opacity:.55!important}
+.proof-number strong{color:var(--field-ink)!important}
+.proof-number span{color:var(--field-muted)!important}
+
+.content-section,.process-section,.proof-section{background:var(--field-bg)!important}
+.systems-section{background:var(--field-paper-2)!important;border-color:var(--field-rule)!important}
+.section-head{padding-left:0}
+.section-head::before{display:none}
+.eyebrow{color:var(--field-accent-deep)!important;letter-spacing:.18em!important}
+.section-title{color:var(--field-ink)!important;font-weight:820}
+.section-intro{color:var(--field-muted)!important}
+
+.focus-card,.project-card,.stack-card,.evidence-card,.experience-card{background:var(--field-paper)!important;border-color:var(--field-rule)!important;border-radius:0!important;box-shadow:none!important}
+.focus-card:hover,.project-card:hover,.stack-card:hover,.evidence-card:hover{transform:translateY(-3px);border-color:var(--field-accent)!important;box-shadow:7px 7px 0 rgba(120,59,41,.18)!important}
+.now-grid>.focus-card:first-child{border-color:var(--field-ink)!important;box-shadow:8px 8px 0 var(--field-accent-deep)!important}
+.now-grid>.focus-card:first-child:hover{box-shadow:8px 8px 0 var(--field-accent-deep)!important}
+.stack-card .icon-box{background:var(--field-paper-2)!important;border-color:var(--field-rule)!important}
+.stack-card [data-slot="badge"],.project-card [data-slot="badge"],.focus-card [data-slot="badge"]{background:#f1e4d5!important;border-color:#d9c5b1!important;color:#694637!important}
+
+.filter-pill,.project-search,.architecture-step,.icon-box{background:var(--field-paper)!important;border-color:var(--field-rule)!important}
+.filter-pill{color:var(--field-muted)!important}
+.filter-pill:hover,.filter-pill.active{border-color:var(--field-accent)!important}
+.filter-pill.active{background:var(--field-accent-deep)!important;color:#fff!important}
+.project-search input{color:var(--field-ink)!important}
+.project-search input::placeholder{color:#85766b!important}
+
+.project-card{position:relative;overflow:hidden}
+.project-card::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--field-accent),transparent 65%);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+.project-card:hover::after{transform:scaleX(1)}
+.project-card.featured::before{content:"FLAGSHIP SYSTEM / ACTIVE";position:absolute;right:18px;top:18px;color:var(--field-accent-deep);font-size:8px;font-weight:900;letter-spacing:.16em}
+.project-card.featured{padding-top:4px;border-color:var(--field-accent-deep)!important}
+
+.dark-section{background:var(--field-ink)!important;color:#fff9f0!important;position:relative;overflow:hidden}
+.dark-section::before{content:"FIELD / FAILURE / SYSTEM";position:absolute;right:4%;top:10%;font-size:9px;font-weight:900;letter-spacing:.18em;color:rgba(255,250,243,.18);transform:rotate(90deg);transform-origin:right top}
+.dark-title{color:#fff9f0!important}
+.dark-copy{color:#d7c8ba!important}
+.principles-grid{background:#694332!important;border-color:#694332!important}
+.principles-grid>div{background:var(--field-ink)!important;border-radius:0!important}
+.principles-grid>div:hover{background:#2c211b!important}
+.principles-grid>div::after{background:var(--field-accent)!important}
+.principles-grid h3{color:#fff9f0!important}
+.principles-grid p{color:#d7c8ba!important}
+
+.process-list{border-color:var(--field-rule)!important}
+.process-row{border-color:var(--field-rule)!important;position:relative}
+.process-row:hover{background:linear-gradient(90deg,#eee1d2,transparent)!important}
+.process-row b{color:var(--field-ink)!important}
+.process-row p{color:var(--field-muted)!important}
+.process-row::after{background:var(--field-accent)!important}
+
+.evidence-card:hover{box-shadow:5px 5px 0 var(--field-accent-deep)!important}
+.evidence-note,.evidence-row{color:#66564b!important}
+.evidence-row{background:var(--field-paper)!important;border-color:var(--field-rule)!important}
+
+.case-study{background:var(--field-paper)!important;border-color:var(--field-ink)!important;box-shadow:12px 12px 0 var(--field-accent-deep)!important;border-radius:0!important}
+.case-study [role="tablist"]{background:var(--field-paper-2)!important;border-color:var(--field-rule)!important}
+.case-study [data-state="active"]{background:var(--field-accent-deep)!important;color:#fff!important}
+.architecture-step.active{border-color:var(--field-accent-deep)!important;box-shadow:3px 3px 0 var(--field-accent-deep)!important}
+
+.leetcode-section{background:var(--field-paper-2)!important;border-color:var(--field-rule)!important}
+.leetcode-card-link{background:var(--field-paper)!important;border-color:var(--field-rule)!important;box-shadow:8px 8px 0 var(--field-accent-deep)!important}
+.leetcode-card-link:hover{border-color:var(--field-accent)!important;box-shadow:10px 10px 0 var(--field-accent-deep)!important}
+.leetcode-link{border-color:var(--field-rule)!important;color:var(--field-accent-deep)!important;background:var(--field-paper)!important}
+.leetcode-card-hint{border-color:var(--field-rule)!important;color:var(--field-muted)!important}
+.leetcode-fallback{background:var(--field-paper)!important;border-color:var(--field-rule)!important;color:var(--field-ink)!important}
+.leetcode-fallback span{color:var(--field-muted)!important}
+
+.footer-section{background:#1b130f!important;color:#fff9f0!important;position:relative;overflow:hidden}
+.footer-section::after{content:"BUILD → BREAK → LEARN → SHIP";position:absolute;right:5%;bottom:8%;font-size:9px;letter-spacing:.18em;font-weight:900;color:rgba(255,249,240,.18)}
+.footer-title{color:#fff9f0!important}
+.footer-copy{color:#d7c8ba!important}
+.footer-meta{border-color:#4b3529!important;color:#b8a79a!important}
+
+/* Remove decorative ordinals from the visual layer; names carry hierarchy. */
+.principle-number,.project-number,.process-row>span{display:none!important}
+
+/* One orchestrated motion: the page reveals, cards respond, nothing dances. */
+@media(prefers-reduced-motion:reduce){
+ body::after{display:none}
+ .project-card::after{transition:none}
+ .project-card:hover,.focus-card:hover,.stack-card:hover,.evidence-card:hover{transform:none}
+}
+
+@media(max-width:767px){
+ .hero-section{padding-top:64px}
+ .hero-kicker::before{content:"FIELD NOTE"!important}
+ .project-card.featured::before{position:static;display:block;margin-bottom:10px}
+ .dark-section::before,.footer-section::after{display:none}
+}
