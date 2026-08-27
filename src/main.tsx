@@ -10,6 +10,7 @@ import "./warm-theme.css"
 import "./stunning-refinement.css"
 import "./leetcode-fallback.css"
 import "./field-notebook.css"
+import "./anti-slop-redesign.css"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
