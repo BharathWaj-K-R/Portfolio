@@ -1,0 +1,25 @@
+/* Deliberately restrained display scale: keep the hero bold without letting it dominate the page. */
+.hero-section h1 {
+  font-size: clamp(2.55rem, 4.35vw, 4.35rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.055em !important;
+}
+
+.hero-lead {
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 2.8vw, 2.65rem) !important;
+}
+
+.footer-title {
+  font-size: clamp(2.55rem, 4.6vw, 4.35rem) !important;
+}
+
+@media (max-width: 767px) {
+  .hero-section h1 {
+    font-size: clamp(2.35rem, 10vw, 3.7rem) !important;
+  }
+}

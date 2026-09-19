@@ -1,0 +1,190 @@
+/* Anti-slop visual system: warm technical editorial */
+:root{
+  --surface:#fbf6ee;
+  --surface-strong:#fffaf3;
+  --surface-soft:#f0e5d7;
+  --ink:#2a1f1a;
+  --muted:#65574d;
+  --line:#d8c8b7;
+  --accent:#985137;
+  --accent-strong:#743b2a;
+  --accent-wash:#ead9ca;
+}
+
+html,body{background:var(--surface)!important;color:var(--ink)!important}
+body{font-family:"Avenir Next","Segoe UI","Helvetica Neue",Arial,sans-serif;font-size:16.5px;line-height:1.7;overflow-x:hidden}
+h1,h2,h3,h4,h5,h6{font-family:"Avenir Next","Segoe UI","Helvetica Neue",Arial,sans-serif;color:var(--ink)!important}
+code,pre,kbd,.hero-meta,.hero-proof,.footer-meta{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
+
+/* One palette, one light theme. No mid-page dark-mode flip. */
+.site-header,.hero-section,.content-section,.process-section,.proof-section,.systems-section,.leetcode-section,.footer-section,.dark-section{
+  background:var(--surface)!important;color:var(--ink)!important;border-color:var(--line)!important;
+}
+.site-header{height:68px;box-shadow:0 1px 0 rgba(42,31,26,.05);backdrop-filter:blur(14px)}
+.site-header a,.site-header button{color:var(--muted)!important}
+.site-header .brand{color:var(--ink)!important;font-size:16px;font-weight:800}
+.site-header .nav-link{font-size:12px;font-weight:700;color:var(--muted)!important}
+.site-header .nav-link:hover,.site-header .nav-link.active{color:var(--ink)!important}
+.nav-link::after{background:var(--accent)!important;height:2px}
+
+.container-wide{width:min(1180px,calc(100% - 40px))}
+
+/* Hero = thesis + real visual + 2 actions, nothing else. */
+.hero-section{padding:72px 0 68px;min-height:auto}
+.hero-section::before{background-image:linear-gradient(rgba(152,81,55,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(152,81,55,.05) 1px,transparent 1px)!important;background-size:64px 64px;mask-image:linear-gradient(to bottom,#000 5%,transparent 82%)}
+.hero-layout{grid-template-columns:minmax(0,1.05fr) minmax(280px,340px);gap:64px;align-items:center}
+.hero-layout>div:first-child{padding-left:26px}
+.hero-layout>div:first-child::before{left:0;top:4px;bottom:0;width:2px;background:var(--accent)!important;opacity:.6!important}
+.hero-kicker{margin-bottom:16px}
+.hero-kicker::before{content:"ENGINEERING FIELD NOTE"!important;color:var(--accent-strong)!important;font:800 10px/1 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;letter-spacing:.14em}
+.hero-section h1{max-width:780px;font-size:clamp(3rem,5.2vw,4.75rem)!important;line-height:.98!important;letter-spacing:-.055em!important;font-weight:800!important}
+.hero-section h1 span,.hero-section h1 strong,.hero-section h1 em{color:var(--ink)!important}
+.hero-lead{max-width:620px;margin-top:20px;color:var(--muted)!important;font-size:16px;line-height:1.78}
+.hero-meta,.hero-proof{color:#75665b!important;font-size:11px}
+.hero-actions{gap:10px;margin-top:24px}
+.hero-actions a,.hero-actions button{min-height:40px}
+.hero-actions .bg-primary,.hero-actions a:first-child{background:var(--ink)!important;color:var(--surface-strong)!important}
+.hero-actions .bg-primary:hover,.hero-actions a:first-child:hover{background:var(--accent-strong)!important}
+.availability{border-color:var(--line)!important;background:rgba(255,250,243,.78)!important;color:var(--muted)!important}
+.availability i{background:var(--accent)!important;box-shadow:0 0 0 3px var(--accent-wash)!important}
+.photo-frame{width:min(100%,330px)}
+.photo-frame::before{inset:-12px 12px 12px -12px;border-color:var(--accent)!important;opacity:.36!important}
+.photo-frame img{filter:none!important}
+.photo-note{background:var(--surface-strong)!important;border-color:var(--ink)!important;box-shadow:7px 7px 0 var(--accent-strong)!important;color:var(--ink)!important}
+
+/* Proof is supporting evidence, not a second hero. */
+.proof-number{min-height:96px;border-color:var(--line)!important;background:transparent!important}
+.proof-number strong{font-size:25px!important;color:var(--ink)!important}
+.proof-number span{font-size:10px!important;color:var(--muted)!important}
+.proof-number::before{background:var(--accent)!important;opacity:.45!important}
+
+/* Section headers: use the heading, not an eyebrow parade. */
+.section-head{padding-left:0!important}
+.section-head::before{display:none!important}
+.section-title{font-size:clamp(2rem,3.4vw,3rem)!important;letter-spacing:-.045em;font-weight:800}
+.section-intro{max-width:68ch;color:var(--muted)!important;font-size:15px;line-height:1.8}
+/* Keep only the hero's field note. */
+.content-section .eyebrow,.process-section .eyebrow,.proof-section .eyebrow,.systems-section .eyebrow,#stack .eyebrow,#now .eyebrow,#principles .eyebrow,.footer-section .eyebrow{display:none!important}
+
+/* Current work: one dominant card + two quieter ones. */
+.now-grid{grid-template-columns:1.7fr .8fr .8fr;gap:14px;margin-top:28px}
+.focus-card,.project-card,.stack-card,.evidence-card,.experience-card{background:var(--surface-strong)!important;border-color:var(--line)!important;border-radius:4px!important;box-shadow:none!important}
+.focus-card{min-height:230px}
+.focus-card:hover,.project-card:hover,.stack-card:hover,.evidence-card:hover{transform:translateY(-3px);border-color:var(--accent)!important;box-shadow:6px 6px 0 rgba(116,59,42,.12)!important}
+.now-grid>.focus-card:first-child{border-color:var(--accent-strong)!important;box-shadow:7px 7px 0 var(--accent-strong)!important}
+
+/* Principles: three unequal columns, not the banned equal-card row. */
+.dark-section{padding:78px 0;background:var(--surface-soft)!important;border-block:1px solid var(--line)!important}
+.dark-title,.dark-section h2,.dark-section h3{color:var(--ink)!important}
+.dark-copy,.dark-section p{color:var(--muted)!important}
+.principles-grid{display:grid;grid-template-columns:3fr 2fr 1fr;gap:1px;margin-top:30px;background:var(--line);border:1px solid var(--line)}
+.principles-grid>div{min-height:230px;padding:24px;background:var(--surface-strong)!important;border:0;border-radius:0!important}
+.principles-grid>div:hover{background:#f7ecdf!important}
+.principles-grid>div::after{background:var(--accent)!important}
+.principles-grid h3{margin-top:38px;font-size:21px;color:var(--ink)!important}
+.principles-grid p{font-size:14px;line-height:1.8;color:var(--muted)!important}
+
+/* Systems: featured case study across the whole row. */
+.systems-section{background:var(--surface-soft)!important}
+.systems-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}
+.project-card{min-height:390px;position:relative;overflow:hidden}
+.project-card.featured{grid-column:1/-1;min-height:340px;border-color:var(--accent-strong)!important;box-shadow:8px 8px 0 var(--accent-strong)!important}
+.project-card.featured::before{content:"FLAGSHIP SYSTEM";position:absolute;top:18px;right:18px;color:var(--accent-strong);font:800 9px/1 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;letter-spacing:.13em}
+.project-card::after{height:2px;background:linear-gradient(90deg,var(--accent),transparent 72%);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
+.project-card:hover::after{transform:scaleX(1)}
+.project-number,.principle-number,.process-row>span{display:none!important}
+.project-card h3{font-size:clamp(1.35rem,2vw,1.85rem)!important}
+.project-card p{font-size:14px!important;line-height:1.8;color:var(--muted)!important}
+
+/* Controls and technical labels. */
+.filter-pill,.project-search,.architecture-step,.icon-box{background:var(--surface-strong)!important;border-color:var(--line)!important;border-radius:4px!important}
+.filter-pill{font-size:11px;color:var(--muted)!important}
+.filter-pill:hover,.filter-pill.active{border-color:var(--accent)!important}
+.filter-pill.active{background:var(--accent-strong)!important;color:#fffaf3!important}
+.project-search input{color:var(--ink)!important;font-size:13px}
+.project-search input::placeholder{color:#817268!important;opacity:1}
+
+/* Stack becomes a capability matrix, not a wall of tiny pills. */
+.stack-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
+.stack-card{min-height:145px;padding:20px!important}
+.stack-card h3{font-size:16px!important;color:var(--ink)!important}
+.stack-card .flex.flex-wrap{gap:7px!important}
+.stack-card [data-slot="badge"],.project-card [data-slot="badge"],.focus-card [data-slot="badge"]{font-size:12px!important;line-height:1.2!important;padding:7px 10px!important;border-radius:999px!important;background:var(--accent-wash)!important;border-color:#d7c1ad!important;color:#5f3f31!important}
+.stack-card [data-slot="badge"]{min-height:30px}
+
+/* Process = actual sequence, so ordering remains meaningful. */
+.process-list{border-color:var(--line)!important}
+.process-row{grid-template-columns:190px 1fr!important;padding:20px 0;border-color:var(--line)!important}
+.process-row b{font-size:15px;color:var(--ink)!important}
+.process-row p{font-size:14px;color:var(--muted)!important;line-height:1.8}
+.process-row:hover{background:linear-gradient(90deg,#f1e5d7,transparent)!important}
+.process-row::after{background:var(--accent)!important}
+
+/* Proof / LeetCode: same light theme, same rules. */
+.proof-section{background:var(--surface)!important}
+.evidence-card:hover{box-shadow:5px 5px 0 var(--accent-strong)!important}
+.evidence-note,.evidence-row{color:var(--muted)!important}
+.evidence-row{background:var(--surface-strong)!important;border-color:var(--line)!important}
+.leetcode-section{background:var(--surface-soft)!important;border-block:1px solid var(--line)!important;padding:62px 0}
+.leetcode-shell{gap:32px}
+.leetcode-copy h2{color:var(--ink)!important}
+.leetcode-copy p{color:var(--muted)!important;font-size:15px;line-height:1.8}
+.leetcode-link{border-color:var(--line)!important;background:var(--surface-strong)!important;color:var(--accent-strong)!important}
+.leetcode-card-link{background:var(--surface-strong)!important;border-color:var(--line)!important;box-shadow:7px 7px 0 var(--accent-strong)!important;border-radius:4px}
+.leetcode-card-link:hover{border-color:var(--accent)!important;box-shadow:9px 9px 0 var(--accent-strong)!important}
+.leetcode-fallback{background:var(--surface-strong)!important;border-color:var(--line)!important;color:var(--ink)!important}
+
+/* Case study = tool-like detail surface without leaving the page's theme. */
+.case-study{background:var(--surface-strong)!important;border-color:var(--accent-strong)!important;box-shadow:10px 10px 0 var(--accent-strong)!important;border-radius:4px!important}
+.case-study [role="tablist"]{background:var(--surface-soft)!important;border-color:var(--line)!important}
+.case-study [data-state="active"]{background:var(--accent-strong)!important;color:#fffaf3!important}
+.architecture-step.active{border-color:var(--accent-strong)!important;box-shadow:3px 3px 0 var(--accent-strong)!important}
+
+/* Footer is still part of the same warm theme. */
+.footer-section{padding:82px 0 38px;background:var(--accent-strong)!important;color:#fffaf3!important;border-top:1px solid var(--accent-strong)!important}
+.footer-title,.footer-section h2,.footer-section h3{color:#fffaf3!important}
+.footer-copy{color:#f0ddd0!important}
+.footer-meta{border-color:rgba(255,250,243,.22)!important;color:#d6bfb1!important}
+.footer-actions .bg-white{background:#fffaf3!important;color:var(--accent-strong)!important}
+
+/* Interaction: one coherent physical language. */
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--accent)!important;outline-offset:3px}
+.hero-actions a,.hero-actions button,.footer-actions a,.footer-actions button,.project-card,.focus-card,.stack-card,.evidence-card,.process-row,.leetcode-card-link{transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .2s ease,box-shadow .2s ease,background-color .2s ease,color .2s ease}
+.hero-actions a:active,.hero-actions button:active,.footer-actions a:active,.footer-actions button:active{transform:translateY(1px) scale(.99)}
+
+/* Remove legacy decorative system markers created by earlier design layers. */
+.hero-kicker::after,.dark-section::before,.footer-section::after{content:none!important;display:none!important}
+
+@media(max-width:960px){
+  .hero-layout{grid-template-columns:1fr 300px;gap:44px}
+  .now-grid{grid-template-columns:1.5fr .75fr .75fr}
+  .principles-grid{grid-template-columns:2fr 1fr 1fr}
+}
+@media(max-width:767px){
+  .container-wide{width:calc(100% - 28px)}
+  .hero-section{padding:58px 0 52px}
+  .hero-layout{grid-template-columns:1fr;gap:34px}
+  .hero-layout>div:first-child{padding-left:16px}
+  .hero-kicker::before{content:"FIELD NOTE"!important}
+  .hero-section h1{font-size:clamp(2.6rem,11.5vw,3.9rem)!important}
+  .hero-lead{font-size:15.5px}
+  .photo-frame{width:min(100%,290px)}
+  .now-grid,.systems-grid,.stack-grid{grid-template-columns:1fr}
+  .project-card.featured{grid-column:auto;min-height:380px}
+  .project-card.featured::before{position:static;display:block;margin-bottom:10px}
+  .principles-grid{grid-template-columns:1fr}
+  .principles-grid>div{min-height:190px}
+  .process-row{grid-template-columns:1fr!important;gap:8px}
+  .process-row p{margin:0}
+  .leetcode-shell{grid-template-columns:1fr}
+  .case-study{width:calc(100% - 24px)!important;box-shadow:7px 7px 0 var(--accent-strong)!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  .project-card::after{transition:none}
+  .project-card,.focus-card,.stack-card,.evidence-card,.process-row,.hero-actions a,.hero-actions button,.footer-actions a,.footer-actions button,.leetcode-card-link{transition:none!important;transform:none!important}
+}
+@media(prefers-color-scheme:dark){
+  /* Deliberately retain the light brand: avoids section-level theme inversion and preserves portfolio identity. */
+  html,body{background:var(--surface)!important;color:var(--ink)!important}
+}
