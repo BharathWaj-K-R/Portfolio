@@ -15,11 +15,14 @@ const DASHBOARD_USER = process.env.DASHBOARD_USER || "owner";
 const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD;
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.1-8b-instant";
+const DEMO_MODE = process.env.DEMO_MODE === "true";
+const memoryLeads = [];
 
-if (!DATABASE_URL) console.warn("DATABASE_URL is not configured.");
+if (!DATABASE_URL && !DEMO_MODE) console.warn("DATABASE_URL is not configured.");
 if (!OWNER_EMAIL) console.warn("OWNER_EMAIL is not configured.");
 if (!RESEND_API_KEY) console.warn("RESEND_API_KEY is not configured; email delivery will be skipped.");
 if (!DASHBOARD_PASSWORD) console.warn("DASHBOARD_PASSWORD is not configured; dashboard will return 503.");
+if (DEMO_MODE) console.warn("DEMO_MODE=true: lead storage is in-memory and will reset on restart/deploy.");
 
 const pool = DATABASE_URL ? new Pool({
   connectionString: DATABASE_URL,
@@ -145,7 +148,7 @@ async function classifyLead(input) {
 }
 
 async function ensureSchema() {
-  if (!pool) return;
+  if (!pool || DEMO_MODE) return;
   await pool.query(`
     CREATE TABLE IF NOT EXISTS leads (
       id UUID PRIMARY KEY,
@@ -224,9 +227,9 @@ function basicAuth(req, res, next) {
 app.get("/health", async (_req, res) => {
   try {
     if (pool) await pool.query("SELECT 1");
-    res.json({ ok: true, database: Boolean(pool), email: Boolean(RESEND_API_KEY && OWNER_EMAIL) });
+    res.json({ ok: true, database: Boolean(pool) || DEMO_MODE, demoMode: DEMO_MODE, email: Boolean(RESEND_API_KEY && OWNER_EMAIL) });
   } catch {
-    res.status(503).json({ ok: false, database: false, email: Boolean(RESEND_API_KEY && OWNER_EMAIL) });
+    res.status(503).json({ ok: false, database: false, demoMode: DEMO_MODE, email: Boolean(RESEND_API_KEY && OWNER_EMAIL) });
   }
 });
 
@@ -246,28 +249,47 @@ app.post("/api/contact", rateLimit, async (req, res) => {
   if (!input.name || !input.subject || !input.message || !validEmail(input.email)) {
     return res.status(400).json({ error: "Please provide a valid name, email, subject, and message." });
   }
-  if (!pool) return res.status(503).json({ error: "Contact storage is temporarily unavailable." });
+  if (!pool && !DEMO_MODE) return res.status(503).json({ error: "Contact storage is temporarily unavailable." });
 
   const idempotencyKey = clean(req.headers["idempotency-key"], 120) || crypto.randomUUID();
 
   try {
-    const existing = await pool.query("SELECT id, status FROM leads WHERE idempotency_key = $1", [idempotencyKey]);
-    if (existing.rowCount) return res.status(200).json({ ok: true, leadId: existing.rows[0].id, duplicate: true, status: existing.rows[0].status });
+    if (DEMO_MODE) {
+      const existing = memoryLeads.find((lead) => lead.idempotency_key === idempotencyKey);
+      if (existing) return res.status(200).json({ ok: true, leadId: existing.id, duplicate: true, status: existing.status });
+    } else {
+      const existing = await pool.query("SELECT id, status FROM leads WHERE idempotency_key = $1", [idempotencyKey]);
+      if (existing.rowCount) return res.status(200).json({ ok: true, leadId: existing.rows[0].id, duplicate: true, status: existing.rows[0].status });
+    }
 
     const classification = await classifyLead(input);
     const leadId = crypto.randomUUID();
     const taskDueAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
-    await pool.query(
-      `INSERT INTO leads
-       (id, idempotency_key, name, email, phone, company, subject, message, intent, urgency, priority, requested_service, summary, classifier_source, task_due_at)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
-      [
-        leadId, idempotencyKey, input.name, input.email, input.phone || null, input.company || null,
-        input.subject, input.message, classification.intent, classification.urgency, classification.priority,
-        classification.requested_service, classification.summary, classification.source, taskDueAt
-      ]
-    );
+    const receivedAt = new Date();
+    const baseLead = {
+      id: leadId, idempotency_key: idempotencyKey, name: input.name, email: input.email, phone: input.phone || null,
+      company: input.company || null, subject: input.subject, message: input.message, intent: classification.intent,
+      urgency: classification.urgency, priority: classification.priority, requested_service: classification.requested_service,
+      summary: classification.summary, classifier_source: classification.source, status: "new", task_status: "open",
+      task_due_at: taskDueAt.toISOString(), received_at: receivedAt.toISOString(), processed_at: null, processing_ms: null,
+      owner_email_status: "pending", visitor_email_status: "pending"
+    };
+
+    if (DEMO_MODE) {
+      memoryLeads.unshift(baseLead);
+    } else {
+      await pool.query(
+        `INSERT INTO leads
+         (id, idempotency_key, name, email, phone, company, subject, message, intent, urgency, priority, requested_service, summary, classifier_source, task_due_at)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
+        [
+          leadId, idempotencyKey, input.name, input.email, input.phone || null, input.company || null,
+          input.subject, input.message, classification.intent, classification.urgency, classification.priority,
+          classification.requested_service, classification.summary, classification.source, taskDueAt
+        ]
+      );
+    }
 
     let ownerStatus = "skipped";
     let visitorStatus = "skipped";
@@ -321,12 +343,17 @@ app.post("/api/contact", rateLimit, async (req, res) => {
     const processingMs = Date.now() - startedAt;
     const finalStatus = ownerStatus === "sent" ? "new" : "needs_attention";
 
-    await pool.query(
-      `UPDATE leads
-       SET processed_at=$1, processing_ms=$2, owner_email_status=$3, visitor_email_status=$4, status=$5
-       WHERE id=$6`,
-      [processedAt, processingMs, ownerStatus, visitorStatus, finalStatus, leadId]
-    );
+    if (DEMO_MODE) {
+      const lead = memoryLeads.find((item) => item.id === leadId);
+      if (lead) Object.assign(lead, { processed_at: processedAt.toISOString(), processing_ms: processingMs, owner_email_status: ownerStatus, visitor_email_status: visitorStatus, status: finalStatus });
+    } else {
+      await pool.query(
+        `UPDATE leads
+         SET processed_at=$1, processing_ms=$2, owner_email_status=$3, visitor_email_status=$4, status=$5
+         WHERE id=$6`,
+        [processedAt, processingMs, ownerStatus, visitorStatus, finalStatus, leadId]
+      );
+    }
 
     res.status(201).json({
       ok: true,
@@ -345,7 +372,8 @@ app.post("/api/contact", rateLimit, async (req, res) => {
 });
 
 app.get("/api/leads", basicAuth, async (req, res) => {
-  if (!pool) return res.status(503).json({ error: "Database unavailable." });
+  if (!pool && !DEMO_MODE) return res.status(503).json({ error: "Database unavailable." });
+  if (DEMO_MODE) return res.json({ leads: memoryLeads.slice(0, 200) });
   const { rows } = await pool.query(`
     SELECT id, name, email, company, subject, intent, urgency, priority, status,
            task_status, task_due_at, received_at, processed_at, processing_ms,
@@ -358,7 +386,14 @@ app.get("/api/leads", basicAuth, async (req, res) => {
 });
 
 app.patch("/api/leads/:id", basicAuth, async (req, res) => {
-  if (!pool) return res.status(503).json({ error: "Database unavailable." });
+  if (!pool && !DEMO_MODE) return res.status(503).json({ error: "Database unavailable." });
+  if (DEMO_MODE) {
+    const lead = memoryLeads.find((item) => item.id === req.params.id);
+    if (!lead) return res.status(404).json({ error: "Lead not found." });
+    if (req.body?.status) lead.status = clean(req.body.status, 40);
+    if (req.body?.taskStatus) lead.task_status = clean(req.body.taskStatus, 40);
+    return res.json({ ok: true, lead: { id: lead.id, status: lead.status, task_status: lead.task_status } });
+  }
   const id = clean(req.params.id, 60);
   const status = req.body?.status ? clean(req.body.status, 40) : null;
   const taskStatus = req.body?.taskStatus ? clean(req.body.taskStatus, 40) : null;
@@ -386,12 +421,12 @@ app.patch("/api/leads/:id", basicAuth, async (req, res) => {
 });
 
 app.get("/dashboard", basicAuth, async (_req, res) => {
-  if (!pool) return res.status(503).send("Database unavailable.");
-  const { rows } = await pool.query(`
+  if (!pool && !DEMO_MODE) return res.status(503).send("Database unavailable.");
+  const rows = DEMO_MODE ? memoryLeads.slice(0, 200) : (await pool.query(`
     SELECT id,name,email,company,subject,intent,urgency,priority,status,task_status,
            task_due_at,received_at,processing_ms,owner_email_status,visitor_email_status
     FROM leads ORDER BY received_at DESC LIMIT 200
-  `);
+  `)).rows;
 
   const rowsHtml = rows.length
     ? rows.map((lead) => `
