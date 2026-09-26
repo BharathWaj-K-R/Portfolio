@@ -42,7 +42,7 @@ services:
     name: portfolio-automation-demo
     runtime: static
     branch: automation-demonstrator
-    buildCommand: npm ci && npm run build
+    buildCommand: npm install && npm run build
     staticPublishPath: dist
     envVars:
       - key: VITE_CONTACT_API_URL
