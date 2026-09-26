@@ -1,0 +1,52 @@
+# Isolated Render Blueprint for the automation demonstrator.
+# It creates a separate static demo site + Node API and leaves the existing portfolio untouched.
+
+services:
+  - type: web
+    name: portfolio-automation-api
+    runtime: node
+    plan: free
+    region: singapore
+    branch: automation-demonstrator
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: portfolio-leads
+          property: connectionString
+      - key: ALLOWED_ORIGIN
+        fromService:
+          name: portfolio-automation-demo
+          type: web
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: DEMO_MODE
+        value: "false"
+      - key: DASHBOARD_USER
+        value: owner
+      - key: DASHBOARD_PASSWORD
+        sync: false
+      - key: OWNER_EMAIL
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: RESEND_FROM_EMAIL
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_MODEL
+        value: llama-3.1-8b-instant
+
+  - type: web
+    name: portfolio-automation-demo
+    runtime: static
+    branch: automation-demonstrator
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_CONTACT_API_URL
+        fromService:
+          name: portfolio-automation-api
+          type: web
+          envVarKey: RENDER_EXTERNAL_URL
