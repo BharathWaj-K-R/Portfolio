@@ -21,10 +21,10 @@ const projects = [
     headline: "Signer-adaptive Indian Sign Language translation.",
     summary: "A pose + facial-expression pipeline that keeps a pretrained backbone frozen and learns a compact signer-specific adapter for personalization.",
     stack: ["Python", "PyTorch", "Transformers", "FastAPI"],
-    status: "In progress",
-    statusDetail: "Architecture built · evaluation in progress",
+    status: "Deployed",
+    statusDetail: "Frontend + backend live · end-to-end verification in progress",
     github: "https://github.com/BharathWaj-K-R/VisionBridge",
-    demo: "https://silentbridge-frontend.onrender.com",
+    demo: "https://visionbridge-2c7h.onrender.com",
     evidence: ["Base model + adapter architecture built", "Signer-specific calibration workflow defined", "Frontend and backend deployment exists"],
     next: ["Benchmark signer-to-signer consistency", "Measure calibration time", "Measure inference latency on the deployed path"],
     architecture: [
