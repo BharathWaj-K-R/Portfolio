@@ -1,9 +1,10 @@
-name: Portfolio automation demo
+name: Portfolio CI
 
 on:
   push:
-    branches: [automation-demonstrator]
+    branches: [main]
   pull_request:
+    branches: [main]
 
 jobs:
   frontend:
@@ -13,7 +14,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install
+          cache: npm
+      - run: npm ci
+      - run: npm run check
       - run: npm run build
 
   api:
@@ -24,7 +27,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: 20
       - run: npm install
       - run: node --check index.js
