@@ -499,10 +499,6 @@ small{color:#777}
 (async () => {
   try {
     await ensureSchema();
-    if (CLEAR_LEADS_ON_BOOT && pool && !DEMO_MODE) {
-      const result = await pool.query("DELETE FROM leads");
-      console.log(`One-time lead purge completed: ${result.rowCount} rows deleted.`);
-    }
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`Portfolio contact API listening on ${PORT}`);
     });
