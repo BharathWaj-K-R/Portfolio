@@ -1,4 +1,4 @@
-import { FormEvent, useMemo, useState } from "react"
+import { FormEvent, useState } from "react"
 import { ArrowRight, Check, Clock3, Mail, Send, ShieldCheck, Workflow } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -19,9 +19,9 @@ const steps = [
 export function ContactSystem() {
   const [status, setStatus] = useState<Status>("idle")
   const [error, setError] = useState("")
-  const [result, setResult] = useState<{ processingMs?: number; priority?: number } | null>(null)
+  const [processingMs, setProcessingMs] = useState<number | null>(null)
 
-  const endpoint = useMemo(() => API_BASE ? `${API_BASE}/api/contact` : "/api/contact", [])
+  const endpoint = API_BASE ? `${API_BASE}/api/contact` : "/api/contact"
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -29,7 +29,8 @@ export function ContactSystem() {
     setStatus("sending")
     setError("")
 
-    const form = new FormData(event.currentTarget)
+    const formElement = event.currentTarget
+    const form = new FormData(formElement)
     const payload = {
       name: String(form.get("name") || "").trim(),
       email: String(form.get("email") || "").trim(),
@@ -51,12 +52,9 @@ export function ContactSystem() {
       const data = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(data.error || "Unable to send your message.")
 
-      setResult({
-        processingMs: data.processingMs,
-        priority: data.classification?.priority,
-      })
+      setProcessingMs(typeof data.processingMs === "number" ? data.processingMs : null)
       setStatus("success")
-      event.currentTarget.reset()
+      formElement.reset()
     } catch (submissionError) {
       setError(submissionError instanceof Error ? submissionError.message : "Unable to send your message.")
       setStatus("error")
@@ -120,9 +118,9 @@ export function ContactSystem() {
                 </label>
 
                 <div className="flex flex-wrap items-center gap-3 pt-1">
-                  <Button type="submit" disabled={status === "sending"}>
-                    <Send className="size-4" />
-                    {status === "sending" ? "Processing…" : "Send message"}
+                  <Button type="submit" disabled={status === "sending"} aria-busy={status === "sending"}>
+                    {status === "sending" ? <span className="spinner" aria-hidden="true" /> : <Send className="size-4" />}
+                    {status === "sending" ? "Routing your message…" : "Send message"}
                   </Button>
                   <span className="text-xs text-neutral-500">No API key is exposed in the browser.</span>
                 </div>
@@ -132,13 +130,17 @@ export function ContactSystem() {
                     <div className="flex items-center gap-2 font-semibold"><Check className="size-4" /> Message processed.</div>
                     <p className="mt-1 text-neutral-600">
                       The system stored it, classified it, and queued the follow-up path
-                      {typeof result?.processingMs === "number" ? ` in ${result.processingMs} ms` : ""}.
+                      {processingMs !== null ? ` in ${processingMs} ms` : ""}.
                     </p>
                   </div>
                 )}
 
                 {status === "error" && (
-                  <div role="alert" className="border border-red-200 bg-red-50 p-4 text-sm leading-6 text-red-800">{error}</div>
+                  <div role="alert" className="error-state p-4 text-sm leading-6">
+                    <div className="font-semibold">The message stayed here.</div>
+                    <p className="mt-1">{error || "The contact service did not accept the request."} Nothing was silently discarded.</p>
+                    <button type="button" className="filter-pill mt-3" onClick={() => setStatus("idle")}>Try again</button>
+                  </div>
                 )}
               </form>
             </CardContent>
