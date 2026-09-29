@@ -299,20 +299,32 @@ app.post("/api/contact", rateLimit, async (req, res) => {
         await sendEmail({
           to: OWNER_EMAIL,
           replyTo: input.email,
-          subject: `New portfolio lead · priority ${classification.priority}/100 · ${classification.intent}`,
+          subject: `${input.name} reached out · ${classification.intent}`,
           html: `
-            <h2>New portfolio contact</h2>
-            <p><strong>Priority:</strong> ${classification.priority}/100</p>
-            <p><strong>Intent:</strong> ${esc(classification.intent)}</p>
-            <p><strong>Urgency:</strong> ${esc(classification.urgency)}</p>
-            <p><strong>Name:</strong> ${esc(input.name)}</p>
-            <p><strong>Email:</strong> ${esc(input.email)}</p>
-            <p><strong>Company:</strong> ${esc(input.company || "—")}</p>
-            <p><strong>Subject:</strong> ${esc(input.subject)}</p>
-            <p><strong>Summary:</strong> ${esc(classification.summary)}</p>
-            <hr />
-            <p style="white-space:pre-wrap">${esc(input.message)}</p>
-            <p><small>Lead ID: ${esc(leadId)}</small></p>
+            <div style="margin:0;padding:32px 16px;background:#f4f2eb;font-family:Arial,Helvetica,sans-serif;color:#151614">
+              <div style="max-width:640px;margin:0 auto;background:#fbfaf6;border:1px solid #d7d6cc">
+                <div style="padding:24px 28px;border-bottom:1px solid #d7d6cc">
+                  <p style="margin:0 0 8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#66685f">Portfolio contact</p>
+                  <h2 style="margin:0;font-size:24px;line-height:1.2">You’ve got a new message.</h2>
+                  <p style="margin:10px 0 0;color:#66685f;line-height:1.6">A real person reached out through your portfolio. Here’s the useful version first.</p>
+                </div>
+                <div style="padding:24px 28px">
+                  <p style="margin:0 0 18px;font-size:16px">Hi Bharath, <strong>${esc(input.name)}</strong> sent you a message about <strong>${esc(classification.intent.toLowerCase())}</strong>.</p>
+                  <div style="padding:16px;background:#f4f2eb;border-left:3px solid #b9f33b">
+                    <p style="margin:0 0 8px;font-size:12px;color:#66685f">THE MESSAGE</p>
+                    <p style="margin:0;white-space:pre-wrap;line-height:1.7">${esc(input.message)}</p>
+                  </div>
+                  <table style="width:100%;margin-top:20px;border-collapse:collapse;font-size:14px">
+                    <tr><td style="padding:7px 0;color:#66685f">From</td><td style="padding:7px 0"><strong>${esc(input.name)}</strong> · ${esc(input.email)}</td></tr>
+                    <tr><td style="padding:7px 0;color:#66685f">Company</td><td style="padding:7px 0">${esc(input.company || "Not provided")}</td></tr>
+                    <tr><td style="padding:7px 0;color:#66685f">Subject</td><td style="padding:7px 0">${esc(input.subject)}</td></tr>
+                    <tr><td style="padding:7px 0;color:#66685f">Priority</td><td style="padding:7px 0">${classification.priority}/100 · ${esc(classification.urgency)} urgency</td></tr>
+                  </table>
+                  <p style="margin:20px 0 0;color:#66685f;line-height:1.6">Reply directly to this email to respond to ${esc(input.name)}.</p>
+                </div>
+                <div style="padding:16px 28px;border-top:1px solid #d7d6cc;font-size:11px;color:#66685f">Lead ${esc(leadId)} · routed by the portfolio contact system</div>
+              </div>
+            </div>
           `,
         });
         ownerStatus = "sent";
@@ -324,12 +336,26 @@ app.post("/api/contact", rateLimit, async (req, res) => {
       try {
         await sendEmail({
           to: input.email,
-          subject: "Thanks for reaching out",
+          subject: `Got your message, ${input.name}`,
           html: `
-            <h2>Message received.</h2>
-            <p>Hi ${esc(input.name)},</p>
-            <p>Your message reached my portfolio inbox. I’ll review it and respond directly.</p>
-            <p><strong>Your request:</strong> ${esc(classification.intent)}</p>
+            <div style="margin:0;padding:32px 16px;background:#f4f2eb;font-family:Arial,Helvetica,sans-serif;color:#151614">
+              <div style="max-width:640px;margin:0 auto;background:#fbfaf6;border:1px solid #d7d6cc">
+                <div style="padding:24px 28px;border-bottom:1px solid #d7d6cc">
+                  <p style="margin:0 0 8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#66685f">Bharath Waj K R</p>
+                  <h2 style="margin:0;font-size:24px;line-height:1.2">Thanks for reaching out.</h2>
+                </div>
+                <div style="padding:24px 28px">
+                  <p style="margin:0 0 14px;font-size:16px">Hi ${esc(input.name)},</p>
+                  <p style="margin:0;line-height:1.7">I’ve received your message about <strong>${esc(classification.intent.toLowerCase())}</strong>. It’s safely in my inbox, and I’ll take a look and get back to you directly.</p>
+                  <div style="margin-top:20px;padding:14px 16px;background:#f4f2eb;color:#66685f;line-height:1.6">
+                    <strong style="color:#151614">You wrote:</strong><br />
+                    ${esc(input.message)}
+                  </div>
+                  <p style="margin:20px 0 0;color:#66685f;line-height:1.6">No need to resend anything. Your original message is already attached to the contact request.</p>
+                  <p style="margin:24px 0 0">Thanks,<br /><strong>Bharath</strong></p>
+                </div>
+              </div>
+            </div>
           `,
         });
         visitorStatus = "sent";
