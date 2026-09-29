@@ -107,7 +107,6 @@ export function ContactSystem() {
                       {status === "sending" ? <span className="spinner" aria-hidden="true" /> : <Send className="size-4" />}
                       {status === "sending" ? "Routing your message…" : "Send message"}
                     </Button>
-                    <span>No API key is exposed in the browser.</span>
                   </div>
                   {status === "success" && (
                     <div className="contact-result">
