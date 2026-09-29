@@ -158,9 +158,8 @@ function Tag({ children }: { children: ReactNode }) {
   return <span className="ink-tag">{children}</span>
 }
 
-function SectionHeader({ number, title, intro }: { number: string; title: string; intro?: string }) {
+function SectionHeader({ title, intro }: { title: string; intro?: string }) {
   return <header className="section-header" data-reveal>
-    <span className="section-number">{number}</span>
     <div>
       <h2>{title}</h2>
       {intro && <p>{intro}</p>}
@@ -282,14 +281,14 @@ export default function App() {
 
       <section id="work" className="ink-section ink-work">
         <div className="ink-container">
-          <SectionHeader number="01 · SELECTED WORK" title="Systems, not a gallery." intro="Not galleries. Technical stories: problem, architecture, decisions, evidence, and what comes next." />
+          <SectionHeader title="Systems, not a gallery." intro="Not galleries. Technical stories: problem, architecture, decisions, evidence, and what comes next." />
           <div className="case-files">{projects.map((project, index) => <CaseFile key={project.id} project={project} index={index} onOpen={() => setCaseStudyId(project.id)} />)}</div>
         </div>
       </section>
 
       <section className="ink-section ink-about">
         <div className="ink-container">
-          <SectionHeader number="02 · ABOUT" title="Evidence before adjectives." intro="The repository and deployment are part of the portfolio. Claims that are still assumptions are labeled as assumptions." />
+          <SectionHeader title="Evidence before adjectives." intro="The repository and deployment are part of the portfolio. Claims that are still assumptions are labeled as assumptions." />
           <div className="about-grid">
             <div className="about-copy" data-reveal>
               <p>Demos are easy. Failure is hard.</p>
