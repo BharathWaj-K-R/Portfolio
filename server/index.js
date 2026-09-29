@@ -10,7 +10,7 @@ const DATABASE_URL = process.env.DATABASE_URL;
 const OWNER_EMAIL = process.env.OWNER_EMAIL;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
-const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || "*";
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || "http://localhost:5173";
 const DASHBOARD_USER = process.env.DASHBOARD_USER || "owner";
 const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD;
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
@@ -39,25 +39,36 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, Idempotency-Key");
   res.header("Access-Control-Allow-Methods", "GET, POST, PATCH, OPTIONS");
   res.header("X-Content-Type-Options", "nosniff");
+  res.header("X-Frame-Options", "DENY");
   res.header("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.header("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
   if (req.method === "OPTIONS") return res.sendStatus(204);
   next();
 });
 
 const rateBuckets = new Map();
+const RATE_WINDOW_MS = 60 * 60 * 1000;
+const RATE_LIMIT = 20;
+const MAX_RATE_BUCKETS = 5000;
+
+function pruneRateBuckets(now) {
+  for (const [key, bucket] of rateBuckets) {
+    if (now > bucket.resetAt) rateBuckets.delete(key);
+  }
+}
+
 function rateLimit(req, res, next) {
   const key = req.ip || "unknown";
   const now = Date.now();
-  const windowMs = 60 * 60 * 1000;
-  const limit = 20;
-  const bucket = rateBuckets.get(key) || { count: 0, resetAt: now + windowMs };
+  if (rateBuckets.size > MAX_RATE_BUCKETS) pruneRateBuckets(now);
+  const bucket = rateBuckets.get(key) || { count: 0, resetAt: now + RATE_WINDOW_MS };
   if (now > bucket.resetAt) {
     bucket.count = 0;
-    bucket.resetAt = now + windowMs;
+    bucket.resetAt = now + RATE_WINDOW_MS;
   }
   bucket.count += 1;
   rateBuckets.set(key, bucket);
-  if (bucket.count > limit) {
+  if (bucket.count > RATE_LIMIT) {
     return res.status(429).json({ error: "Too many submissions. Please try again later." });
   }
   next();
@@ -215,7 +226,12 @@ function basicAuth(req, res, next) {
   const encoded = header.startsWith("Basic ") ? header.slice(6) : "";
   let user = "", pass = "";
   try {
-    [user, pass] = Buffer.from(encoded, "base64").toString("utf8").split(":");
+    const decoded = Buffer.from(encoded, "base64").toString("utf8");
+    const separator = decoded.indexOf(":");
+    if (separator >= 0) {
+      user = decoded.slice(0, separator);
+      pass = decoded.slice(separator + 1);
+    }
   } catch {}
   if (user !== DASHBOARD_USER || pass !== DASHBOARD_PASSWORD) {
     res.set("WWW-Authenticate", 'Basic realm="Portfolio Leads"');
@@ -225,6 +241,7 @@ function basicAuth(req, res, next) {
 }
 
 app.get("/health", async (_req, res) => {
+  res.set("Cache-Control", "no-store");
   try {
     if (pool) await pool.query("SELECT 1");
     res.json({ ok: true, database: Boolean(pool) || DEMO_MODE, demoMode: DEMO_MODE, email: Boolean(RESEND_API_KEY && OWNER_EMAIL) });
@@ -403,6 +420,7 @@ app.post("/api/contact", rateLimit, async (req, res) => {
 });
 
 app.get("/api/leads", basicAuth, async (req, res) => {
+  res.set("Cache-Control", "no-store");
   if (!pool && !DEMO_MODE) return res.status(503).json({ error: "Database unavailable." });
   if (DEMO_MODE) return res.json({ leads: memoryLeads.slice(0, 200) });
   const { rows } = await pool.query(`
@@ -452,6 +470,7 @@ app.patch("/api/leads/:id", basicAuth, async (req, res) => {
 });
 
 app.get("/dashboard", basicAuth, async (_req, res) => {
+  res.set("Cache-Control", "no-store");
   if (!pool && !DEMO_MODE) return res.status(503).send("Database unavailable.");
   const rows = DEMO_MODE ? memoryLeads.slice(0, 200) : (await pool.query(`
     SELECT id,name,email,company,subject,intent,urgency,priority,status,task_status,
