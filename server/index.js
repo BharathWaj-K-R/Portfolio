@@ -16,6 +16,7 @@ const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD;
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.1-8b-instant";
 const DEMO_MODE = process.env.DEMO_MODE === "true";
+const CLEAR_LEADS_TOKEN = process.env.CLEAR_LEADS_TOKEN;
 const memoryLeads = [];
 
 if (!DATABASE_URL && !DEMO_MODE) console.warn("DATABASE_URL is not configured.");
@@ -399,6 +400,25 @@ app.post("/api/contact", rateLimit, async (req, res) => {
   } catch (error) {
     console.error("Contact submission failed:", error);
     res.status(500).json({ error: "Unable to process the message right now." });
+  }
+});
+
+app.post("/api/admin/clear-leads", async (req, res) => {
+  if (!CLEAR_LEADS_TOKEN || req.headers["x-clear-leads-token"] !== CLEAR_LEADS_TOKEN) {
+    return res.status(401).json({ error: "Unauthorized." });
+  }
+  try {
+    if (DEMO_MODE) {
+      const deleted = memoryLeads.length;
+      memoryLeads.length = 0;
+      return res.json({ ok: true, deleted });
+    }
+    if (!pool) return res.status(503).json({ error: "Database unavailable." });
+    const result = await pool.query("DELETE FROM leads");
+    res.json({ ok: true, deleted: result.rowCount });
+  } catch (error) {
+    console.error("Lead purge failed:", error);
+    res.status(500).json({ error: "Unable to clear leads." });
   }
 });
 
