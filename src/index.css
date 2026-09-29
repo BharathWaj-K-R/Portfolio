@@ -205,7 +205,7 @@ button { cursor: pointer; }
 .ink-portrait::before { content: ""; position: absolute; inset: var(--space-4) calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-4); border: 2px solid rgb(var(--paper-rgb) / .35); }
 .ink-portrait::after { content: ""; position: absolute; width: 72px; height: 72px; top: -16px; right: -16px; background: var(--crimson); z-index: 0; }
 .ink-portrait__image { position: relative; z-index: 1; overflow: hidden; border: 2px solid var(--paper); background: var(--grey-3); }
-.ink-portrait img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; filter: grayscale(1) contrast(1.18) brightness(.88); }
+.ink-portrait img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; filter: saturate(1.04) contrast(1.03) brightness(1.01); }
 .ink-portrait figcaption { position: relative; z-index: 2; margin: -1px 0 0 auto; width: min(100%, 310px); padding: var(--space-3); border: 2px solid var(--ink); background: var(--paper); color: var(--ink); font: 700 var(--text-xs)/1.5 var(--font-mono); }
 
 .ink-section { padding: var(--space-9) 0; }
