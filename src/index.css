@@ -261,10 +261,10 @@ button { cursor: pointer; }
 .ink-about .case-label { color: var(--grey-2); }
 
 .contact-system { background: var(--paper-deep); border-top: 2px solid var(--ink); }
-.contact-system__intro { margin-bottom: var(--space-8); }
+.contact-system__intro { margin-bottom: var(--space-6); }
 .contact-system__intro h2 { margin: var(--space-3) 0 0; max-width: 760px; font: 900 clamp(40px, 5vw, var(--text-3xl))/.98 var(--font-display); letter-spacing: -.035em; }
 .contact-system__intro p { margin: var(--space-3) 0 0; color: var(--grey-3); font-size: var(--text-lg); }
-.contact-system__links { display: grid; gap: var(--space-3); align-self: end; }
+.contact-system__links { display: flex; flex-wrap: wrap; gap: var(--space-5); margin-bottom: var(--space-7); }
 .contact-system__links a, .contact-dashboard { display: flex; align-items: center; gap: var(--space-2); border-bottom: 2px solid var(--ink); padding: var(--space-2) 0; color: var(--ink); font: 700 var(--text-sm)/1.2 var(--font-mono); text-decoration: none; }
 .contact-system__links a:hover, .contact-dashboard:hover { color: var(--crimson); border-color: var(--crimson); }
 .section-header--sub { margin-bottom: var(--space-6); }
@@ -360,7 +360,7 @@ button { cursor: pointer; }
   .skills { border-left: 0; border-top: 1px solid rgb(var(--paper-rgb) / .2); padding: var(--space-6) 0 0; }
   .about-principles > div { grid-template-columns: 38px 1fr; }
   .about-principles p { grid-column: 2; }
-  .contact-system__links { align-self: start; }
+  .contact-system__links { align-items: flex-start; flex-direction: column; gap: var(--space-3); }
   .contact-form__row { grid-template-columns: 1fr; }
   .contact-proof { grid-template-columns: 1fr; }
   .contact-stamp { justify-self: start; }
