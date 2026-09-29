@@ -121,9 +121,9 @@ export function ContactSystem() {
                 </label>
 
                 <div className="flex flex-wrap items-center gap-3 pt-1">
-                  <Button type="submit" disabled={status === "sending"}>
-                    <Send className="size-4" />
-                    {status === "sending" ? "Processing…" : "Send message"}
+                  <Button type="submit" disabled={status === "sending"} aria-busy={status === "sending"}>
+                    {status === "sending" ? <span className="spinner" aria-hidden="true" /> : <Send className="size-4" />}
+                    {status === "sending" ? "Routing your message…" : "Send message"}
                   </Button>
                   <span className="text-xs text-neutral-500">No API key is exposed in the browser.</span>
                 </div>
@@ -139,7 +139,11 @@ export function ContactSystem() {
                 )}
 
                 {status === "error" && (
-                  <div role="alert" className="border border-red-200 bg-red-50 p-4 text-sm leading-6 text-red-800">{error}</div>
+                  <div role="alert" className="error-state p-4 text-sm leading-6">
+                    <div className="font-semibold">The message stayed here.</div>
+                    <p className="mt-1">{error || "The contact service did not accept the request."} Nothing was silently discarded.</p>
+                    <button type="button" className="filter-pill mt-3" onClick={() => setStatus("idle")}>Try again</button>
+                  </div>
                 )}
               </form>
             </CardContent>
