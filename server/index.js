@@ -17,6 +17,7 @@ const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.1-8b-instant";
 const DEMO_MODE = process.env.DEMO_MODE === "true";
 const CLEAR_LEADS_TOKEN = process.env.CLEAR_LEADS_TOKEN;
+const CLEAR_LEADS_ON_BOOT = process.env.CLEAR_LEADS_ON_BOOT === "true";
 const memoryLeads = [];
 
 if (!DATABASE_URL && !DEMO_MODE) console.warn("DATABASE_URL is not configured.");
@@ -519,6 +520,10 @@ small{color:#777}
 (async () => {
   try {
     await ensureSchema();
+    if (CLEAR_LEADS_ON_BOOT && pool && !DEMO_MODE) {
+      const result = await pool.query("DELETE FROM leads");
+      console.log(`One-time lead purge completed: ${result.rowCount} rows deleted.`);
+    }
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`Portfolio contact API listening on ${PORT}`);
     });
