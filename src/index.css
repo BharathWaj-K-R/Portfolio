@@ -225,8 +225,9 @@ button { cursor: pointer; }
 .case-file__top { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; padding: var(--space-4); border-bottom: 2px solid var(--ink); background: var(--paper-deep); }
 .case-file__number { color: var(--ink); }
 .case-file__status { color: var(--crimson); }
-.case-file__body { position: relative; z-index: 1; flex: 1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(160px, .8fr); gap: var(--space-6); padding: var(--space-6); }
-.case-file h3 { margin: var(--space-4) 0 0; font: 900 clamp(32px, 4vw, 52px)/.98 var(--font-display); letter-spacing: -.035em; }
+.case-file__body { position: relative; z-index: 1; flex: 1; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(170px, .85fr); gap: var(--space-6); padding: var(--space-6); }
+.case-file__body > div { min-width: 0; }
+.case-file h3 { margin: var(--space-4) 0 0; max-width: 100%; font: 900 clamp(30px, 3.2vw, 44px)/.98 var(--font-display); letter-spacing: -.025em; overflow-wrap: break-word; }
 .case-file__problem { margin: var(--space-3) 0 0; font-size: var(--text-lg); font-weight: 700; line-height: 1.35; }
 .case-file__summary { max-width: 55ch; margin: var(--space-4) 0 0; color: var(--grey-3); }
 .ink-tag { display: inline-flex; align-items: center; min-height: 25px; padding: 3px 7px; border: 1px solid var(--ink); border-radius: var(--radius); background: var(--paper); color: var(--ink); font: 700 var(--text-xs)/1 var(--font-mono); text-transform: uppercase; }
