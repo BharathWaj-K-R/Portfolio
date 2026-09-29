@@ -2,7 +2,7 @@ services:
   - type: web
     name: bharath-portfolio
     runtime: static
-    buildCommand: rm -rf dist && npm install && npm install --no-save sharp && node scripts/optimize-photo.mjs && npm run build
+    buildCommand: rm -rf dist && npm ci && npm install --no-save sharp && node scripts/optimize-photo.mjs && npm run build
     staticPublishPath: dist
     headers:
       - path: /assets/*
