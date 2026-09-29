@@ -706,7 +706,6 @@ nav { display: block; }
   .hero-section h1 { font-size: clamp(2.75rem, 12vw, 4rem); }
   .hero-lead { font-size: 15px; }
   .hero-photo { justify-self: stretch; width: 100%; }
-  .hero-console { width: 100%; }
   .photo-frame { width: min(100%, 300px); margin-inline: auto; }
   .photo-note { right: -5px; bottom: -12px; }
   .proof-number { min-height: 92px; padding: 15px; }
