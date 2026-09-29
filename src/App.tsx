@@ -310,12 +310,6 @@ export default function App() {
 
       <ContactSystem />
 
-      <section className="ink-section ink-contact" aria-labelledby="contact-note">
-        <div className="ink-container ink-contact__grid" data-reveal>
-          <div><span className="case-label">03 · CONTACT</span><h2 id="contact-note">Looking for difficult problems.</h2></div>
-          <div className="contact-links"><a href="#contact"><Mail size={16} />Email via contact workflow</a><a href="https://www.linkedin.com/in/bharath-waj-k-r/" target="_blank" rel="noreferrer"><Linkedin size={16} />LinkedIn</a><a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noreferrer"><Github size={16} />GitHub</a></div>
-        </div>
-      </section>
     </main>
 
     <footer className="ink-footer"><div className="ink-container"><span>© 2026 Bharath Waj K R</span><span>Java · Python · FastAPI · AI/ML · Docker</span></div></footer>
