@@ -1,7 +1,6 @@
 import { useState } from "react"
 import type { FormEvent } from "react"
-import { ArrowRight, Check, Clock3, Mail, Send, ShieldCheck, Workflow } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { ArrowRight, Check, Clock3, Github, Linkedin, Mail, Send, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
@@ -44,15 +43,11 @@ export function ContactSystem() {
     try {
       const response = await fetch(endpoint, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Idempotency-Key": crypto.randomUUID(),
-        },
+        headers: { "Content-Type": "application/json", "Idempotency-Key": crypto.randomUUID() },
         body: JSON.stringify(payload),
       })
       const data = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(data.error || "Unable to send your message.")
-
       setProcessingMs(typeof data.processingMs === "number" ? data.processingMs : null)
       setStatus("success")
       formElement.reset()
@@ -63,114 +58,96 @@ export function ContactSystem() {
   }
 
   return (
-    <section id="contact" className="content-section contact-system">
-      <div className="container-wide reveal">
-        <div className="section-head">
+    <section id="contact" className="ink-section contact-system">
+      <div className="ink-container">
+        <header className="section-header contact-system__intro" data-reveal>
           <div>
-            <div className="eyebrow">08 · Contact workflow</div>
-            <h2 className="section-title">One form. A small automation system behind it.</h2>
-            <p className="section-intro">
-              This is a working demonstrator, not a decorative contact box. The submission is stored, classified,
-              routed, acknowledged, and assigned a follow-up task.
-            </p>
+            <span className="section-number">03 · CONTACT</span>
+            <h2>Looking for difficult problems.</h2>
+            <p>One form. A small automation system behind it.</p>
           </div>
-          <Badge variant="outline"><Workflow className="size-3.5" /> Live workflow</Badge>
-        </div>
+          <div className="contact-system__links">
+            <a href="#contact"><Mail size={15} />Email via contact workflow</a>
+            <a href="https://www.linkedin.com/in/bharath-waj-k-r/" target="_blank" rel="noreferrer"><Linkedin size={15} />LinkedIn</a>
+            <a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noreferrer"><Github size={15} />GitHub</a>
+          </div>
+        </header>
 
-        <div className="grid gap-6 lg:grid-cols-[1.05fr_.95fr]">
-          <Card className="shadow-none">
-            <CardHeader>
-              <CardTitle className="text-2xl">Send a message</CardTitle>
-              <p className="text-sm leading-6 text-neutral-600">Required fields are marked with *.</p>
-            </CardHeader>
-            <CardContent>
-              <form className="space-y-4" onSubmit={handleSubmit}>
-                <input aria-hidden="true" tabIndex={-1} autoComplete="off" name="botcheck" className="hidden" />
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="space-y-2 text-sm font-medium">
-                    Name *
-                    <input name="name" required maxLength={120} autoComplete="name" className="h-11 w-full rounded-none border border-neutral-300 bg-white px-3 outline-none focus:border-black" />
-                  </label>
-                  <label className="space-y-2 text-sm font-medium">
-                    Email *
-                    <input name="email" type="email" required maxLength={320} autoComplete="email" className="h-11 w-full rounded-none border border-neutral-300 bg-white px-3 outline-none focus:border-black" />
-                  </label>
-                </div>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="space-y-2 text-sm font-medium">
-                    Company
-                    <input name="company" maxLength={160} autoComplete="organization" className="h-11 w-full rounded-none border border-neutral-300 bg-white px-3 outline-none focus:border-black" />
-                  </label>
-                  <label className="space-y-2 text-sm font-medium">
-                    Subject *
-                    <select name="subject" required className="h-11 w-full rounded-none border border-neutral-300 bg-white px-3">
-                      <option value="">Choose one</option>
-                      <option>Job opportunity</option>
-                      <option>Internship opportunity</option>
-                      <option>Project</option>
-                      <option>Collaboration</option>
-                      <option>General inquiry</option>
-                    </select>
-                  </label>
-                </div>
-                <label className="space-y-2 text-sm font-medium">
-                  Message *
-                  <textarea name="message" required maxLength={4000} rows={6} className="w-full rounded-none border border-neutral-300 bg-white p-3 outline-none focus:border-black" />
-                </label>
+        <div className="contact-system__workflow" data-reveal>
+          <header className="section-header section-header--sub">
+            <div>
+              <span className="section-number">CONTACT WORKFLOW</span>
+              <h2>One form. A small automation system behind it.</h2>
+              <p>This is a working demonstrator, not a decorative contact box. The submission is stored, classified, routed, acknowledged, and assigned a follow-up task.</p>
+            </div>
+            <span className="contact-stamp">LIVE WORKFLOW</span>
+          </header>
 
-                <div className="flex flex-wrap items-center gap-3 pt-1">
-                  <Button type="submit" disabled={status === "sending"} aria-busy={status === "sending"}>
-                    {status === "sending" ? <span className="spinner" aria-hidden="true" /> : <Send className="size-4" />}
-                    {status === "sending" ? "Routing your message…" : "Send message"}
-                  </Button>
-                  <span className="text-xs text-neutral-500">No API key is exposed in the browser.</span>
-                </div>
-
-                {status === "success" && (
-                  <div className="border border-neutral-200 bg-neutral-50 p-4 text-sm leading-6">
-                    <div className="flex items-center gap-2 font-semibold"><Check className="size-4" /> Message processed.</div>
-                    <p className="mt-1 text-neutral-600">
-                      The system stored it, classified it, and queued the follow-up path
-                      {processingMs !== null ? ` in ${processingMs} ms` : ""}.
-                    </p>
+          <div className="contact-system__grid">
+            <Card className="contact-card">
+              <CardHeader>
+                <CardTitle>Send a message</CardTitle>
+                <p>Required fields are marked with *.</p>
+              </CardHeader>
+              <CardContent>
+                <form className="contact-form" onSubmit={handleSubmit}>
+                  <input aria-hidden="true" tabIndex={-1} autoComplete="off" name="botcheck" className="hidden" />
+                  <div className="contact-form__row">
+                    <label>Name *<input name="name" required maxLength={120} autoComplete="name" /></label>
+                    <label>Email *<input name="email" type="email" required maxLength={320} autoComplete="email" /></label>
                   </div>
-                )}
-
-                {status === "error" && (
-                  <div role="alert" className="error-state p-4 text-sm leading-6">
-                    <div className="font-semibold">The message stayed here.</div>
-                    <p className="mt-1">{error || "The contact service did not accept the request."} Nothing was silently discarded.</p>
-                    <button type="button" className="filter-pill mt-3" onClick={() => setStatus("idle")}>Try again</button>
+                  <div className="contact-form__row">
+                    <label>Company<input name="company" maxLength={160} autoComplete="organization" /></label>
+                    <label>Subject *
+                      <select name="subject" required>
+                        <option value="">Choose one</option>
+                        <option>Job opportunity</option>
+                        <option>Internship opportunity</option>
+                        <option>Project</option>
+                        <option>Collaboration</option>
+                        <option>General inquiry</option>
+                      </select>
+                    </label>
                   </div>
-                )}
-              </form>
-            </CardContent>
-          </Card>
-
-          <div className="space-y-4">
-            {steps.map(([number, title, body]) => (
-              <div key={number} className="border border-neutral-200 p-5">
-                <div className="flex items-start gap-4">
-                  <span className="font-mono text-xs text-neutral-400">{number}</span>
-                  <div>
-                    <div className="flex items-center gap-2 text-base font-semibold"><ArrowRight className="size-4" />{title}</div>
-                    <p className="mt-2 text-sm leading-6 text-neutral-600">{body}</p>
+                  <label>Message *<textarea name="message" required maxLength={4000} rows={6} /></label>
+                  <div className="contact-form__actions">
+                    <Button type="submit" disabled={status === "sending"} aria-busy={status === "sending"}>
+                      {status === "sending" ? <span className="spinner" aria-hidden="true" /> : <Send className="size-4" />}
+                      {status === "sending" ? "Routing your message…" : "Send message"}
+                    </Button>
+                    <span>No API key is exposed in the browser.</span>
                   </div>
-                </div>
-              </div>
-            ))}
-            <Card className="bg-neutral-950 text-white shadow-none">
-              <CardContent className="grid gap-4 p-5 sm:grid-cols-3">
-                <div><Clock3 className="size-4 opacity-70" /><div className="mt-2 text-xs uppercase tracking-wide opacity-60">Timestamp</div><div className="mt-1 text-sm">Recorded at intake</div></div>
-                <div><ShieldCheck className="size-4 opacity-70" /><div className="mt-2 text-xs uppercase tracking-wide opacity-60">Safety</div><div className="mt-1 text-sm">Secret stays server-side</div></div>
-                <div><Mail className="size-4 opacity-70" /><div className="mt-2 text-xs uppercase tracking-wide opacity-60">Routing</div><div className="mt-1 text-sm">Owner + visitor email</div></div>
+                  {status === "success" && (
+                    <div className="contact-result">
+                      <div><Check size={15} /> Message processed.</div>
+                      <p>The system stored it, classified it, and queued the follow-up path{processingMs !== null ? ` in ${processingMs} ms` : ""}.</p>
+                    </div>
+                  )}
+                  {status === "error" && (
+                    <div role="alert" className="contact-error">
+                      <div>The message stayed here.</div>
+                      <p>{error || "The contact service did not accept the request."} Nothing was silently discarded.</p>
+                      <button type="button" onClick={() => setStatus("idle")}>Try again</button>
+                    </div>
+                  )}
+                </form>
               </CardContent>
             </Card>
-            {DASHBOARD_URL && (
-              <a href={DASHBOARD_URL} target="_blank" rel="noopener noreferrer" className="inline-link">
-                Open owner lead dashboard <ArrowRight className="size-3.5" />
-              </a>
-            )}
+
+            <div className="contact-system__steps">
+              {steps.map(([number, title, body]) => (
+                <div key={number} className="contact-step">
+                  <span>{number}</span>
+                  <div><h3>{title}</h3><p>{body}</p></div>
+                </div>
+              ))}
+              <div className="contact-proof">
+                <div><Clock3 /><span>Timestamp</span><b>Recorded at intake</b></div>
+                <div><ShieldCheck /><span>Safety</span><b>Secret stays server-side</b></div>
+                <div><Mail /><span>Routing</span><b>Owner + visitor email</b></div>
+              </div>
+              {DASHBOARD_URL && <a href={DASHBOARD_URL} target="_blank" rel="noopener noreferrer" className="contact-dashboard">Open owner lead dashboard <ArrowRight size={14} /></a>}
+            </div>
           </div>
         </div>
       </div>
