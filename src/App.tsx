@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import type { ReactNode } from "react"
-import { ArrowUpRight, Check, Download, ExternalLink, Github, Linkedin, Mail, Menu, X } from "lucide-react"
+import { ArrowUpRight, Check, Download, ExternalLink, Github, Menu, X } from "lucide-react"
 import { ContactSystem } from "./components/ContactSystem"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
