@@ -29,7 +29,8 @@ export function ContactSystem() {
     setStatus("sending")
     setError("")
 
-    const form = new FormData(event.currentTarget)
+    const formElement = event.currentTarget
+    const form = new FormData(formElement)
     const payload = {
       name: String(form.get("name") || "").trim(),
       email: String(form.get("email") || "").trim(),
@@ -56,7 +57,7 @@ export function ContactSystem() {
         priority: data.classification?.priority,
       })
       setStatus("success")
-      event.currentTarget.reset()
+      formElement.reset()
     } catch (submissionError) {
       setError(submissionError instanceof Error ? submissionError.message : "Unable to send your message.")
       setStatus("error")
