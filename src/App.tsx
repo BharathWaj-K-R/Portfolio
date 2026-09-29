@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
-import { Activity, ArrowRight, ArrowUpRight, BrainCircuit, Check, ChevronDown, Code2, Database, Download, ExternalLink, Github, GitBranch, Layers3, Linkedin, Mail, Menu, Search, Server, ShieldCheck, Sparkles, Terminal, Workflow, X } from "lucide-react"
+import { Activity, ArrowRight, ArrowUpRight, BrainCircuit, Check, Code2, Database, Download, ExternalLink, Github, GitBranch, Layers3, Linkedin, Mail, Menu, Search, Server, ShieldCheck, Sparkles, Terminal, Workflow, X } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ContactSystem } from "./components/ContactSystem"
 import { Badge } from "@/components/ui/badge"
