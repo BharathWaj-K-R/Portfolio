@@ -149,7 +149,7 @@ function useReveal() {
 }
 
 function Button({ href, children, secondary = false, onClick, type = "button" }: { href?: string; children: ReactNode; secondary?: boolean; onClick?: () => void; type?: "button" | "submit" }) {
-  const className = `ink-button\${secondary ? " ink-button--secondary" : ""}`
+  const className = `ink-button${secondary ? " ink-button--secondary" : ""}`
   if (href) return <a className={className} href={href} onClick={onClick}>{children}</a>
   return <button className={className} onClick={onClick} type={type}>{children}</button>
 }
@@ -169,11 +169,11 @@ function SectionHeader({ number, title, intro }: { number: string; title: string
 }
 
 function NavLink({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
-  return <button className={`nav-link\${active ? " is-active" : ""}`} aria-current={active ? "location" : undefined} onClick={onClick}>{label}</button>
+  return <button className={`nav-link${active ? " is-active" : ""}`} aria-current={active ? "location" : undefined} onClick={onClick}>{label}</button>
 }
 
 function CaseFile({ project, index, onOpen }: { project: Project; index: number; onOpen: () => void }) {
-  return <article className={`case-file\${index === 0 ? " case-file--lead" : ""}`} data-reveal>
+  return <article className={`case-file${index === 0 ? " case-file--lead" : ""}`} data-reveal>
     <div className="case-file__top">
       <span className="case-file__number">FILE {String(index + 1).padStart(2, "0")}</span>
       <span className="case-file__status">{project.status}</span>
