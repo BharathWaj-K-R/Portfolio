@@ -1,5 +1,8 @@
 name: Generate lockfile
 on:
+  push:
+    branches:
+      - chore/generate-lockfile
   workflow_dispatch:
 permissions:
   contents: write
