@@ -131,7 +131,7 @@ async function classifyLead(input) {
     if (!response.ok) throw new Error(`Groq returned ${response.status}`);
     const data = await response.json();
     const raw = data?.choices?.[0]?.message?.content || "";
-    const parsed = JSON.parse(raw.replace(/^\`\`\`json\s*/i, "").replace(/\s*\`\`\`$/, ""));
+    const parsed = JSON.parse(raw.replace(/^```json\s*/i, "").replace(/\s*```$/, ""));
     const priority = Math.max(0, Math.min(100, Number(parsed.priority) || 50));
     return {
       intent: clean(parsed.intent, 80) || "General inquiry",
@@ -301,7 +301,7 @@ app.post("/api/contact", rateLimit, async (req, res) => {
           to: OWNER_EMAIL,
           replyTo: input.email,
           subject: `${input.name} reached out · ${classification.intent}`,
-          html: \`
+          html: `
             <div style="margin:0;padding:28px 12px;background:#eef1f6;font-family:Arial,Helvetica,sans-serif;color:#20243a">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:660px;margin:0 auto;background:#ffffff;border:1px solid #d8dce6">
                 <tr><td style="padding:0"><div style="height:7px;background:#20243a"></div>
@@ -328,7 +328,7 @@ app.post("/api/contact", rateLimit, async (req, res) => {
                 </td></tr>
               </table>
             </div>
-          \`,
+          `,
         });
         ownerStatus = "sent";
       } catch (error) {
@@ -340,7 +340,7 @@ app.post("/api/contact", rateLimit, async (req, res) => {
         await sendEmail({
           to: input.email,
           subject: `Got your message, ${input.name}`,
-          html: \`
+          html: `
             <div style="margin:0;padding:28px 12px;background:#eef1f6;font-family:Arial,Helvetica,sans-serif;color:#20243a">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:660px;margin:0 auto;background:#ffffff;border:1px solid #d8dce6">
                 <tr><td style="padding:0"><div style="height:7px;background:#20243a"></div>
@@ -362,7 +362,7 @@ app.post("/api/contact", rateLimit, async (req, res) => {
                 </td></tr>
               </table>
             </div>
-          \`,
+          `,
         });
         visitorStatus = "sent";
       } catch (error) {
