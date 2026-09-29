@@ -67,14 +67,6 @@ export function ContactSystem() {
         </div>
 
         <div className="contact-system__workflow">
-          <header className="section-header section-header--sub contact-system__workflow-header">
-            <div>
-              <h2>One form. A small automation system behind it.</h2>
-              <p>This is a working demonstrator, not a decorative contact box. The submission is stored, classified, routed, acknowledged, and assigned a follow-up task.</p>
-            </div>
-            <span className="contact-stamp">LIVE WORKFLOW</span>
-          </header>
-
           <div className="contact-system__grid">
             <Card className="contact-card">
               <CardHeader>
