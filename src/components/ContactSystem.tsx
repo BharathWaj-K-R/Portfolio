@@ -60,7 +60,7 @@ export function ContactSystem() {
   return (
     <section id="contact" className="ink-section contact-system">
       <div className="ink-container">
-        <header className="section-header contact-system__intro" data-reveal>
+        <header className="section-header contact-system__intro">
           <div>
             <span className="section-number">03 · CONTACT</span>
             <h2>Looking for difficult problems.</h2>
