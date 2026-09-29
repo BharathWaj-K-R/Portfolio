@@ -302,29 +302,29 @@ app.post("/api/contact", rateLimit, async (req, res) => {
           replyTo: input.email,
           subject: \`${input.name} reached out · ${classification.intent}\`,
           html: \`
-            <div style="margin:0;padding:28px 12px;background:#eeece4;font-family:Arial,Helvetica,sans-serif;color:#151614">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:660px;margin:0 auto;background:#fbfaf6;border:1px solid #d3d1c6">
-                <tr><td style="padding:0"><div style="height:6px;background:#b9f33b"></div>
+            <div style="margin:0;padding:28px 12px;background:#eef1f6;font-family:Arial,Helvetica,sans-serif;color:#20243a">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:660px;margin:0 auto;background:#ffffff;border:1px solid #d8dce6">
+                <tr><td style="padding:0"><div style="height:7px;background:#20243a"></div>
                   <div style="padding:28px 30px 22px;border-bottom:1px solid #d3d1c6">
                     <p style="margin:0 0 9px;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#6b6c64">Bharath Waj K R · Portfolio</p>
-                    <h1 style="margin:0;font-size:28px;line-height:1.15;letter-spacing:-.6px">Someone reached out.</h1>
-                    <p style="margin:9px 0 0;font-size:14px;line-height:1.6;color:#66685f">A new conversation came through the contact form.</p>
+                    <h1 style="margin:0;font-size:28px;line-height:1.15;letter-spacing:-.6px;color:#ffffff">Someone reached out.</h1>
+                    <p style="margin:10px 0 0;font-size:14px;line-height:1.6;color:#dfe4f2">A new conversation came through the contact form.</p>
                   </div>
                   <div style="padding:26px 30px">
                     <p style="margin:0 0 18px;font-size:16px;line-height:1.55">Hi Bharath, <strong>${esc(input.name)}</strong> is reaching out about <strong>${esc(classification.intent.toLowerCase())}</strong>.</p>
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #d3d1c6;background:#f4f2eb"><tr><td style="padding:18px 20px;border-left:4px solid #b9f33b">
-                      <p style="margin:0 0 8px;font-size:10px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;color:#777970">Their message</p>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #d8dce6;background:#f3f5fa"><tr><td style="padding:18px 20px;border-left:4px solid #ff7a66;background:#fff6f3">
+                      <p style="margin:0 0 8px;font-size:10px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;color:#ff6b55">Their message</p>
                       <p style="margin:0;font-size:15px;line-height:1.75;white-space:pre-wrap">${esc(input.message)}</p>
                     </td></tr></table>
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:22px;font-size:13px;line-height:1.5">
-                      <tr><td width="110" style="padding:7px 0;color:#777970">From</td><td style="padding:7px 0"><strong>${esc(input.name)}</strong> · ${esc(input.email)}</td></tr>
-                      <tr><td style="padding:7px 0;color:#777970">Company</td><td style="padding:7px 0">${esc(input.company || 'Not provided')}</td></tr>
-                      <tr><td style="padding:7px 0;color:#777970">Subject</td><td style="padding:7px 0">${esc(input.subject)}</td></tr>
-                      <tr><td style="padding:7px 0;color:#777970">Priority</td><td style="padding:7px 0"><strong>${classification.priority}/100</strong> · ${esc(classification.urgency)} urgency</td></tr>
+                      <tr><td width="110" style="padding:7px 0;color:#687087">From</td><td style="padding:7px 0"><strong>${esc(input.name)}</strong> · ${esc(input.email)}</td></tr>
+                      <tr><td style="padding:7px 0;color:#687087">Company</td><td style="padding:7px 0">${esc(input.company || 'Not provided')}</td></tr>
+                      <tr><td style="padding:7px 0;color:#687087">Subject</td><td style="padding:7px 0">${esc(input.subject)}</td></tr>
+                      <tr><td style="padding:7px 0;color:#687087">Priority</td><td style="padding:7px 0"><strong>${classification.priority}/100</strong> · ${esc(classification.urgency)} urgency</td></tr>
                     </table>
-                    <p style="margin:24px 0 0;padding-top:18px;border-top:1px solid #d3d1c6;color:#66685f;font-size:13px;line-height:1.6">Reply directly to this email to continue the conversation with ${esc(input.name)}.</p>
+                    <p style="margin:24px 0 0;padding-top:18px;border-top:1px solid #d3d1c6;color:#596176;font-size:13px;line-height:1.6">Reply directly to this email to continue the conversation with ${esc(input.name)}.</p>
                   </div>
-                  <div style="padding:14px 30px;border-top:1px solid #d3d1c6;color:#85867d;font-size:10px">Lead ${esc(leadId)} · Contact workflow</div>
+                  <div style="padding:14px 30px;border-top:1px solid #d3d1c6;color:#7b8397;font-size:10px">Lead ${esc(leadId)} · Contact workflow</div>
                 </td></tr>
               </table>
             </div>
@@ -341,24 +341,24 @@ app.post("/api/contact", rateLimit, async (req, res) => {
           to: input.email,
           subject: \`Got your message, ${input.name}\`,
           html: \`
-            <div style="margin:0;padding:28px 12px;background:#eeece4;font-family:Arial,Helvetica,sans-serif;color:#151614">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:660px;margin:0 auto;background:#fbfaf6;border:1px solid #d3d1c6">
-                <tr><td style="padding:0"><div style="height:6px;background:#b9f33b"></div>
+            <div style="margin:0;padding:28px 12px;background:#eef1f6;font-family:Arial,Helvetica,sans-serif;color:#20243a">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:660px;margin:0 auto;background:#ffffff;border:1px solid #d8dce6">
+                <tr><td style="padding:0"><div style="height:7px;background:#20243a"></div>
                   <div style="padding:28px 30px 22px;border-bottom:1px solid #d3d1c6">
                     <p style="margin:0 0 9px;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#6b6c64">Bharath Waj K R</p>
-                    <h1 style="margin:0;font-size:28px;line-height:1.15;letter-spacing:-.6px">Thanks for reaching out.</h1>
+                    <h1 style="margin:0;font-size:28px;line-height:1.15;letter-spacing:-.6px;color:#ffffff">Thanks for reaching out.</h1>
                   </div>
                   <div style="padding:26px 30px">
                     <p style="margin:0 0 14px;font-size:16px;line-height:1.55">Hi ${esc(input.name)},</p>
                     <p style="margin:0;font-size:15px;line-height:1.75">I’ve received your message about <strong>${esc(classification.intent.toLowerCase())}</strong>. It’s safely in my inbox, and I’ll take a look and get back to you directly.</p>
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:22px;border:1px solid #d3d1c6;background:#f4f2eb"><tr><td style="padding:16px 18px;border-left:4px solid #b9f33b">
-                      <p style="margin:0 0 7px;font-size:10px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;color:#777970">You wrote</p>
-                      <p style="margin:0;color:#66685f;font-size:14px;line-height:1.7;white-space:pre-wrap">${esc(input.message)}</p>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:22px;border:1px solid #d8dce6;background:#f3f5fa"><tr><td style="padding:16px 18px;border-left:4px solid #5b7cfa;background:#f3f6ff">
+                      <p style="margin:0 0 7px;font-size:10px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;color:#5b7cfa">You wrote</p>
+                      <p style="margin:0;color:#596176;font-size:14px;line-height:1.7;white-space:pre-wrap">${esc(input.message)}</p>
                     </td></tr></table>
-                    <p style="margin:20px 0 0;color:#66685f;font-size:13px;line-height:1.7">No need to resend anything. Your original message is already attached to the contact request.</p>
+                    <p style="margin:20px 0 0;color:#596176;font-size:13px;line-height:1.7">No need to resend anything. Your original message is already attached to the contact request.</p>
                     <p style="margin:24px 0 0;font-size:14px;line-height:1.6">Thanks,<br /><strong>Bharath</strong></p>
                   </div>
-                  <div style="padding:14px 30px;border-top:1px solid #d3d1c6;color:#85867d;font-size:10px">Automatic acknowledgement from Bharath’s portfolio contact form.</div>
+                  <div style="padding:14px 30px;border-top:1px solid #d3d1c6;color:#7b8397;font-size:10px">Automatic acknowledgement from Bharath’s portfolio contact form.</div>
                 </td></tr>
               </table>
             </div>
