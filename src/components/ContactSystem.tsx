@@ -1,4 +1,5 @@
-import { FormEvent, useState } from "react"
+import { useState } from "react"
+import type { FormEvent } from "react"
 import { ArrowRight, Check, Clock3, Mail, Send, ShieldCheck, Workflow } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
