@@ -209,7 +209,7 @@ button { cursor: pointer; }
 .ink-portrait figcaption { position: relative; z-index: 2; margin: -1px 0 0 auto; width: min(100%, 310px); padding: var(--space-3); border: 2px solid var(--ink); background: var(--paper); color: var(--ink); font: 700 var(--text-xs)/1.5 var(--font-mono); }
 
 .ink-section { padding: var(--space-9) 0; }
-.section-header { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: var(--space-6); align-items: start; margin-bottom: var(--space-7); }
+.section-header { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-4); align-items: start; margin-bottom: var(--space-7); }
 .section-header h2 { margin: 0; max-width: 760px; font: 900 clamp(40px, 5vw, var(--text-3xl))/.98 var(--font-display); letter-spacing: -.035em; }
 .section-header p { max-width: 65ch; margin: var(--space-3) 0 0; color: var(--grey-3); }
 .section-number { padding-top: 7px; color: var(--crimson); }
@@ -270,7 +270,7 @@ button { cursor: pointer; }
 .section-header--sub { margin-bottom: var(--space-6); }
 .section-header--sub h2 { font-size: var(--text-2xl); }
 .section-header--sub p { max-width: 65ch; }
-.contact-system__workflow-header { grid-template-columns: 180px minmax(0, 1fr) auto; }
+.contact-system__workflow-header { grid-template-columns: minmax(0, 1fr) auto; }
 .contact-stamp { align-self: start; justify-self: end; padding: var(--space-2) var(--space-3); border: 2px solid var(--ink); color: var(--crimson); font: 700 var(--text-xs)/1 var(--font-mono); letter-spacing: .08em; }
 .contact-system__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: var(--space-5); }
 .contact-card { border: var(--border) !important; border-radius: var(--radius) !important; background: var(--white) !important; box-shadow: var(--shadow-offset) var(--shadow-offset) 0 rgb(var(--ink-rgb) / .12) !important; }
