@@ -305,13 +305,6 @@ button { cursor: pointer; }
 .contact-proof b { font-size: var(--text-sm); font-weight: 500; }
 .contact-dashboard { margin-top: var(--space-4); }
 
-.ink-contact { background: var(--paper); border-top: 2px solid var(--ink); }
-.ink-contact__grid { display: grid; grid-template-columns: 1fr .8fr; gap: var(--space-9); align-items: end; }
-.ink-contact h2 { margin-top: var(--space-3); }
-.contact-links { display: grid; gap: var(--space-4); }
-.contact-links a { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) 0; border-bottom: 2px solid var(--ink); font: 700 var(--text-sm)/1.2 var(--font-mono); text-decoration: none; }
-.contact-links a:hover { color: var(--crimson); border-color: var(--crimson); }
-
 .ink-footer { background: var(--ink); color: rgb(var(--paper-rgb) / .62); border-top: 2px solid var(--paper); }
 .ink-footer .ink-container { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); font: 700 var(--text-xs)/1.2 var(--font-mono); }
 
