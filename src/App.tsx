@@ -207,18 +207,6 @@ export default function App() {
 
       <main>
         <section id="about" className="hero-section"><div className="container-wide hero-layout"><div className="reveal"><div className="hero-kicker"><Badge variant="outline"><Sparkles className="size-3" />AI · Backend · Full Stack</Badge><span className="availability"><i />Building systems, not demos</span></div><h1>I build AI systems that work when the happy path ends.</h1><p className="hero-lead">Applied AI, backend systems, and full-stack products with explicit trade-offs, failure paths, and deployable architecture.</p><div className="hero-meta"><span>V.S.B. Engineering College</span><span>2023–2027</span><span>Dindigul, Tamil Nadu</span></div><div className="hero-actions"><Button asChild><a href="#systems">Inspect the systems <ArrowRight className="size-4" /></a></Button><Button asChild variant="outline"><a href={resumeUrl} target="_blank" rel="noopener noreferrer">Résumé <Download className="size-4" /></a></Button><Button asChild variant="outline"><a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noopener noreferrer"><Github className="size-4" />GitHub</a></Button></div><div className="hero-proof"><span><ShieldCheck className="size-4" />Evidence-led projects</span><span><GitBranch className="size-4" />Public source code</span><span><Workflow className="size-4" />Deployed systems</span></div></div><div className="reveal hero-photo">
-  <div className="hero-console">
-    <div className="console-bar"><span><i></i> forgebuilds / live</span><span>SYS 08:41</span></div>
-    <div className="console-body">
-      <div className="console-line"><span>01</span><b>VISIONBRIDGE</b><em>ONLINE</em></div>
-      <div className="console-line"><span>02</span><b>REFORGE</b><em>ONLINE</em></div>
-      <div className="console-line"><span>03</span><b>CONTACT API</b><em>ROUTING</em></div>
-      <div className="console-rule"></div>
-      <div className="console-metric"><span>systems shipped</span><strong>04</strong></div>
-      <div className="console-metric"><span>live deployments</span><strong>02</strong></div>
-      <div className="console-metric"><span>failure paths</span><strong>DEFINED</strong></div>
-    </div>
-  </div>
   <div className="photo-frame"><img src="/photo.webp" onError={(event) => { const image = event.currentTarget; if (image.dataset.fallback !== "true") { image.dataset.fallback = "true"; image.src = photoUrl } }} alt="Portrait of Bharath Waj K R" width="384" height="384" fetchPriority="high" decoding="async" /><div className="photo-note"><Activity className="size-3.5" /> Building things that survive contact with reality.</div></div>
 </div></div></section>
         <ProofStrip />
