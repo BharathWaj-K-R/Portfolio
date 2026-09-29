@@ -1,4 +1,4 @@
-import { FormEvent, useMemo, useState } from "react"
+import { FormEvent, useState } from "react"
 import { ArrowRight, Check, Clock3, Mail, Send, ShieldCheck, Workflow } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -19,9 +19,9 @@ const steps = [
 export function ContactSystem() {
   const [status, setStatus] = useState<Status>("idle")
   const [error, setError] = useState("")
-  const [result, setResult] = useState<{ processingMs?: number; priority?: number } | null>(null)
+  const [processingMs, setProcessingMs] = useState<number | null>(null)
 
-  const endpoint = useMemo(() => API_BASE ? `${API_BASE}/api/contact` : "/api/contact", [])
+  const endpoint = API_BASE ? `${API_BASE}/api/contact` : "/api/contact"
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -52,10 +52,7 @@ export function ContactSystem() {
       const data = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(data.error || "Unable to send your message.")
 
-      setResult({
-        processingMs: data.processingMs,
-        priority: data.classification?.priority,
-      })
+      setProcessingMs(typeof data.processingMs === "number" ? data.processingMs : null)
       setStatus("success")
       formElement.reset()
     } catch (submissionError) {
@@ -133,7 +130,7 @@ export function ContactSystem() {
                     <div className="flex items-center gap-2 font-semibold"><Check className="size-4" /> Message processed.</div>
                     <p className="mt-1 text-neutral-600">
                       The system stored it, classified it, and queued the follow-up path
-                      {typeof result?.processingMs === "number" ? ` in ${result.processingMs} ms` : ""}.
+                      {processingMs !== null ? ` in ${processingMs} ms` : ""}.
                     </p>
                   </div>
                 )}
