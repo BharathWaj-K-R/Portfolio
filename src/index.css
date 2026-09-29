@@ -299,7 +299,7 @@ nav { display: block; }
   aspect-ratio: 1;
   object-fit: cover;
   border: 1px solid var(--ink);
-  filter: grayscale(100%) contrast(1.06);
+  filter: saturate(1.06) contrast(1.03) brightness(1.01);
 }
 .photo-note {
   position: absolute;
