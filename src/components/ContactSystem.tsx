@@ -66,14 +66,15 @@ export function ContactSystem() {
             <h2>Looking for difficult problems.</h2>
             <p>One form. A small automation system behind it.</p>
           </div>
-          <div className="contact-system__links">
-            <a href="#contact"><Mail size={15} />Email via contact workflow</a>
-            <a href="https://www.linkedin.com/in/bharath-waj-k-r/" target="_blank" rel="noreferrer"><Linkedin size={15} />LinkedIn</a>
-            <a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noreferrer"><Github size={15} />GitHub</a>
-          </div>
         </header>
 
-        <div className="contact-system__workflow" data-reveal>
+        <div className="contact-system__links" data-reveal>
+          <a href="#contact"><Mail size={15} />Email via contact workflow</a>
+          <a href="https://www.linkedin.com/in/bharath-waj-k-r/" target="_blank" rel="noreferrer"><Linkedin size={15} />LinkedIn</a>
+          <a href="https://github.com/BharathWaj-K-R" target="_blank" rel="noreferrer"><Github size={15} />GitHub</a>
+        </div>
+
+        <div className="contact-system__workflow">
           <header className="section-header section-header--sub">
             <div>
               <span className="section-number">CONTACT WORKFLOW</span>
