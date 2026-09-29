@@ -60,9 +60,9 @@ export function ContactSystem() {
   return (
     <section id="contact" className="ink-section contact-system">
       <div className="ink-container">
-        <header className="section-header contact-system__intro">
+        <header className="section-header contact-system__intro contact-system__header">
+          <span className="section-number">03 · CONTACT</span>
           <div>
-            <span className="section-number">03 · CONTACT</span>
             <h2>Looking for difficult problems.</h2>
             <p>One form. A small automation system behind it.</p>
           </div>
@@ -75,9 +75,9 @@ export function ContactSystem() {
         </div>
 
         <div className="contact-system__workflow">
-          <header className="section-header section-header--sub">
+          <header className="section-header section-header--sub contact-system__workflow-header">
+            <span className="section-number">CONTACT WORKFLOW</span>
             <div>
-              <span className="section-number">CONTACT WORKFLOW</span>
               <h2>One form. A small automation system behind it.</h2>
               <p>This is a working demonstrator, not a decorative contact box. The submission is stored, classified, routed, acknowledged, and assigned a follow-up task.</p>
             </div>
